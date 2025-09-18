@@ -1,0 +1,174 @@
+<mxfile host="app.diagrams.net" modified="2024-01-01T00:00:00.000Z" agent="5.0" etag="xxx" version="22.1.16">
+  <diagram name="Analysis-Framework" id="analysis-framework">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- 中心核心 -->
+        <mxCell id="core" value="Hadoop RPC&#xa;深度分析" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="485" y="350" width="200" height="100" as="geometry" />
+        </mxCell>
+        
+        <!-- 六个维度 -->
+        <mxCell id="architecture" value="架构设计维度" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="150" width="150" height="80" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="protocol" value="协议机制维度" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="650" y="150" width="150" height="80" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="implementation" value="实现技术维度" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="850" y="350" width="150" height="80" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="performance" value="性能优化维度" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="650" y="550" width="150" height="80" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="security" value="安全机制维度" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="200" y="550" width="150" height="80" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="application" value="应用实践维度" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#666666;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="350" width="150" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- 架构设计维度的子项 -->
+        <mxCell id="arch-rpc" value="RPC类设计" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="120" y="50" width="80" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arch-client" value="Client架构" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="220" y="50" width="80" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arch-server" value="Server架构" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="320" y="50" width="80" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arch-engine" value="RpcEngine接口" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="420" y="50" width="80" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- 协议机制维度的子项 -->
+        <mxCell id="proto-stack" value="协议栈结构" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="570" y="50" width="80" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="proto-message" value="消息格式" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="670" y="50" width="80" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="proto-version" value="版本管理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="770" y="50" width="80" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- 实现技术维度的子项 -->
+        <mxCell id="impl-serial" value="序列化引擎" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="950" y="270" width="80" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="impl-nio" value="NIO网络模型" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="950" y="330" width="80" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="impl-thread" value="多线程架构" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="950" y="390" width="80" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- 性能优化维度的子项 -->
+        <mxCell id="perf-async" value="异步处理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="570" y="650" width="80" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="perf-pool" value="连接池管理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="670" y="650" width="80" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="perf-batch" value="批量处理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="770" y="650" width="80" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- 安全机制维度的子项 -->
+        <mxCell id="sec-auth" value="认证框架" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="120" y="650" width="80" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="sec-sasl" value="SASL集成" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="220" y="650" width="80" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="sec-encrypt" value="传输加密" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="320" y="650" width="80" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- 应用实践维度的子项 -->
+        <mxCell id="app-hdfs" value="HDFS应用" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="20" y="270" width="80" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="app-yarn" value="YARN应用" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="20" y="330" width="80" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="app-protocol" value="协议实现" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="20" y="390" width="80" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- 连接线 -->
+        <mxCell id="core-to-arch" value="" style="endArrow=classic;html=1;strokeColor=#9673a6;strokeWidth=3;" edge="1" parent="1" source="core" target="architecture">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="300" as="sourcePoint" />
+            <mxPoint x="450" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="core-to-proto" value="" style="endArrow=classic;html=1;strokeColor=#82b366;strokeWidth=3;" edge="1" parent="1" source="core" target="protocol">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="300" as="sourcePoint" />
+            <mxPoint x="450" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="core-to-impl" value="" style="endArrow=classic;html=1;strokeColor=#6c8ebf;strokeWidth=3;" edge="1" parent="1" source="core" target="implementation">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="300" as="sourcePoint" />
+            <mxPoint x="450" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="core-to-perf" value="" style="endArrow=classic;html=1;strokeColor=#d6b656;strokeWidth=3;" edge="1" parent="1" source="core" target="performance">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="300" as="sourcePoint" />
+            <mxPoint x="450" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="core-to-sec" value="" style="endArrow=classic;html=1;strokeColor=#d79b00;strokeWidth=3;" edge="1" parent="1" source="core" target="security">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="300" as="sourcePoint" />
+            <mxPoint x="450" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="core-to-app" value="" style="endArrow=classic;html=1;strokeColor=#666666;strokeWidth=3;" edge="1" parent="1" source="core" target="application">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="300" as="sourcePoint" />
+            <mxPoint x="450" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- 子项连接线 -->
+        <mxCell id="arch-to-sub" value="" style="endArrow=none;html=1;strokeColor=#9673a6;strokeWidth=1;dashed=1;" edge="1" parent="1" source="architecture" target="arch-rpc">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="300" as="sourcePoint" />
+            <mxPoint x="450" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

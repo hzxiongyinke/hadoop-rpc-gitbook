@@ -1,0 +1,105 @@
+<svg width="1000" height="600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title { font: bold 16px sans-serif; text-anchor: middle; fill: #2c3e50; }
+      .subtitle { font: 12px sans-serif; text-anchor: middle; fill: #666; }
+      .section { font: bold 14px sans-serif; text-anchor: middle; fill: white; }
+      .component { font: 11px sans-serif; text-anchor: middle; fill: #2c3e50; }
+      .step { font: 10px sans-serif; text-anchor: middle; fill: #d79b00; }
+    </style>
+  </defs>
+  
+  <!-- 背景 -->
+  <rect width="1000" height="600" fill="#f8f9fa" stroke="#dee2e6" stroke-width="2"/>
+  
+  <!-- 标题 -->
+  <text x="500" y="30" class="title">RPC调用完整架构图</text>
+  <text x="500" y="50" class="subtitle">展示从客户端到服务端的分层处理机制</text>
+  
+  <!-- 客户端侧 -->
+  <rect x="50" y="80" width="350" height="450" fill="#e1d5e7" stroke="#9673a6" stroke-width="2" rx="5"/>
+  <text x="225" y="105" class="section">客户端侧</text>
+  
+  <rect x="80" y="120" width="290" height="50" fill="#fff2cc" stroke="#d6b656" rx="3"/>
+  <text x="225" y="150" class="component">客户端应用程序</text>
+  
+  <rect x="80" y="190" width="290" height="50" fill="#dae8fc" stroke="#6c8ebf" rx="3"/>
+  <text x="225" y="220" class="component">代理层 (Proxy)</text>
+  
+  <rect x="80" y="260" width="290" height="50" fill="#d5e8d4" stroke="#82b366" rx="3"/>
+  <text x="225" y="290" class="component">客户端存根 (Client Stub)</text>
+  
+  <rect x="80" y="330" width="140" height="50" fill="#ffe6cc" stroke="#d79b00" rx="3"/>
+  <text x="150" y="360" class="component">序列化层</text>
+  
+  <rect x="230" y="330" width="140" height="50" fill="#f8cecc" stroke="#b85450" rx="3"/>
+  <text x="300" y="360" class="component">网络传输层</text>
+  
+  <rect x="80" y="400" width="290" height="40" fill="#e1d5e7" stroke="#9673a6" rx="3"/>
+  <text x="225" y="425" class="component">连接管理</text>
+  
+  <!-- 网络层 -->
+  <rect x="450" y="200" width="100" height="200" fill="#f0f0f0" stroke="#666666" stroke-width="2" rx="5"/>
+  <text x="500" y="225" class="section">网络传输</text>
+  
+  <rect x="470" y="240" width="60" height="30" fill="#dae8fc" stroke="#6c8ebf" rx="3"/>
+  <text x="500" y="260" class="component">TCP连接</text>
+  
+  <rect x="470" y="290" width="60" height="30" fill="#d5e8d4" stroke="#82b366" rx="3"/>
+  <text x="500" y="310" class="component">消息队列</text>
+  
+  <rect x="470" y="340" width="60" height="30" fill="#ffe6cc" stroke="#d79b00" rx="3"/>
+  <text x="500" y="360" class="component">错误处理</text>
+  
+  <!-- 服务端侧 -->
+  <rect x="600" y="80" width="350" height="450" fill="#e1d5e7" stroke="#9673a6" stroke-width="2" rx="5"/>
+  <text x="775" y="105" class="section">服务端侧</text>
+  
+  <rect x="630" y="120" width="290" height="40" fill="#e1d5e7" stroke="#9673a6" rx="3"/>
+  <text x="775" y="145" class="component">连接监听</text>
+  
+  <rect x="630" y="180" width="140" height="50" fill="#f8cecc" stroke="#b85450" rx="3"/>
+  <text x="700" y="210" class="component">网络接收层</text>
+  
+  <rect x="780" y="180" width="140" height="50" fill="#ffe6cc" stroke="#d79b00" rx="3"/>
+  <text x="850" y="210" class="component">反序列化层</text>
+  
+  <rect x="630" y="250" width="290" height="50" fill="#d5e8d4" stroke="#82b366" rx="3"/>
+  <text x="775" y="280" class="component">服务端存根 (Server Stub)</text>
+  
+  <rect x="630" y="320" width="290" height="50" fill="#dae8fc" stroke="#6c8ebf" rx="3"/>
+  <text x="775" y="350" class="component">请求分发器 (Dispatcher)</text>
+  
+  <rect x="630" y="390" width="290" height="50" fill="#fff2cc" stroke="#d6b656" rx="3"/>
+  <text x="775" y="420" class="component">服务端业务逻辑</text>
+  
+  <!-- 调用流程箭头 -->
+  <line x1="225" y1="170" x2="225" y2="190" stroke="#d79b00" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="250" y="185" class="step">1. 本地调用</text>
+  
+  <line x1="225" y1="240" x2="225" y2="260" stroke="#6c8ebf" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="250" y="255" class="step">2. 代理拦截</text>
+  
+  <line x1="225" y1="310" x2="150" y2="330" stroke="#82b366" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="180" y="325" class="step">3. 序列化</text>
+  
+  <line x1="300" y1="330" x2="470" y2="255" stroke="#b85450" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="385" y="290" class="step">4. 网络发送</text>
+  
+  <line x1="530" y1="255" x2="630" y2="205" stroke="#666666" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="580" y="235" class="step">5. 网络传输</text>
+  
+  <!-- 返回流程 -->
+  <line x1="775" y1="440" x2="225" y2="500" stroke="#9673a6" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#arrowhead)"/>
+  <text x="500" y="480" class="step">9-12. 返回流程</text>
+  
+  <!-- 箭头标记定义 -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#d79b00"/>
+    </marker>
+  </defs>
+  
+  <!-- 提示信息 -->
+  <text x="500" y="580" class="subtitle">请使用Draw.io打开 rpc-call-architecture.drawio 文件编辑此图表，然后导出为SVG格式</text>
+</svg>
