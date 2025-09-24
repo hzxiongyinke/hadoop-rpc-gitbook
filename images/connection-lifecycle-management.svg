@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="850" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title { font-family: Arial, sans-serif; font-size: 18px; font-weight: bold; fill: #2c3e50; }
+      .subtitle { font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; }
+      .text { font-family: Arial, sans-serif; font-size: 12px; }
+      .small-text { font-family: Arial, sans-serif; font-size: 11px; }
+      .tiny-text { font-family: Arial, sans-serif; font-size: 10px; }
+      .client-pool { fill: #dae8fc; stroke: #6c8ebf; fill-opacity: 0.3; }
+      .client-component { fill: #e8f4fd; stroke: #6c8ebf; }
+      .pool-detail { fill: #f0f8ff; stroke: #6c8ebf; fill-opacity: 0.3; }
+      .pool-item { fill: #e1f5fe; stroke: #6c8ebf; }
+      .lifecycle-states { fill: #d5e8d4; stroke: #82b366; fill-opacity: 0.3; }
+      .state-init { fill: #e8f5e8; stroke: #82b366; }
+      .state-active { fill: #c8e6c9; stroke: #4caf50; }
+      .state-idle { fill: #fff3e0; stroke: #ff9800; }
+      .state-closed { fill: #ffebee; stroke: #f44336; }
+      .server-mgmt { fill: #fff2cc; stroke: #d6b656; fill-opacity: 0.3; }
+      .server-component { fill: #fff8e1; stroke: #d6b656; }
+      .server-item { fill: #fffacd; stroke: #d6b656; }
+      .monitoring { fill: #f8cecc; stroke: #b85450; fill-opacity: 0.3; }
+      .monitor-item { fill: #fce4ec; stroke: #b85450; }
+    </style>
+  </defs>
+  
+  <!-- 标题 -->
+  <text x="600" y="30" text-anchor="middle" class="title">Hadoop RPC连接生命周期管理</text>
+  
+  <!-- 客户端连接池 -->
+  <rect x="80" y="80" width="400" height="300" rx="10" class="client-pool"/>
+  <text x="280" y="100" text-anchor="middle" class="subtitle" fill="#6c8ebf">客户端连接池管理</text>
+  
+  <!-- Client类 -->
+  <rect x="100" y="120" width="100" height="40" rx="3" class="client-component"/>
+  <text x="150" y="143" text-anchor="middle" class="text">Client类</text>
+  
+  <!-- ClientCache -->
+  <rect x="220" y="120" width="100" height="40" rx="3" class="client-component"/>
+  <text x="270" y="143" text-anchor="middle" class="text">ClientCache</text>
+  
+  <!-- ConnectionId -->
+  <rect x="340" y="120" width="120" height="40" rx="3" class="client-component"/>
+  <text x="400" y="143" text-anchor="middle" class="text">ConnectionId</text>
+  
+  <!-- 连接池详情 -->
+  <rect x="100" y="180" width="360" height="180" rx="5" class="pool-detail"/>
+  <text x="280" y="200" text-anchor="middle" class="text" fill="#6c8ebf">连接池详情</text>
+  
+  <!-- 连接映射 -->
+  <rect x="120" y="210" width="320" height="25" rx="3" class="pool-item"/>
+  <text x="280" y="225" text-anchor="middle" class="small-text">connections: Map&lt;ConnectionId, Connection&gt;</text>
+  
+  <!-- 连接标识组成 -->
+  <rect x="120" y="250" width="100" height="25" rx="3" class="pool-item"/>
+  <text x="170" y="265" text-anchor="middle" class="small-text">ConnectionId组成</text>
+  
+  <rect x="240" y="250" width="60" height="25" rx="3" class="pool-item"/>
+  <text x="270" y="265" text-anchor="middle" class="tiny-text">远程地址</text>
+  
+  <rect x="320" y="250" width="50" height="25" rx="3" class="pool-item"/>
+  <text x="345" y="265" text-anchor="middle" class="tiny-text">协议名</text>
+  
+  <rect x="390" y="250" width="60" height="25" rx="3" class="pool-item"/>
+  <text x="420" y="265" text-anchor="middle" class="tiny-text">用户票据</text>
+  
+  <!-- 连接操作 -->
+  <rect x="120" y="290" width="100" height="25" rx="3" class="pool-item"/>
+  <text x="170" y="305" text-anchor="middle" class="small-text">getConnection()</text>
+  
+  <rect x="240" y="290" width="80" height="25" rx="3" class="pool-item"/>
+  <text x="280" y="305" text-anchor="middle" class="small-text">创建新连接</text>
+  
+  <rect x="340" y="290" width="100" height="25" rx="3" class="pool-item"/>
+  <text x="390" y="305" text-anchor="middle" class="small-text">复用现有连接</text>
+  
+  <!-- 连接清理 -->
+  <rect x="120" y="330" width="80" height="25" rx="3" class="pool-item"/>
+  <text x="160" y="345" text-anchor="middle" class="small-text">清理策略</text>
+  
+  <rect x="220" y="330" width="80" height="25" rx="3" class="pool-item"/>
+  <text x="260" y="345" text-anchor="middle" class="tiny-text">maxIdleTime</text>
+  
+  <rect x="320" y="330" width="70" height="25" rx="3" class="pool-item"/>
+  <text x="355" y="345" text-anchor="middle" class="tiny-text">定期清理</text>
+  
+  <!-- 连接生命周期状态 -->
+  <rect x="520" y="80" width="300" height="300" rx="10" class="lifecycle-states"/>
+  <text x="670" y="100" text-anchor="middle" class="subtitle" fill="#82b366">连接生命周期状态</text>
+  
+  <!-- 状态节点 -->
+  <ellipse cx="580" cy="140" rx="40" ry="20" class="state-init"/>
+  <text x="580" y="145" text-anchor="middle" class="small-text">初始化</text>
+  
+  <ellipse cx="760" cy="140" rx="40" ry="20" class="state-init"/>
+  <text x="760" y="145" text-anchor="middle" class="small-text">连接中</text>
+  
+  <ellipse cx="580" cy="200" rx="40" ry="20" class="state-init"/>
+  <text x="580" y="205" text-anchor="middle" class="small-text">认证中</text>
+  
+  <ellipse cx="760" cy="200" rx="40" ry="20" class="state-active"/>
+  <text x="760" y="205" text-anchor="middle" class="small-text">活跃</text>
+  
+  <ellipse cx="580" cy="280" rx="40" ry="20" class="state-idle"/>
+  <text x="580" y="285" text-anchor="middle" class="small-text">空闲</text>
+  
+  <ellipse cx="760" cy="280" rx="40" ry="20" class="state-closed"/>
+  <text x="760" y="285" text-anchor="middle" class="small-text">已关闭</text>
+  
+  <!-- 状态转换箭头 -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2c3e50"/>
+    </marker>
+    <marker id="arrowhead-success" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#4caf50"/>
+    </marker>
+    <marker id="arrowhead-error" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#f44336"/>
+    </marker>
+  </defs>
+  
+  <!-- 状态转换线 -->
+  <line x1="620" y1="140" x2="720" y2="140" stroke="#4caf50" stroke-width="2" marker-end="url(#arrowhead-success)"/>
+  <text x="650" y="135" fill="#4caf50" class="tiny-text">setupConnection</text>
+  
+  <line x1="750" y1="160" x2="590" y2="190" stroke="#4caf50" stroke-width="2" marker-end="url(#arrowhead-success)"/>
+  <text x="650" y="175" fill="#4caf50" class="tiny-text">SASL认证</text>
+  
+  <line x1="620" y1="200" x2="720" y2="200" stroke="#4caf50" stroke-width="2" marker-end="url(#arrowhead-success)"/>
+  <text x="650" y="195" fill="#4caf50" class="tiny-text">认证成功</text>
+  
+  <line x1="750" y1="220" x2="590" y2="270" stroke="#ff9800" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="650" y="245" fill="#ff9800" class="tiny-text">无活动</text>
+  
+  <line x1="620" y1="280" x2="720" y2="280" stroke="#f44336" stroke-width="2" marker-end="url(#arrowhead-error)"/>
+  <text x="650" y="275" fill="#f44336" class="tiny-text">超时/错误</text>
+  
+  <line x1="590" y1="270" x2="750" y2="220" stroke="#4caf50" stroke-width="2" marker-end="url(#arrowhead-success)"/>
+  <text x="650" y="250" fill="#4caf50" class="tiny-text">新请求</text>
+  
+  <!-- 服务端连接管理 -->
+  <rect x="80" y="420" width="740" height="200" rx="10" class="server-mgmt"/>
+  <text x="450" y="440" text-anchor="middle" class="subtitle" fill="#d6b656">服务端连接管理</text>
+  
+  <!-- ConnectionManager -->
+  <rect x="100" y="460" width="150" height="40" rx="3" class="server-component"/>
+  <text x="175" y="483" text-anchor="middle" class="text">ConnectionManager</text>
+  
+  <!-- 管理功能 -->
+  <rect x="100" y="520" width="80" height="30" rx="3" class="server-item"/>
+  <text x="140" y="538" text-anchor="middle" class="small-text">连接跟踪</text>
+  
+  <rect x="200" y="520" width="100" height="30" rx="3" class="server-item"/>
+  <text x="250" y="538" text-anchor="middle" class="small-text">丢弃连接统计</text>
+  
+  <rect x="320" y="520" width="100" height="30" rx="3" class="server-item"/>
+  <text x="370" y="538" text-anchor="middle" class="small-text">每用户连接数</text>
+  
+  <rect x="440" y="520" width="100" height="30" rx="3" class="server-item"/>
+  <text x="490" y="538" text-anchor="middle" class="small-text">空闲连接扫描</text>
+  
+  <!-- Server Connection -->
+  <rect x="280" y="460" width="150" height="40" rx="3" class="server-component"/>
+  <text x="355" y="483" text-anchor="middle" class="text">Server.Connection</text>
+  
+  <!-- 连接属性 -->
+  <rect x="460" y="460" width="120" height="40" rx="3" class="server-component"/>
+  <text x="520" y="483" text-anchor="middle" class="text">连接属性</text>
+  
+  <rect x="600" y="460" width="100" height="25" rx="3" class="server-item"/>
+  <text x="650" y="475" text-anchor="middle" class="small-text">SocketChannel</text>
+  
+  <rect x="720" y="460" width="80" height="25" rx="3" class="server-item"/>
+  <text x="760" y="475" text-anchor="middle" class="small-text">用户信息</text>
+  
+  <rect x="600" y="495" width="100" height="25" rx="3" class="server-item"/>
+  <text x="650" y="510" text-anchor="middle" class="small-text">最后联系时间</text>
+  
+  <rect x="720" y="495" width="80" height="25" rx="3" class="server-item"/>
+  <text x="760" y="510" text-anchor="middle" class="small-text">调用队列</text>
+  
+  <!-- 监控与优化 -->
+  <rect x="80" y="660" width="740" height="120" rx="10" class="monitoring"/>
+  <text x="450" y="680" text-anchor="middle" class="subtitle" fill="#b85450">监控与优化机制</text>
+  
+  <!-- 监控指标 -->
+  <rect x="100" y="700" width="80" height="30" rx="3" class="monitor-item"/>
+  <text x="140" y="718" text-anchor="middle" class="small-text">Ping机制</text>
+  
+  <rect x="200" y="700" width="80" height="30" rx="3" class="monitor-item"/>
+  <text x="240" y="718" text-anchor="middle" class="small-text">超时检测</text>
+  
+  <rect x="300" y="700" width="80" height="30" rx="3" class="monitor-item"/>
+  <text x="340" y="718" text-anchor="middle" class="small-text">心跳监控</text>
+  
+  <rect x="400" y="700" width="80" height="30" rx="3" class="monitor-item"/>
+  <text x="440" y="718" text-anchor="middle" class="small-text">资源限制</text>
+  
+  <rect x="500" y="700" width="90" height="30" rx="3" class="monitor-item"/>
+  <text x="545" y="718" text-anchor="middle" class="small-text">连接池大小</text>
+  
+  <rect x="610" y="700" width="80" height="30" rx="3" class="monitor-item"/>
+  <text x="650" y="718" text-anchor="middle" class="small-text">负载均衡</text>
+  
+  <rect x="710" y="700" width="80" height="30" rx="3" class="monitor-item"/>
+  <text x="750" y="718" text-anchor="middle" class="small-text">故障转移</text>
+  
+  <!-- 连接线 -->
+  <line x1="480" y1="280" x2="520" y2="280" stroke="#2c3e50" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="485" y="275" fill="#2c3e50" class="tiny-text">状态管理</text>
+  
+  <line x1="400" y1="380" x2="400" y2="420" stroke="#2c3e50" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="410" y="400" fill="#2c3e50" class="tiny-text">服务端管理</text>
+  
+  <line x1="400" y1="620" x2="400" y2="660" stroke="#2c3e50" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="410" y="640" fill="#2c3e50" class="tiny-text">监控优化</text>
+  
+  <!-- 生命周期特点说明 -->
+  <text x="850" y="120" class="text" fill="#2c3e50">🔵 初始状态</text>
+  <text x="850" y="140" class="text" fill="#2c3e50">🟢 活跃状态</text>
+  <text x="850" y="160" class="text" fill="#2c3e50">🟡 空闲状态</text>
+  <text x="850" y="180" class="text" fill="#2c3e50">🔴 关闭状态</text>
+  
+  <text x="850" y="220" class="text" fill="#2c3e50">管理策略：</text>
+  <text x="850" y="240" class="small-text" fill="#2c3e50">• 连接池复用</text>
+  <text x="850" y="255" class="small-text" fill="#2c3e50">• 超时清理</text>
+  <text x="850" y="270" class="small-text" fill="#2c3e50">• 状态监控</text>
+  <text x="850" y="285" class="small-text" fill="#2c3e50">• 故障恢复</text>
+  
+</svg>

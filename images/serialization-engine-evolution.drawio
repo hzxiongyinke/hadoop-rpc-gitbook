@@ -1,0 +1,310 @@
+<mxfile host="app.diagrams.net" modified="2024-09-18T03:00:00.000Z" agent="5.0" etag="xxx" version="21.6.5" type="device">
+  <diagram name="序列化引擎演进历程" id="serialization-engine-evolution">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- 标题 -->
+        <mxCell id="title" value="Hadoop RPC序列化引擎演进历程" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontStyle=1;fontColor=#2c3e50;" vertex="1" parent="1">
+          <mxGeometry x="400" y="20" width="400" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- 时间轴 -->
+        <mxCell id="timeline" value="" style="endArrow=classic;html=1;strokeWidth=3;strokeColor=#34495e;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="100" y="400" as="sourcePoint" />
+            <mxPoint x="1000" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="timeline-label" value="技术演进时间线" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=1;fontColor=#34495e;" vertex="1" parent="1">
+          <mxGeometry x="500" y="410" width="120" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- 第一代：WritableRpcEngine -->
+        <mxCell id="era1-marker" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e74c3c;strokeColor=#c0392b;" vertex="1" parent="1">
+          <mxGeometry x="190" y="390" width="20" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="era1-line" value="" style="endArrow=none;html=1;strokeWidth=2;strokeColor=#e74c3c;dashed=1;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="200" y="390" as="sourcePoint" />
+            <mxPoint x="200" y="150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="era1-box" value="第一代：WritableRpcEngine" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffebee;strokeColor=#e74c3c;fontSize=16;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="80" y="80" width="240" height="280" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="era1-period" value="早期 - 2015年" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1;fontColor=#e74c3c;" vertex="1" parent="1">
+          <mxGeometry x="140" y="100" width="120" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="era1-features" value="核心特征：" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1;fontColor=#2c3e50;" vertex="1" parent="1">
+          <mxGeometry x="100" y="130" width="80" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="era1-feature1" value="• Java原生Writable接口" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#2c3e50;" vertex="1" parent="1">
+          <mxGeometry x="100" y="150" width="200" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="era1-feature2" value="• 基于反射的方法调用" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#2c3e50;" vertex="1" parent="1">
+          <mxGeometry x="100" y="170" width="200" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="era1-feature3" value="• Invocation类封装调用信息" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#2c3e50;" vertex="1" parent="1">
+          <mxGeometry x="100" y="190" width="200" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="era1-feature4" value="• ObjectWritable返回结果" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#2c3e50;" vertex="1" parent="1">
+          <mxGeometry x="100" y="210" width="200" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="era1-pros" value="优势：" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1;fontColor=#27ae60;" vertex="1" parent="1">
+          <mxGeometry x="100" y="240" width="50" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="era1-pro1" value="✓ 简单直接，易于理解" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#27ae60;" vertex="1" parent="1">
+          <mxGeometry x="100" y="260" width="200" height="15" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="era1-pro2" value="✓ 与Hadoop生态深度集成" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#27ae60;" vertex="1" parent="1">
+          <mxGeometry x="100" y="275" width="200" height="15" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="era1-cons" value="局限：" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1;fontColor=#e74c3c;" vertex="1" parent="1">
+          <mxGeometry x="100" y="300" width="50" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="era1-con1" value="✗ 性能相对较低" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#e74c3c;" vertex="1" parent="1">
+          <mxGeometry x="100" y="320" width="200" height="15" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="era1-con2" value="✗ 缺乏跨语言支持" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#e74c3c;" vertex="1" parent="1">
+          <mxGeometry x="100" y="335" width="200" height="15" as="geometry" />
+        </mxCell>
+        
+        <!-- 第二代：ProtobufRpcEngine -->
+        <mxCell id="era2-marker" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#f39c12;strokeColor=#e67e22;" vertex="1" parent="1">
+          <mxGeometry x="490" y="390" width="20" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="era2-line" value="" style="endArrow=none;html=1;strokeWidth=2;strokeColor=#f39c12;dashed=1;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="500" y="390" as="sourcePoint" />
+            <mxPoint x="500" y="150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="era2-box" value="第二代：ProtobufRpcEngine" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fef9e7;strokeColor=#f39c12;fontSize=16;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="380" y="80" width="240" height="280" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="era2-period" value="2015年 - 2018年" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1;fontColor=#f39c12;" vertex="1" parent="1">
+          <mxGeometry x="440" y="100" width="120" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="era2-features" value="核心特征：" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1;fontColor=#2c3e50;" vertex="1" parent="1">
+          <mxGeometry x="400" y="130" width="80" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="era2-feature1" value="• Protocol Buffers 2.5支持" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#2c3e50;" vertex="1" parent="1">
+          <mxGeometry x="400" y="150" width="200" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="era2-feature2" value="• RequestHeaderProto消息" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#2c3e50;" vertex="1" parent="1">
+          <mxGeometry x="400" y="170" width="200" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="era2-feature3" value="• BlockingService调用机制" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#2c3e50;" vertex="1" parent="1">
+          <mxGeometry x="400" y="190" width="200" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="era2-feature4" value="• 向后兼容性设计" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#2c3e50;" vertex="1" parent="1">
+          <mxGeometry x="400" y="210" width="200" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="era2-pros" value="优势：" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1;fontColor=#27ae60;" vertex="1" parent="1">
+          <mxGeometry x="400" y="240" width="50" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="era2-pro1" value="✓ 显著的性能提升" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#27ae60;" vertex="1" parent="1">
+          <mxGeometry x="400" y="260" width="200" height="15" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="era2-pro2" value="✓ 初步跨语言支持" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#27ae60;" vertex="1" parent="1">
+          <mxGeometry x="400" y="275" width="200" height="15" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="era2-pro3" value="✓ 标准化序列化协议" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#27ae60;" vertex="1" parent="1">
+          <mxGeometry x="400" y="290" width="200" height="15" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="era2-cons" value="局限：" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1;fontColor=#e74c3c;" vertex="1" parent="1">
+          <mxGeometry x="400" y="315" width="50" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="era2-con1" value="✗ 依赖特定protobuf版本" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#e74c3c;" vertex="1" parent="1">
+          <mxGeometry x="400" y="335" width="200" height="15" as="geometry" />
+        </mxCell>
+        
+        <!-- 第三代：ProtobufRpcEngine2 -->
+        <mxCell id="era3-marker" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#27ae60;strokeColor=#229954;" vertex="1" parent="1">
+          <mxGeometry x="790" y="390" width="20" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="era3-line" value="" style="endArrow=none;html=1;strokeWidth=2;strokeColor=#27ae60;dashed=1;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="800" y="390" as="sourcePoint" />
+            <mxPoint x="800" y="150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="era3-box" value="第三代：ProtobufRpcEngine2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eafaf1;strokeColor=#27ae60;fontSize=16;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="680" y="80" width="240" height="280" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="era3-period" value="2018年 - 至今" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1;fontColor=#27ae60;" vertex="1" parent="1">
+          <mxGeometry x="740" y="100" width="120" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="era3-features" value="核心特征：" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1;fontColor=#2c3e50;" vertex="1" parent="1">
+          <mxGeometry x="700" y="130" width="80" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="era3-feature1" value="• Protocol Buffers 3.x全面支持" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#2c3e50;" vertex="1" parent="1">
+          <mxGeometry x="700" y="150" width="200" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="era3-feature2" value="• 阴影类库避免冲突" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#2c3e50;" vertex="1" parent="1">
+          <mxGeometry x="700" y="170" width="200" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="era3-feature3" value="• 异步RPC支持" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#2c3e50;" vertex="1" parent="1">
+          <mxGeometry x="700" y="190" width="200" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="era3-feature4" value="• CompletableFuture集成" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#2c3e50;" vertex="1" parent="1">
+          <mxGeometry x="700" y="210" width="200" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="era3-pros" value="优势：" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1;fontColor=#27ae60;" vertex="1" parent="1">
+          <mxGeometry x="700" y="240" width="50" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="era3-pro1" value="✓ 最佳性能表现" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#27ae60;" vertex="1" parent="1">
+          <mxGeometry x="700" y="260" width="200" height="15" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="era3-pro2" value="✓ 完整跨语言生态" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#27ae60;" vertex="1" parent="1">
+          <mxGeometry x="700" y="275" width="200" height="15" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="era3-pro3" value="✓ 异步处理能力" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#27ae60;" vertex="1" parent="1">
+          <mxGeometry x="700" y="290" width="200" height="15" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="era3-pro4" value="✓ 企业级特性完善" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#27ae60;" vertex="1" parent="1">
+          <mxGeometry x="700" y="305" width="200" height="15" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="era3-status" value="当前推荐" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1;fontColor=#27ae60;" vertex="1" parent="1">
+          <mxGeometry x="700" y="330" width="200" height="20" as="geometry" />
+        </mxCell>
+        
+        <!-- 演进箭头 -->
+        <mxCell id="arrow1" value="" style="endArrow=classic;html=1;strokeWidth=3;strokeColor=#3498db;curved=1;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="320" y="200" as="sourcePoint" />
+            <mxPoint x="380" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="arrow1-label" value="性能需求\n跨语言支持" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#3498db;" vertex="1" parent="1">
+          <mxGeometry x="320" y="160" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow2" value="" style="endArrow=classic;html=1;strokeWidth=3;strokeColor=#3498db;curved=1;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="620" y="200" as="sourcePoint" />
+            <mxPoint x="680" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="arrow2-label" value="现代化需求\n异步支持" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#3498db;" vertex="1" parent="1">
+          <mxGeometry x="620" y="160" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- 演进驱动力 -->
+        <mxCell id="drivers-box" value="演进驱动力" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ecf0f1;strokeColor=#95a5a6;fontSize=14;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="80" y="480" width="840" height="120" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="driver1" value="🚀 性能优化需求" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f6f3;strokeColor=#1abc9c;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="100" y="510" width="120" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="driver2" value="🌐 跨语言支持" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ebf3fd;strokeColor=#3498db;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="240" y="510" width="120" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="driver3" value="🔄 兼容性要求" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fef9e7;strokeColor=#f1c40f;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="380" y="510" width="120" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="driver4" value="⚡ 资源效率" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fdedec;strokeColor=#e74c3c;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="520" y="510" width="120" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="driver5" value="🔮 技术趋势" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f4ecf7;strokeColor=#9b59b6;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="660" y="510" width="120" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="driver6" value="🏢 企业需求" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eaeded;strokeColor=#566573;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="800" y="510" width="120" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- 驱动力说明 -->
+        <mxCell id="driver-desc1" value="序列化速度、消息大小、CPU消耗" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;fontColor=#2c3e50;" vertex="1" parent="1">
+          <mxGeometry x="100" y="550" width="120" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="driver-desc2" value="多语言客户端、生态系统扩展" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;fontColor=#2c3e50;" vertex="1" parent="1">
+          <mxGeometry x="240" y="550" width="120" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="driver-desc3" value="向后兼容、平滑升级、共存能力" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;fontColor=#2c3e50;" vertex="1" parent="1">
+          <mxGeometry x="380" y="550" width="120" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="driver-desc4" value="内存使用、网络带宽、处理延迟" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;fontColor=#2c3e50;" vertex="1" parent="1">
+          <mxGeometry x="520" y="550" width="120" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="driver-desc5" value="云原生、微服务、容器化" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;fontColor=#2c3e50;" vertex="1" parent="1">
+          <mxGeometry x="660" y="550" width="120" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="driver-desc6" value="可维护性、监控、运维支持" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;fontColor=#2c3e50;" vertex="1" parent="1">
+          <mxGeometry x="800" y="550" width="120" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- 状态标识 -->
+        <mxCell id="status-deprecated" value="已废弃" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffebee;strokeColor=#e74c3c;fontSize=10;fontColor=#e74c3c;" vertex="1" parent="1">
+          <mxGeometry x="260" y="350" width="50" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="status-legacy" value="过渡期" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fef9e7;strokeColor=#f39c12;fontSize=10;fontColor=#f39c12;" vertex="1" parent="1">
+          <mxGeometry x="560" y="350" width="50" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="status-current" value="当前主流" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eafaf1;strokeColor=#27ae60;fontSize=10;fontColor=#27ae60;" vertex="1" parent="1">
+          <mxGeometry x="860" y="350" width="60" height="20" as="geometry" />
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

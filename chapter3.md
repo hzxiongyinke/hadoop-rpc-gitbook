@@ -12,6 +12,10 @@ RPC类作为Hadoop RPC框架的门面（Facade），为客户端和服务端的R
 
 这种设计模式体现了面向对象设计中的开闭原则，系统对扩展开放，对修改封闭。新的序列化协议可以通过实现RpcEngine接口轻松集成到框架中，而无需修改核心代码。
 
+![RPC核心组件关系图](images/rpc-core-components.svg)
+
+*图3-1：RPC框架核心组件关系图*
+
 ## RpcEngine接口：可插拔的协议引擎
 
 RpcEngine接口是Hadoop RPC框架实现可插拔序列化机制的关键抽象，它定义了RPC序列化和反序列化的标准契约，使得不同的线路协议能够在同一个框架内共存和切换。
@@ -38,6 +42,10 @@ Client类是Hadoop RPC框架中负责客户端通信的核心组件，它管理�
 
 **异步处理能力**通过CompletableFuture实现，使得客户端能够发起非阻塞的RPC调用。这种异步模式对于提高系统的并发能力和响应性具有重要意义，特别是在需要同时处理大量RPC调用的场景下。
 
+![Client类内部架构图](images/client-internal-architecture.svg)
+
+*图3-2：Client类内部架构设计*
+
 ## Server类：多线程服务端架构
 
 Server类实现了Hadoop RPC框架的服务端基础设施，采用了精心设计的多线程架构来高效处理大量并发的RPC请求。这种架构的设计体现了对高性能分布式系统需求的深刻理解。
@@ -55,6 +63,10 @@ Server类实现了Hadoop RPC框架的服务端基础设施，采用了精心设�
 **Responder响应机制**是一个专门负责将RPC响应发送回客户端的线程，使用Selector管理到客户端通道的写操作。这种专门化的设计将响应发送与请求处理分离，提高了系统的整体性能。
 
 **多线程协作流程**展现了精心设计的工作流程：Listener线程持续接受新的客户端连接；每个新连接都注册到ConnectionManager并分配给Reader线程；Reader线程从其分配的连接中读取传入的RPC请求；一旦请求完全读取，它被封装为Call对象并放入CallQueueManager；Handler线程持续从CallQueueManager中拉取Call；每个Handler线程通过调用注册的协议实现上的适当方法来处理RPC请求；处理完成后，Handler准备响应，然后由Responder线程发送回客户端。
+
+![Server多线程架构图](images/server-multithreaded-architecture.svg)
+
+*图3-3：Server多线程架构设计*
 
 ## 异步RPC架构优化
 
@@ -89,6 +101,106 @@ RPC框架的各个核心组件通过精心设计的协作机制实现了高效�
 **服务端响应发送阶段**，方法执行后，服务器序列化响应并发送回客户端，完成了整个RPC调用的闭环。
 
 **客户端接收响应阶段**，客户端的Connection接收并反序列化响应，完成与原始Call关联的CompletableFuture，实现了异步调用的完整支持。
+
+```mermaid
+sequenceDiagram
+    participant Client as 客户端应用
+    participant Proxy as RPC代理
+    participant RpcEngine as RpcEngine
+    participant ClientClass as Client类
+    participant Connection as Connection
+    participant Listener as Listener线程
+    participant Reader as Reader线程
+    participant CallQueue as CallQueueManager
+    participant Handler as Handler线程
+    participant Service as 服务实现
+    participant Responder as Responder线程
+
+    Note over Client, Responder: RPC调用完整生命周期
+
+    %% 1. 代理创建阶段
+    rect rgb(230, 240, 255)
+        Note over Client, RpcEngine: 1. 代理创建阶段
+        Client->>RpcEngine: getProxy(protocol, address, conf)
+        RpcEngine->>Proxy: 创建动态代理对象
+        Proxy-->>Client: 返回代理实例
+    end
+
+    %% 2. 方法调用阶段
+    rect rgb(240, 255, 240)
+        Note over Client, Connection: 2. 方法调用发起阶段
+        Client->>Proxy: 调用业务方法
+        Proxy->>RpcEngine: invoke(method, args)
+        RpcEngine->>ClientClass: call(rpcRequest)
+        ClientClass->>ClientClass: 创建Call对象
+        ClientClass->>Connection: getConnection(connectionId)
+
+        alt 连接不存在
+            Connection->>Connection: 建立新连接
+            Connection->>Connection: SASL认证
+        end
+    end
+
+    %% 3. 请求发送阶段
+    rect rgb(255, 245, 230)
+        Note over ClientClass, Connection: 3. 请求发送阶段
+        ClientClass->>Connection: sendRpcRequest(call)
+        Connection->>Connection: 序列化请求头
+        Connection->>Connection: 序列化请求体
+        Connection->>Connection: 通过Socket发送
+    end
+
+    %% 4. 服务端接收阶段
+    rect rgb(255, 230, 240)
+        Note over Listener, Reader: 4. 服务端接收阶段
+        Connection-->>Listener: 网络数据到达
+        Listener->>Listener: accept()新连接
+        Listener->>Reader: 分发连接到Reader
+        Reader->>Reader: 从Socket读取数据
+        Reader->>Reader: 解析RPC请求头
+        Reader->>Reader: 读取完整请求体
+    end
+
+    %% 5. 请求队列阶段
+    rect rgb(240, 230, 255)
+        Note over Reader, Handler: 5. 请求队列阶段
+        Reader->>CallQueue: 创建Call对象并入队
+        CallQueue->>CallQueue: 根据优先级调度
+        Handler->>CallQueue: 从队列取出Call
+    end
+
+    %% 6. 业务处理阶段
+    rect rgb(230, 255, 230)
+        Note over Handler, Service: 6. 业务处理阶段
+        Handler->>Handler: 反序列化请求参数
+        Handler->>Service: 调用具体业务方法
+        Service->>Service: 执行业务逻辑
+        Service-->>Handler: 返回处理结果
+        Handler->>Handler: 序列化响应结果
+    end
+
+    %% 7. 响应发送阶段
+    rect rgb(255, 240, 230)
+        Note over Handler, Responder: 7. 响应发送阶段
+        Handler->>Responder: 准备响应数据
+        Responder->>Responder: 管理写操作队列
+        Responder->>Responder: 通过Socket发送响应
+    end
+
+    %% 8. 客户端接收阶段
+    rect rgb(230, 245, 255)
+        Note over Connection, Client: 8. 客户端接收阶段
+        Responder-->>Connection: 网络响应数据
+        Connection->>Connection: 读取响应头
+        Connection->>Connection: 读取响应体
+        Connection->>Connection: 反序列化响应
+        Connection->>ClientClass: 完成CompletableFuture
+        ClientClass->>Proxy: 返回结果
+        Proxy-->>Client: 返回业务结果
+    end
+```
+
+*图3-4：RPC调用完整流程时序图*
 
 ## 总结
 

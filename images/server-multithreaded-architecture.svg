@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1100" height="750" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title { font-family: Arial, sans-serif; font-size: 18px; font-weight: bold; fill: #2c3e50; }
+      .subtitle { font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; }
+      .text { font-family: Arial, sans-serif; font-size: 12px; }
+      .small-text { font-family: Arial, sans-serif; font-size: 11px; }
+      .client-area { fill: #e1d5e7; stroke: #9673a6; fill-opacity: 0.3; }
+      .client-box { fill: #f3e5f5; stroke: #9673a6; }
+      .listener-thread { fill: #dae8fc; stroke: #6c8ebf; fill-opacity: 0.3; }
+      .listener-func { fill: #e8f4fd; stroke: #6c8ebf; }
+      .reader-pool { fill: #d5e8d4; stroke: #82b366; fill-opacity: 0.3; }
+      .reader-box { fill: #e8f5e8; stroke: #82b366; }
+      .connection-manager { fill: #fff2cc; stroke: #d6b656; fill-opacity: 0.3; }
+      .conn-func { fill: #fff8e1; stroke: #d6b656; }
+      .callqueue-manager { fill: #f8cecc; stroke: #b85450; fill-opacity: 0.3; }
+      .queue-box { fill: #fce4ec; stroke: #b85450; }
+      .handler-pool { fill: #ffe6cc; stroke: #d79b00; fill-opacity: 0.3; }
+      .handler-box { fill: #fff2cc; stroke: #d79b00; }
+      .responder-thread { fill: #e1d5e7; stroke: #9673a6; fill-opacity: 0.3; }
+      .responder-func { fill: #f3e5f5; stroke: #9673a6; }
+      .async-area { fill: #d5e8d4; stroke: #82b366; fill-opacity: 0.3; }
+      .async-box { fill: #e8f5e8; stroke: #82b366; }
+    </style>
+  </defs>
+  
+  <!-- 标题 -->
+  <text x="550" y="30" text-anchor="middle" class="title">Server多线程架构设计</text>
+  
+  <!-- 客户端连接区域 -->
+  <rect x="80" y="80" width="200" height="120" rx="10" class="client-area"/>
+  <text x="180" y="100" text-anchor="middle" class="subtitle" fill="#9673a6">客户端连接</text>
+  
+  <rect x="100" y="110" width="60" height="25" rx="3" class="client-box"/>
+  <text x="130" y="127" text-anchor="middle" class="small-text">Client 1</text>
+  
+  <rect x="180" y="110" width="60" height="25" rx="3" class="client-box"/>
+  <text x="210" y="127" text-anchor="middle" class="small-text">Client 2</text>
+  
+  <rect x="100" y="145" width="60" height="25" rx="3" class="client-box"/>
+  <text x="130" y="162" text-anchor="middle" class="small-text">Client 3</text>
+  
+  <rect x="180" y="145" width="60" height="25" rx="3" class="client-box"/>
+  <text x="210" y="162" text-anchor="middle" class="small-text">...</text>
+  
+  <!-- Listener线程 -->
+  <rect x="350" y="80" width="180" height="120" rx="10" class="listener-thread"/>
+  <text x="440" y="100" text-anchor="middle" class="subtitle" fill="#6c8ebf">Listener线程</text>
+  
+  <rect x="360" y="110" width="80" height="25" rx="3" class="listener-func"/>
+  <text x="400" y="127" text-anchor="middle" class="small-text">接受新连接</text>
+  
+  <rect x="450" y="110" width="70" height="25" rx="3" class="listener-func"/>
+  <text x="485" y="127" text-anchor="middle" class="small-text">ServerSocketChannel</text>
+  
+  <rect x="360" y="145" width="80" height="25" rx="3" class="listener-func"/>
+  <text x="400" y="162" text-anchor="middle" class="small-text">NIO Selector</text>
+  
+  <rect x="450" y="145" width="70" height="25" rx="3" class="listener-func"/>
+  <text x="485" y="162" text-anchor="middle" class="small-text">分发连接</text>
+  
+  <!-- Reader线程池 -->
+  <rect x="580" y="80" width="200" height="120" rx="10" class="reader-pool"/>
+  <text x="680" y="100" text-anchor="middle" class="subtitle" fill="#82b366">Reader线程池</text>
+  
+  <rect x="600" y="110" width="60" height="25" rx="3" class="reader-box"/>
+  <text x="630" y="127" text-anchor="middle" class="small-text">Reader 1</text>
+  
+  <rect x="680" y="110" width="60" height="25" rx="3" class="reader-box"/>
+  <text x="710" y="127" text-anchor="middle" class="small-text">Reader 2</text>
+  
+  <rect x="600" y="145" width="60" height="25" rx="3" class="reader-box"/>
+  <text x="630" y="162" text-anchor="middle" class="small-text">Reader 3</text>
+  
+  <rect x="680" y="145" width="60" height="25" rx="3" class="reader-box"/>
+  <text x="710" y="162" text-anchor="middle" class="small-text">Reader N</text>
+  
+  <!-- ConnectionManager -->
+  <rect x="820" y="80" width="180" height="120" rx="10" class="connection-manager"/>
+  <text x="910" y="100" text-anchor="middle" class="subtitle" fill="#d6b656">ConnectionManager</text>
+  
+  <rect x="830" y="110" width="70" height="25" rx="3" class="conn-func"/>
+  <text x="865" y="127" text-anchor="middle" class="small-text">连接跟踪</text>
+  
+  <rect x="910" y="110" width="70" height="25" rx="3" class="conn-func"/>
+  <text x="945" y="127" text-anchor="middle" class="small-text">超时处理</text>
+  
+  <rect x="830" y="145" width="70" height="25" rx="3" class="conn-func"/>
+  <text x="865" y="162" text-anchor="middle" class="small-text">资源清理</text>
+  
+  <rect x="910" y="145" width="70" height="25" rx="3" class="conn-func"/>
+  <text x="945" y="162" text-anchor="middle" class="small-text">连接注册</text>
+  
+  <!-- CallQueueManager -->
+  <rect x="350" y="250" width="300" height="100" rx="10" class="callqueue-manager"/>
+  <text x="500" y="270" text-anchor="middle" class="subtitle" fill="#b85450">CallQueueManager</text>
+  
+  <rect x="370" y="280" width="70" height="25" rx="3" class="queue-box"/>
+  <text x="405" y="297" text-anchor="middle" class="small-text">普通队列</text>
+  
+  <rect x="450" y="280" width="80" height="25" rx="3" class="queue-box"/>
+  <text x="490" y="297" text-anchor="middle" class="small-text">优先级队列</text>
+  
+  <rect x="540" y="280" width="70" height="25" rx="3" class="queue-box"/>
+  <text x="575" y="297" text-anchor="middle" class="small-text">公平队列</text>
+  
+  <rect x="450" y="315" width="80" height="25" rx="3" class="queue-box"/>
+  <text x="490" y="332" text-anchor="middle" class="small-text">RpcScheduler</text>
+  
+  <!-- Handler线程池 -->
+  <rect x="80" y="400" width="300" height="120" rx="10" class="handler-pool"/>
+  <text x="230" y="420" text-anchor="middle" class="subtitle" fill="#d79b00">Handler线程池</text>
+  
+  <rect x="100" y="430" width="60" height="25" rx="3" class="handler-box"/>
+  <text x="130" y="447" text-anchor="middle" class="small-text">Handler 1</text>
+  
+  <rect x="180" y="430" width="60" height="25" rx="3" class="handler-box"/>
+  <text x="210" y="447" text-anchor="middle" class="small-text">Handler 2</text>
+  
+  <rect x="260" y="430" width="60" height="25" rx="3" class="handler-box"/>
+  <text x="290" y="447" text-anchor="middle" class="small-text">Handler 3</text>
+  
+  <rect x="100" y="465" width="80" height="25" rx="3" class="handler-box"/>
+  <text x="140" y="482" text-anchor="middle" class="small-text">处理RPC调用</text>
+  
+  <rect x="200" y="465" width="70" height="25" rx="3" class="handler-box"/>
+  <text x="235" y="482" text-anchor="middle" class="small-text">方法调用</text>
+  
+  <rect x="290" y="465" width="70" height="25" rx="3" class="handler-box"/>
+  <text x="325" y="482" text-anchor="middle" class="small-text">指标更新</text>
+  
+  <!-- Responder线程 -->
+  <rect x="450" y="400" width="200" height="120" rx="10" class="responder-thread"/>
+  <text x="550" y="420" text-anchor="middle" class="subtitle" fill="#9673a6">Responder线程</text>
+  
+  <rect x="470" y="430" width="80" height="25" rx="3" class="responder-func"/>
+  <text x="510" y="447" text-anchor="middle" class="small-text">NIO Selector</text>
+  
+  <rect x="560" y="430" width="80" height="25" rx="3" class="responder-func"/>
+  <text x="600" y="447" text-anchor="middle" class="small-text">写操作管理</text>
+  
+  <rect x="470" y="465" width="70" height="25" rx="3" class="responder-func"/>
+  <text x="505" y="482" text-anchor="middle" class="small-text">响应发送</text>
+  
+  <rect x="550" y="465" width="80" height="25" rx="3" class="responder-func"/>
+  <text x="590" y="482" text-anchor="middle" class="small-text">缓冲区管理</text>
+  
+  <!-- 异步处理区域 -->
+  <rect x="720" y="400" width="280" height="120" rx="10" class="async-area"/>
+  <text x="860" y="420" text-anchor="middle" class="subtitle" fill="#82b366">异步处理机制</text>
+  
+  <rect x="740" y="430" width="80" height="25" rx="3" class="async-box"/>
+  <text x="780" y="447" text-anchor="middle" class="small-text">Async-Handler</text>
+  
+  <rect x="840" y="430" width="90" height="25" rx="3" class="async-box"/>
+  <text x="885" y="447" text-anchor="middle" class="small-text">Async-Responder</text>
+  
+  <rect x="740" y="465" width="80" height="25" rx="3" class="async-box"/>
+  <text x="780" y="482" text-anchor="middle" class="small-text">ResponseQueue</text>
+  
+  <rect x="840" y="465" width="90" height="25" rx="3" class="async-box"/>
+  <text x="885" y="482" text-anchor="middle" class="small-text">nameservice隔离</text>
+  
+  <!-- 数据流箭头 -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2c3e50"/>
+    </marker>
+    <marker id="arrowhead-data" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#e74c3c"/>
+    </marker>
+    <marker id="arrowhead-control" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#3498db"/>
+    </marker>
+  </defs>
+  
+  <!-- 连接流程 -->
+  <line x1="280" y1="140" x2="350" y2="140" stroke="#e74c3c" stroke-width="3" marker-end="url(#arrowhead-data)"/>
+  <text x="290" y="135" fill="#e74c3c" class="small-text">新连接</text>
+  
+  <line x1="530" y1="140" x2="580" y2="140" stroke="#e74c3c" stroke-width="3" marker-end="url(#arrowhead-data)"/>
+  <text x="540" y="135" fill="#e74c3c" class="small-text">分发</text>
+  
+  <line x1="680" y1="200" x2="680" y2="250" stroke="#e74c3c" stroke-width="3" marker-end="url(#arrowhead-data)"/>
+  <text x="690" y="225" fill="#e74c3c" class="small-text">RPC请求</text>
+  
+  <line x1="350" y1="300" x2="230" y2="400" stroke="#e74c3c" stroke-width="3" marker-end="url(#arrowhead-data)"/>
+  <text x="270" y="350" fill="#e74c3c" class="small-text">取出Call</text>
+  
+  <line x1="380" y1="460" x2="450" y2="460" stroke="#3498db" stroke-width="3" marker-end="url(#arrowhead-control)"/>
+  <text x="390" y="455" fill="#3498db" class="small-text">响应</text>
+  
+  <!-- 管理连接 -->
+  <line x1="780" y1="140" x2="820" y2="140" stroke="#3498db" stroke-width="2" marker-end="url(#arrowhead-control)"/>
+  <text x="785" y="135" fill="#3498db" class="small-text">管理</text>
+  
+  <!-- 异步处理连接 -->
+  <line x1="650" y1="300" x2="720" y2="400" stroke="#27ae60" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="670" y="350" fill="#27ae60" class="small-text">异步处理</text>
+  
+  <!-- 处理流程说明 -->
+  <text x="80" y="580" class="subtitle" fill="#2c3e50">处理流程：</text>
+  <text x="80" y="600" class="small-text" fill="#2c3e50">1. Listener接受连接 → 2. Reader读取请求 → 3. 请求入队列 → 4. Handler处理 → 5. Responder发送响应</text>
+  
+  <!-- 性能特点 -->
+  <text x="80" y="640" class="subtitle" fill="#2c3e50">性能特点：</text>
+  <text x="80" y="660" class="small-text" fill="#2c3e50">• 多线程并行处理  • NIO非阻塞I/O  • 可配置线程池大小  • 智能队列调度  • 异步响应机制</text>
+  
+  <!-- 线程类型说明 -->
+  <text x="80" y="700" class="text" fill="#2c3e50">🔵 接收线程</text>
+  <text x="200" y="700" class="text" fill="#2c3e50">🟢 读取线程</text>
+  <text x="320" y="700" class="text" fill="#2c3e50">🟡 管理组件</text>
+  <text x="440" y="700" class="text" fill="#2c3e50">🔴 队列系统</text>
+  <text x="560" y="700" class="text" fill="#2c3e50">🟠 处理线程</text>
+  <text x="680" y="700" class="text" fill="#2c3e50">🟣 响应线程</text>
+  
+</svg>

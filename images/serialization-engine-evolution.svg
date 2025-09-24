@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="620" viewBox="0 0 1000 620">
+  <!-- 背景 -->
+  <rect width="1000" height="620" fill="#ffffff"/>
+  
+  <!-- 标题 -->
+  <text x="500" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#2c3e50">
+    Hadoop RPC序列化引擎演进历程
+  </text>
+  
+  <!-- 时间轴 -->
+  <line x1="80" y1="400" x2="920" y2="400" stroke="#34495e" stroke-width="3" marker-end="url(#arrowhead)"/>
+  <text x="500" y="430" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#34495e">
+    技术演进时间线
+  </text>
+  
+  <!-- 箭头标记定义 -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#34495e"/>
+    </marker>
+  </defs>
+  
+  <!-- 第一代：WritableRpcEngine -->
+  <circle cx="180" cy="400" r="10" fill="#e74c3c"/>
+  <line x1="180" y1="390" x2="180" y2="120" stroke="#e74c3c" stroke-width="2" stroke-dasharray="5,5"/>
+  
+  <rect x="60" y="80" width="240" height="280" rx="10" fill="#ffebee" stroke="#e74c3c" stroke-width="2"/>
+  <text x="180" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#2c3e50">
+    第一代：WritableRpcEngine
+  </text>
+  <text x="180" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#e74c3c">
+    早期 - 2015年
+  </text>
+  
+  <!-- 第一代特征 -->
+  <text x="80" y="150" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#2c3e50">核心特征：</text>
+  <text x="80" y="170" font-family="Arial, sans-serif" font-size="11" fill="#2c3e50">• Java原生Writable接口</text>
+  <text x="80" y="190" font-family="Arial, sans-serif" font-size="11" fill="#2c3e50">• 基于反射的方法调用</text>
+  <text x="80" y="210" font-family="Arial, sans-serif" font-size="11" fill="#2c3e50">• Invocation类封装调用信息</text>
+  <text x="80" y="230" font-family="Arial, sans-serif" font-size="11" fill="#2c3e50">• ObjectWritable返回结果</text>
+  
+  <text x="80" y="260" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#27ae60">优势：</text>
+  <text x="80" y="280" font-family="Arial, sans-serif" font-size="10" fill="#27ae60">✓ 简单直接，易于理解</text>
+  <text x="80" y="295" font-family="Arial, sans-serif" font-size="10" fill="#27ae60">✓ 与Hadoop生态深度集成</text>
+  
+  <text x="80" y="320" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#e74c3c">局限：</text>
+  <text x="80" y="340" font-family="Arial, sans-serif" font-size="10" fill="#e74c3c">✗ 性能相对较低</text>
+  <text x="80" y="355" font-family="Arial, sans-serif" font-size="10" fill="#e74c3c">✗ 缺乏跨语言支持</text>
+  
+  <!-- 状态标识 -->
+  <rect x="240" y="365" width="50" height="20" rx="5" fill="#ffebee" stroke="#e74c3c"/>
+  <text x="265" y="378" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#e74c3c">已废弃</text>
+  
+  <!-- 第二代：ProtobufRpcEngine -->
+  <circle cx="480" cy="400" r="10" fill="#f39c12"/>
+  <line x1="480" y1="390" x2="480" y2="120" stroke="#f39c12" stroke-width="2" stroke-dasharray="5,5"/>
+  
+  <rect x="360" y="80" width="240" height="280" rx="10" fill="#fef9e7" stroke="#f39c12" stroke-width="2"/>
+  <text x="480" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#2c3e50">
+    第二代：ProtobufRpcEngine
+  </text>
+  <text x="480" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#f39c12">
+    2015年 - 2018年
+  </text>
+  
+  <!-- 第二代特征 -->
+  <text x="380" y="150" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#2c3e50">核心特征：</text>
+  <text x="380" y="170" font-family="Arial, sans-serif" font-size="11" fill="#2c3e50">• Protocol Buffers 2.5支持</text>
+  <text x="380" y="190" font-family="Arial, sans-serif" font-size="11" fill="#2c3e50">• RequestHeaderProto消息</text>
+  <text x="380" y="210" font-family="Arial, sans-serif" font-size="11" fill="#2c3e50">• BlockingService调用机制</text>
+  <text x="380" y="230" font-family="Arial, sans-serif" font-size="11" fill="#2c3e50">• 向后兼容性设计</text>
+  
+  <text x="380" y="260" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#27ae60">优势：</text>
+  <text x="380" y="280" font-family="Arial, sans-serif" font-size="10" fill="#27ae60">✓ 显著的性能提升</text>
+  <text x="380" y="295" font-family="Arial, sans-serif" font-size="10" fill="#27ae60">✓ 初步跨语言支持</text>
+  <text x="380" y="310" font-family="Arial, sans-serif" font-size="10" fill="#27ae60">✓ 标准化序列化协议</text>
+  
+  <text x="380" y="335" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#e74c3c">局限：</text>
+  <text x="380" y="355" font-family="Arial, sans-serif" font-size="10" fill="#e74c3c">✗ 依赖特定protobuf版本</text>
+  
+  <!-- 状态标识 -->
+  <rect x="540" y="365" width="50" height="20" rx="5" fill="#fef9e7" stroke="#f39c12"/>
+  <text x="565" y="378" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#f39c12">过渡期</text>
+  
+  <!-- 第三代：ProtobufRpcEngine2 -->
+  <circle cx="780" cy="400" r="10" fill="#27ae60"/>
+  <line x1="780" y1="390" x2="780" y2="120" stroke="#27ae60" stroke-width="2" stroke-dasharray="5,5"/>
+  
+  <rect x="660" y="80" width="240" height="280" rx="10" fill="#eafaf1" stroke="#27ae60" stroke-width="2"/>
+  <text x="780" y="105" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#2c3e50">
+    第三代：ProtobufRpcEngine2
+  </text>
+  <text x="780" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#27ae60">
+    2018年 - 至今
+  </text>
+  
+  <!-- 第三代特征 -->
+  <text x="680" y="150" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#2c3e50">核心特征：</text>
+  <text x="680" y="170" font-family="Arial, sans-serif" font-size="11" fill="#2c3e50">• Protocol Buffers 3.x全面支持</text>
+  <text x="680" y="190" font-family="Arial, sans-serif" font-size="11" fill="#2c3e50">• 阴影类库避免冲突</text>
+  <text x="680" y="210" font-family="Arial, sans-serif" font-size="11" fill="#2c3e50">• 异步RPC支持</text>
+  <text x="680" y="230" font-family="Arial, sans-serif" font-size="11" fill="#2c3e50">• CompletableFuture集成</text>
+  
+  <text x="680" y="260" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#27ae60">优势：</text>
+  <text x="680" y="280" font-family="Arial, sans-serif" font-size="10" fill="#27ae60">✓ 最佳性能表现</text>
+  <text x="680" y="295" font-family="Arial, sans-serif" font-size="10" fill="#27ae60">✓ 完整跨语言生态</text>
+  <text x="680" y="310" font-family="Arial, sans-serif" font-size="10" fill="#27ae60">✓ 异步处理能力</text>
+  <text x="680" y="325" font-family="Arial, sans-serif" font-size="10" fill="#27ae60">✓ 企业级特性完善</text>
+  
+  <!-- 状态标识 -->
+  <rect x="840" y="365" width="60" height="20" rx="5" fill="#eafaf1" stroke="#27ae60"/>
+  <text x="870" y="378" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#27ae60">当前主流</text>
+  
+  <!-- 演进箭头 -->
+  <path d="M 300 200 Q 330 180 360 200" stroke="#3498db" stroke-width="3" fill="none" marker-end="url(#bluearrow)"/>
+  <text x="330" y="175" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#3498db">
+    <tspan x="330" dy="0">性能需求</tspan>
+    <tspan x="330" dy="12">跨语言支持</tspan>
+  </text>
+  
+  <path d="M 600 200 Q 630 180 660 200" stroke="#3498db" stroke-width="3" fill="none" marker-end="url(#bluearrow)"/>
+  <text x="630" y="175" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#3498db">
+    <tspan x="630" dy="0">现代化需求</tspan>
+    <tspan x="630" dy="12">异步支持</tspan>
+  </text>
+  
+  <!-- 蓝色箭头标记 -->
+  <defs>
+    <marker id="bluearrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#3498db"/>
+    </marker>
+  </defs>
+  
+  <!-- 演进驱动力 -->
+  <rect x="60" y="480" width="840" height="120" rx="10" fill="#ecf0f1" stroke="#95a5a6" stroke-width="2"/>
+  <text x="480" y="505" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#2c3e50">
+    演进驱动力
+  </text>
+  
+  <!-- 驱动力标签 -->
+  <rect x="80" y="520" width="120" height="30" rx="5" fill="#e8f6f3" stroke="#1abc9c"/>
+  <text x="140" y="540" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2c3e50">🚀 性能优化需求</text>
+  <text x="140" y="565" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#2c3e50">序列化速度、消息大小、CPU消耗</text>
+  
+  <rect x="220" y="520" width="120" height="30" rx="5" fill="#ebf3fd" stroke="#3498db"/>
+  <text x="280" y="540" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2c3e50">🌐 跨语言支持</text>
+  <text x="280" y="565" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#2c3e50">多语言客户端、生态系统扩展</text>
+  
+  <rect x="360" y="520" width="120" height="30" rx="5" fill="#fef9e7" stroke="#f1c40f"/>
+  <text x="420" y="540" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2c3e50">🔄 兼容性要求</text>
+  <text x="420" y="565" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#2c3e50">向后兼容、平滑升级、共存能力</text>
+  
+  <rect x="500" y="520" width="120" height="30" rx="5" fill="#fdedec" stroke="#e74c3c"/>
+  <text x="560" y="540" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2c3e50">⚡ 资源效率</text>
+  <text x="560" y="565" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#2c3e50">内存使用、网络带宽、处理延迟</text>
+  
+  <rect x="640" y="520" width="120" height="30" rx="5" fill="#f4ecf7" stroke="#9b59b6"/>
+  <text x="700" y="540" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2c3e50">🔮 技术趋势</text>
+  <text x="700" y="565" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#2c3e50">云原生、微服务、容器化</text>
+  
+  <rect x="780" y="520" width="120" height="30" rx="5" fill="#eaeded" stroke="#566573"/>
+  <text x="840" y="540" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#2c3e50">🏢 企业需求</text>
+  <text x="840" y="565" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#2c3e50">可维护性、监控、运维支持</text>
+</svg>

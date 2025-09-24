@@ -1,0 +1,243 @@
+<mxfile host="app.diagrams.net" modified="2024-09-18T03:00:00.000Z" agent="5.0" etag="xxx" version="21.6.5" type="device">
+  <diagram name="消息格式详解" id="message-format-details">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- 标题 -->
+        <mxCell id="title" value="Hadoop RPC消息格式详解" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontStyle=1;fontColor=#2c3e50;" vertex="1" parent="1">
+          <mxGeometry x="450" y="20" width="300" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- 连接头部格式 -->
+        <mxCell id="connection-header" value="连接头部格式 (Connection Header)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=16;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="80" y="80" width="500" height="120" as="geometry" />
+        </mxCell>
+        
+        <!-- 连接头部字段 -->
+        <mxCell id="magic-number" value="魔数 &quot;hrpc&quot;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f4fd;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="100" y="120" width="100" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="version" value="版本号" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f4fd;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="220" y="120" width="80" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="service-class" value="服务类别" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f4fd;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="320" y="120" width="80" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="auth-protocol" value="认证协议" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f4fd;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="420" y="120" width="80" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- 字节长度标注 -->
+        <text x="150" y="180" text-anchor="middle" font-size="10" fill="#6c8ebf">4 bytes</text>
+        <text x="260" y="180" text-anchor="middle" font-size="10" fill="#6c8ebf">1 byte</text>
+        <text x="360" y="180" text-anchor="middle" font-size="10" fill="#6c8ebf">1 byte</text>
+        <text x="460" y="180" text-anchor="middle" font-size="10" fill="#6c8ebf">1 byte</text>
+        
+        <!-- RPC数据包格式 -->
+        <mxCell id="rpc-packet" value="RPC数据包格式 (RPC Packet Format)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=16;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="650" y="80" width="400" height="200" as="geometry" />
+        </mxCell>
+        
+        <!-- 数据包组成 -->
+        <mxCell id="packet-length" value="数据包长度" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e8;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="670" y="120" width="100" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="request-header" value="请求头部" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e8;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="790" y="120" width="100" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="request-body" value="请求体" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e8;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="910" y="120" width="100" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- 详细说明 -->
+        <text x="720" y="170" font-size="10" fill="#82b366">4 bytes</text>
+        <text x="840" y="170" font-size="10" fill="#82b366">变长</text>
+        <text x="960" y="170" font-size="10" fill="#82b366">变长</text>
+        
+        <text x="670" y="190" font-size="10" fill="#2c3e50">指示后续数据长度</text>
+        <text x="790" y="190" font-size="10" fill="#2c3e50">RpcRequestHeaderProto</text>
+        <text x="910" y="190" font-size="10" fill="#2c3e50">序列化的RPC请求</text>
+        
+        <text x="670" y="210" font-size="10" fill="#2c3e50">包含头部+请求体</text>
+        <text x="790" y="210" font-size="10" fill="#2c3e50">Protocol Buffers格式</text>
+        <text x="910" y="210" font-size="10" fill="#2c3e50">根据RpcKind序列化</text>
+        
+        <!-- 请求头部结构 -->
+        <mxCell id="header-structure" value="请求头部结构 (RpcRequestHeaderProto)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=16;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="80" y="320" width="970" height="200" as="geometry" />
+        </mxCell>
+        
+        <!-- 头部字段第一行 -->
+        <mxCell id="rpc-kind" value="rpcKind" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff8e1;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="100" y="360" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="rpc-op" value="rpcOp" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff8e1;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="200" y="360" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="call-id" value="callId" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff8e1;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="300" y="360" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="client-id" value="clientId" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff8e1;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="400" y="360" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="retry-count" value="retryCount" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff8e1;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="500" y="360" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- 头部字段第二行 -->
+        <mxCell id="trace-info" value="traceInfo" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff8e1;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="600" y="360" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="caller-context" value="callerContext" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff8e1;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="700" y="360" width="100" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="state-id" value="stateId" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff8e1;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="820" y="360" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="router-state" value="routerFederatedState" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff8e1;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="920" y="360" width="120" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- 字段说明 -->
+        <text x="140" y="410" text-anchor="middle" font-size="9" fill="#2c3e50">RPC引擎类型</text>
+        <text x="240" y="410" text-anchor="middle" font-size="9" fill="#2c3e50">操作类型</text>
+        <text x="340" y="410" text-anchor="middle" font-size="9" fill="#2c3e50">调用序列号</text>
+        <text x="440" y="410" text-anchor="middle" font-size="9" fill="#2c3e50">客户端标识</text>
+        <text x="540" y="410" text-anchor="middle" font-size="9" fill="#2c3e50">重试次数</text>
+        
+        <text x="640" y="410" text-anchor="middle" font-size="9" fill="#2c3e50">追踪信息</text>
+        <text x="750" y="410" text-anchor="middle" font-size="9" fill="#2c3e50">调用者上下文</text>
+        <text x="860" y="410" text-anchor="middle" font-size="9" fill="#2c3e50">状态ID</text>
+        <text x="980" y="410" text-anchor="middle" font-size="9" fill="#2c3e50">路由器状态</text>
+        
+        <text x="140" y="425" text-anchor="middle" font-size="9" fill="#2c3e50">PROTOBUF_RPC</text>
+        <text x="240" y="425" text-anchor="middle" font-size="9" fill="#2c3e50">RPC_CALL</text>
+        <text x="340" y="425" text-anchor="middle" font-size="9" fill="#2c3e50">请求响应匹配</text>
+        <text x="440" y="425" text-anchor="middle" font-size="9" fill="#2c3e50">UUID</text>
+        <text x="540" y="425" text-anchor="middle" font-size="9" fill="#2c3e50">0表示首次</text>
+        
+        <text x="640" y="425" text-anchor="middle" font-size="9" fill="#2c3e50">分布式追踪</text>
+        <text x="750" y="425" text-anchor="middle" font-size="9" fill="#2c3e50">调用环境</text>
+        <text x="860" y="425" text-anchor="middle" font-size="9" fill="#2c3e50">全局状态</text>
+        <text x="980" y="425" text-anchor="middle" font-size="9" fill="#2c3e50">Federation对齐</text>
+        
+        <!-- 字段重要性标识 -->
+        <rect x="95" y="440" width="90" height="15" rx="3" fill="#d5f4e6" stroke="#27ae60"/>
+        <text x="140" y="452" text-anchor="middle" font-size="9" fill="#27ae60">必需</text>
+        
+        <rect x="195" y="440" width="90" height="15" rx="3" fill="#d5f4e6" stroke="#27ae60"/>
+        <text x="240" y="452" text-anchor="middle" font-size="9" fill="#27ae60">必需</text>
+        
+        <rect x="295" y="440" width="90" height="15" rx="3" fill="#d5f4e6" stroke="#27ae60"/>
+        <text x="340" y="452" text-anchor="middle" font-size="9" fill="#27ae60">必需</text>
+        
+        <rect x="395" y="440" width="90" height="15" rx="3" fill="#fff3cd" stroke="#ffc107"/>
+        <text x="440" y="452" text-anchor="middle" font-size="9" fill="#856404">可选</text>
+        
+        <rect x="495" y="440" width="90" height="15" rx="3" fill="#fff3cd" stroke="#ffc107"/>
+        <text x="540" y="452" text-anchor="middle" font-size="9" fill="#856404">可选</text>
+        
+        <rect x="595" y="440" width="90" height="15" rx="3" fill="#fff3cd" stroke="#ffc107"/>
+        <text x="640" y="452" text-anchor="middle" font-size="9" fill="#856404">可选</text>
+        
+        <rect x="695" y="440" width="110" height="15" rx="3" fill="#fff3cd" stroke="#ffc107"/>
+        <text x="750" y="452" text-anchor="middle" font-size="9" fill="#856404">可选</text>
+        
+        <rect x="815" y="440" width="90" height="15" rx="3" fill="#fff3cd" stroke="#ffc107"/>
+        <text x="860" y="452" text-anchor="middle" font-size="9" fill="#856404">可选</text>
+        
+        <rect x="915" y="440" width="130" height="15" rx="3" fill="#fff3cd" stroke="#ffc107"/>
+        <text x="980" y="452" text-anchor="middle" font-size="9" fill="#856404">可选</text>
+        
+        <!-- 响应格式 -->
+        <mxCell id="response-format" value="响应格式 (Response Format)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=16;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="80" y="560" width="500" height="120" as="geometry" />
+        </mxCell>
+        
+        <!-- 响应组成 -->
+        <mxCell id="response-length" value="响应长度" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4ec;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="100" y="600" width="100" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="response-header" value="响应头部" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4ec;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="220" y="600" width="100" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="response-body" value="响应体" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4ec;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="340" y="600" width="100" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="response-status" value="状态码" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4ec;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="460" y="600" width="100" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- 协议版本化 -->
+        <mxCell id="version-mechanism" value="协议版本化机制 (Protocol Versioning)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=16;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="650" y="560" width="400" height="120" as="geometry" />
+        </mxCell>
+        
+        <!-- 版本化组件 -->
+        <mxCell id="versioned-protocol" value="VersionedProtocol" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e5f5;strokeColor=#9673a6;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="670" y="600" width="120" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="protocol-signature" value="协议签名" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e5f5;strokeColor=#9673a6;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="810" y="600" width="100" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="version-negotiation" value="版本协商" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e5f5;strokeColor=#9673a6;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="930" y="600" width="100" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- 数据流箭头 -->
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#2c3e50"/>
+          </marker>
+          <marker id="arrowhead-flow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#e74c3c"/>
+          </marker>
+        </defs>
+        
+        <!-- 连接头部到RPC数据包 -->
+        <line x1="580" y1="140" x2="650" y2="140" stroke="#e74c3c" stroke-width="2" marker-end="url(#arrowhead-flow)"/>
+        <text x="600" y="135" fill="#e74c3c" font-size="10">连接建立后</text>
+        
+        <!-- RPC数据包到请求头部 -->
+        <line x1="840" y1="280" x2="840" y2="320" stroke="#e74c3c" stroke-width="2" marker-end="url(#arrowhead-flow)"/>
+        <text x="850" y="300" fill="#e74c3c" font-size="10">解析</text>
+        
+        <!-- 请求到响应 -->
+        <line x1="330" y1="520" x2="330" y2="560" stroke="#e74c3c" stroke-width="2" marker-end="url(#arrowhead-flow)"/>
+        <text x="340" y="540" fill="#e74c3c" font-size="10">处理后响应</text>
+        
+        <!-- 版本化机制连接 -->
+        <line x1="580" y1="620" x2="650" y2="620" stroke="#9673a6" stroke-width="2" marker-end="url(#arrowhead)"/>
+        <text x="600" y="615" fill="#9673a6" font-size="10">版本检查</text>
+        
+        <!-- 格式特点说明 -->
+        <text x="80" y="720" font-size="14" font-weight="bold" fill="#2c3e50">格式特点：</text>
+        <text x="80" y="740" font-size="11" fill="#2c3e50">• 长度前缀设计确保消息边界  • Protocol Buffers提供高效序列化  • 丰富的元数据支持分布式追踪  • 版本化机制保证兼容性</text>
+        
+        <!-- 性能优化说明 -->
+        <text x="80" y="760" font-size="14" font-weight="bold" fill="#2c3e50">性能优化：</text>
+        <text x="80" y="780" font-size="11" fill="#2c3e50">• 变长编码减少网络传输  • 可选字段支持协议演进  • 批量处理提高吞吐量  • 压缩算法减少带宽消耗</text>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

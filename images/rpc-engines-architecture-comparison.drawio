@@ -1,0 +1,396 @@
+<mxfile host="app.diagrams.net" modified="2024-09-18T03:00:00.000Z" agent="5.0" etag="xxx" version="21.6.5" type="device">
+  <diagram name="RPC引擎架构对比" id="rpc-engines-architecture-comparison">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- 标题 -->
+        <mxCell id="title" value="Hadoop RPC三代序列化引擎架构对比" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1;fontColor=#2c3e50;" vertex="1" parent="1">
+          <mxGeometry x="500" y="20" width="400" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- WritableRpcEngine架构 -->
+        <mxCell id="writable-container" value="WritableRpcEngine (第一代)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffebee;strokeColor=#e74c3c;fontSize=16;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="50" y="80" width="400" height="750" as="geometry" />
+        </mxCell>
+        
+        <!-- WritableRpcEngine客户端 -->
+        <mxCell id="writable-client" value="客户端架构" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fdeaea;strokeColor=#e74c3c;fontSize=14;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="70" y="120" width="360" height="200" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="writable-proxy" value="动态代理 (Proxy)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e74c3c;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="90" y="150" width="120" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="writable-invoker" value="WritableRpcInvoker" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e74c3c;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="230" y="150" width="120" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="writable-invocation" value="Invocation对象" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e74c3c;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="90" y="210" width="120" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="writable-client-conn" value="Client连接管理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e74c3c;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="230" y="210" width="120" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="writable-serialization" value="序列化层" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e74c3c;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="160" y="270" width="120" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- WritableRpcEngine服务端 -->
+        <mxCell id="writable-server" value="服务端架构" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fdeaea;strokeColor=#e74c3c;fontSize=14;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="70" y="340" width="360" height="200" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="writable-server-main" value="WritableRpcEngine.Server" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e74c3c;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="90" y="370" width="140" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="writable-rpc-invoker" value="WritableRpcInvoker" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e74c3c;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="250" y="370" width="140" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="writable-reflection" value="反射调用机制" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e74c3c;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="90" y="430" width="140" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="writable-object-writable" value="ObjectWritable返回" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e74c3c;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="250" y="430" width="140" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="writable-deserial" value="反序列化层" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#e74c3c;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="170" y="490" width="120" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- WritableRpcEngine特点 -->
+        <mxCell id="writable-features" value="技术特点" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fdeaea;strokeColor=#e74c3c;fontSize=14;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="70" y="560" width="360" height="260" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="writable-feature1" value="✓ Java原生Writable接口" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#27ae60;" vertex="1" parent="1">
+          <mxGeometry x="90" y="590" width="200" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="writable-feature2" value="✓ 简单直接的设计" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#27ae60;" vertex="1" parent="1">
+          <mxGeometry x="90" y="610" width="200" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="writable-feature3" value="✓ 与Hadoop生态集成" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#27ae60;" vertex="1" parent="1">
+          <mxGeometry x="90" y="630" width="200" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="writable-limitation1" value="✗ 性能相对较低" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#e74c3c;" vertex="1" parent="1">
+          <mxGeometry x="90" y="670" width="200" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="writable-limitation2" value="✗ 反射调用开销大" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#e74c3c;" vertex="1" parent="1">
+          <mxGeometry x="90" y="690" width="200" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="writable-limitation3" value="✗ 缺乏跨语言支持" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#e74c3c;" vertex="1" parent="1">
+          <mxGeometry x="90" y="710" width="200" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="writable-limitation4" value="✗ 消息格式冗余" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#e74c3c;" vertex="1" parent="1">
+          <mxGeometry x="90" y="730" width="200" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="writable-status" value="状态：已废弃" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffebee;strokeColor=#e74c3c;fontSize=12;fontColor=#e74c3c;" vertex="1" parent="1">
+          <mxGeometry x="90" y="760" width="100" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- ProtobufRpcEngine架构 -->
+        <mxCell id="protobuf-container" value="ProtobufRpcEngine (第二代)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fef9e7;strokeColor=#f39c12;fontSize=16;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="500" y="80" width="400" height="750" as="geometry" />
+        </mxCell>
+        
+        <!-- ProtobufRpcEngine客户端 -->
+        <mxCell id="protobuf-client" value="客户端架构" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fdf6e3;strokeColor=#f39c12;fontSize=14;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="520" y="120" width="360" height="200" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="protobuf-proxy" value="动态代理 (Proxy)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#f39c12;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="540" y="150" width="120" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="protobuf-invoker" value="ProtobufRpcInvoker" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#f39c12;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="680" y="150" width="120" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="protobuf-header" value="RequestHeaderProto" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#f39c12;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="540" y="210" width="120" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="protobuf-client-conn" value="Client连接管理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#f39c12;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="680" y="210" width="120" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="protobuf-serialization" value="Protobuf序列化" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#f39c12;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="610" y="270" width="120" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- ProtobufRpcEngine服务端 -->
+        <mxCell id="protobuf-server" value="服务端架构" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fdf6e3;strokeColor=#f39c12;fontSize=14;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="520" y="340" width="360" height="200" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="protobuf-server-main" value="ProtobufRpcEngine.Server" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#f39c12;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="540" y="370" width="140" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="protobuf-blocking-service" value="BlockingService" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#f39c12;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="700" y="370" width="140" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="protobuf-request" value="RpcProtobufRequest" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#f39c12;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="540" y="430" width="140" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="protobuf-message" value="Protobuf Message" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#f39c12;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="700" y="430" width="140" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="protobuf-deserial" value="Protobuf反序列化" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#f39c12;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="620" y="490" width="120" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- ProtobufRpcEngine特点 -->
+        <mxCell id="protobuf-features" value="技术特点" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fdf6e3;strokeColor=#f39c12;fontSize=14;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="520" y="560" width="360" height="260" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="protobuf-feature1" value="✓ Protocol Buffers 2.5支持" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#27ae60;" vertex="1" parent="1">
+          <mxGeometry x="540" y="590" width="200" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="protobuf-feature2" value="✓ 显著性能提升" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#27ae60;" vertex="1" parent="1">
+          <mxGeometry x="540" y="610" width="200" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="protobuf-feature3" value="✓ 初步跨语言支持" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#27ae60;" vertex="1" parent="1">
+          <mxGeometry x="540" y="630" width="200" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="protobuf-feature4" value="✓ 向后兼容设计" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#27ae60;" vertex="1" parent="1">
+          <mxGeometry x="540" y="650" width="200" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="protobuf-limitation1" value="✗ 依赖特定protobuf版本" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#e74c3c;" vertex="1" parent="1">
+          <mxGeometry x="540" y="690" width="200" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="protobuf-limitation2" value="✗ 缺乏异步支持" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#e74c3c;" vertex="1" parent="1">
+          <mxGeometry x="540" y="710" width="200" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="protobuf-status" value="状态：过渡期" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fef9e7;strokeColor=#f39c12;fontSize=12;fontColor=#f39c12;" vertex="1" parent="1">
+          <mxGeometry x="540" y="760" width="100" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- ProtobufRpcEngine2架构 -->
+        <mxCell id="protobuf2-container" value="ProtobufRpcEngine2 (第三代)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eafaf1;strokeColor=#27ae60;fontSize=16;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="950" y="80" width="400" height="750" as="geometry" />
+        </mxCell>
+        
+        <!-- ProtobufRpcEngine2客户端 -->
+        <mxCell id="protobuf2-client" value="客户端架构" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e8;strokeColor=#27ae60;fontSize=14;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="970" y="120" width="360" height="200" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="protobuf2-proxy" value="动态代理 (Proxy)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#27ae60;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="990" y="150" width="120" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="protobuf2-invoker" value="ProtobufRpcInvoker2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#27ae60;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="1130" y="150" width="120" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="protobuf2-async" value="AsyncGet支持" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#27ae60;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="990" y="210" width="120" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="protobuf2-future" value="CompletableFuture" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#27ae60;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="1130" y="210" width="120" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="protobuf2-serialization" value="阴影Protobuf序列化" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#27ae60;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="270" width="120" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- ProtobufRpcEngine2服务端 -->
+        <mxCell id="protobuf2-server" value="服务端架构" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e8;strokeColor=#27ae60;fontSize=14;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="970" y="340" width="360" height="200" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="protobuf2-server-main" value="ProtobufRpcEngine2.Server" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#27ae60;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="990" y="370" width="140" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="protobuf2-blocking-service" value="BlockingService" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#27ae60;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="1150" y="370" width="140" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="protobuf2-request" value="RpcProtobufRequest" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#27ae60;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="990" y="430" width="140" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="protobuf2-writable" value="RpcWritable.Buffer" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#27ae60;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="1150" y="430" width="140" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="protobuf2-deserial" value="阴影Protobuf反序列化" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#27ae60;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="1070" y="490" width="120" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- ProtobufRpcEngine2特点 -->
+        <mxCell id="protobuf2-features" value="技术特点" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e8;strokeColor=#27ae60;fontSize=14;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="970" y="560" width="360" height="260" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="protobuf2-feature1" value="✓ Protocol Buffers 3.x全面支持" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#27ae60;" vertex="1" parent="1">
+          <mxGeometry x="990" y="590" width="200" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="protobuf2-feature2" value="✓ 阴影类库避免冲突" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#27ae60;" vertex="1" parent="1">
+          <mxGeometry x="990" y="610" width="200" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="protobuf2-feature3" value="✓ 异步RPC支持" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#27ae60;" vertex="1" parent="1">
+          <mxGeometry x="990" y="630" width="200" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="protobuf2-feature4" value="✓ 最佳性能表现" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#27ae60;" vertex="1" parent="1">
+          <mxGeometry x="990" y="650" width="200" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="protobuf2-feature5" value="✓ 完整跨语言生态" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#27ae60;" vertex="1" parent="1">
+          <mxGeometry x="990" y="670" width="200" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="protobuf2-feature6" value="✓ 企业级特性完善" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#27ae60;" vertex="1" parent="1">
+          <mxGeometry x="990" y="690" width="200" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="protobuf2-feature7" value="✓ 监控和调试支持" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#27ae60;" vertex="1" parent="1">
+          <mxGeometry x="990" y="710" width="200" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="protobuf2-status" value="状态：当前推荐" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eafaf1;strokeColor=#27ae60;fontSize=12;fontColor=#27ae60;" vertex="1" parent="1">
+          <mxGeometry x="990" y="760" width="120" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- 演进箭头 -->
+        <mxCell id="evolution-arrow1" value="" style="endArrow=classic;html=1;strokeWidth=4;strokeColor=#3498db;curved=1;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="450" y="450" as="sourcePoint" />
+            <mxPoint x="500" y="450" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="evolution-label1" value="性能需求\n标准化" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#3498db;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="450" y="400" width="60" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="evolution-arrow2" value="" style="endArrow=classic;html=1;strokeWidth=4;strokeColor=#3498db;curved=1;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="900" y="450" as="sourcePoint" />
+            <mxPoint x="950" y="450" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="evolution-label2" value="现代化\n异步支持" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#3498db;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="900" y="400" width="60" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- 性能对比表格 -->
+        <mxCell id="performance-table" value="性能对比指标" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8f9fa;strokeColor=#6c757d;fontSize=14;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="50" y="850" width="1300" height="120" as="geometry" />
+        </mxCell>
+
+        <mxCell id="perf-header1" value="序列化速度" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e9ecef;strokeColor=#6c757d;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="880" width="100" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="perf-writable-speed" value="较慢" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffebee;strokeColor=#e74c3c;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="180" y="880" width="80" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="perf-protobuf-speed" value="中等" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fef9e7;strokeColor=#f39c12;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="270" y="880" width="80" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="perf-protobuf2-speed" value="最快" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eafaf1;strokeColor=#27ae60;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="360" y="880" width="80" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="perf-header2" value="消息大小" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e9ecef;strokeColor=#6c757d;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="460" y="880" width="100" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="perf-writable-size" value="较大" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffebee;strokeColor=#e74c3c;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="570" y="880" width="80" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="perf-protobuf-size" value="中等" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fef9e7;strokeColor=#f39c12;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="660" y="880" width="80" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="perf-protobuf2-size" value="最小" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eafaf1;strokeColor=#27ae60;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="750" y="880" width="80" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="perf-header3" value="跨语言支持" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e9ecef;strokeColor=#6c757d;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="850" y="880" width="100" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="perf-writable-lang" value="无" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffebee;strokeColor=#e74c3c;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="960" y="880" width="80" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="perf-protobuf-lang" value="部分" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fef9e7;strokeColor=#f39c12;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1050" y="880" width="80" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="perf-protobuf2-lang" value="完整" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eafaf1;strokeColor=#27ae60;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1140" y="880" width="80" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="perf-header4" value="异步支持" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e9ecef;strokeColor=#6c757d;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="920" width="100" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="perf-writable-async" value="无" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffebee;strokeColor=#e74c3c;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="180" y="920" width="80" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="perf-protobuf-async" value="无" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fef9e7;strokeColor=#f39c12;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="270" y="920" width="80" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="perf-protobuf2-async" value="完整" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eafaf1;strokeColor=#27ae60;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="360" y="920" width="80" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="perf-header5" value="维护状态" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e9ecef;strokeColor=#6c757d;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="460" y="920" width="100" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="perf-writable-status" value="已废弃" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffebee;strokeColor=#e74c3c;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="570" y="920" width="80" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="perf-protobuf-status" value="过渡期" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fef9e7;strokeColor=#f39c12;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="660" y="920" width="80" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="perf-protobuf2-status" value="推荐" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eafaf1;strokeColor=#27ae60;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="750" y="920" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

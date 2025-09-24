@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title { font-family: Arial, sans-serif; font-size: 18px; font-weight: bold; fill: #2c3e50; }
+      .subtitle { font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; }
+      .text { font-family: Arial, sans-serif; font-size: 12px; }
+      .small-text { font-family: Arial, sans-serif; font-size: 11px; }
+      .client-stack { fill: #e1d5e7; stroke: #9673a6; fill-opacity: 0.3; }
+      .server-stack { fill: #e1d5e7; stroke: #9673a6; fill-opacity: 0.3; }
+      .app-layer { fill: #dae8fc; stroke: #6c8ebf; fill-opacity: 0.3; }
+      .app-component { fill: #e8f4fd; stroke: #6c8ebf; }
+      .engine-layer { fill: #d5e8d4; stroke: #82b366; fill-opacity: 0.3; }
+      .engine-component { fill: #e8f5e8; stroke: #82b366; }
+      .comm-layer { fill: #fff2cc; stroke: #d6b656; fill-opacity: 0.3; }
+      .comm-component { fill: #fff8e1; stroke: #d6b656; }
+      .security-layer { fill: #f8cecc; stroke: #b85450; fill-opacity: 0.3; }
+      .security-component { fill: #fce4ec; stroke: #b85450; }
+      .network-layer { fill: #ffe6cc; stroke: #d79b00; fill-opacity: 0.3; }
+      .network-component { fill: #fff2cc; stroke: #d79b00; }
+      .network-connection { fill: #e1d5e7; stroke: #9673a6; }
+    </style>
+  </defs>
+  
+  <!-- 标题 -->
+  <text x="600" y="30" text-anchor="middle" class="title">Hadoop RPC协议栈分层架构</text>
+  
+  <!-- 客户端协议栈 -->
+  <rect x="80" y="80" width="400" height="600" rx="10" class="client-stack"/>
+  <text x="280" y="100" text-anchor="middle" class="subtitle" fill="#9673a6">客户端协议栈</text>
+  
+  <!-- 客户端应用层 -->
+  <rect x="100" y="120" width="360" height="80" rx="5" class="app-layer"/>
+  <text x="280" y="140" text-anchor="middle" class="subtitle" fill="#6c8ebf">应用层</text>
+  
+  <rect x="120" y="150" width="80" height="30" rx="3" class="app-component"/>
+  <text x="160" y="168" text-anchor="middle" class="small-text">业务代码</text>
+  
+  <rect x="220" y="150" width="80" height="30" rx="3" class="app-component"/>
+  <text x="260" y="168" text-anchor="middle" class="small-text">RPC代理</text>
+  
+  <rect x="320" y="150" width="80" height="30" rx="3" class="app-component"/>
+  <text x="360" y="168" text-anchor="middle" class="small-text">Invoker</text>
+  
+  <!-- 客户端协议引擎层 -->
+  <rect x="100" y="220" width="360" height="80" rx="5" class="engine-layer"/>
+  <text x="280" y="240" text-anchor="middle" class="subtitle" fill="#82b366">协议引擎层</text>
+  
+  <rect x="120" y="250" width="100" height="30" rx="3" class="engine-component"/>
+  <text x="170" y="268" text-anchor="middle" class="small-text">RpcEngine接口</text>
+  
+  <rect x="240" y="250" width="120" height="30" rx="3" class="engine-component"/>
+  <text x="300" y="268" text-anchor="middle" class="small-text">ProtobufRpcEngine2</text>
+  
+  <rect x="380" y="250" width="100" height="30" rx="3" class="engine-component"/>
+  <text x="430" y="268" text-anchor="middle" class="small-text">WritableRpcEngine</text>
+  
+  <!-- 客户端通信层 -->
+  <rect x="100" y="320" width="360" height="120" rx="5" class="comm-layer"/>
+  <text x="280" y="340" text-anchor="middle" class="subtitle" fill="#d6b656">通信层</text>
+  
+  <rect x="120" y="350" width="80" height="30" rx="3" class="comm-component"/>
+  <text x="160" y="368" text-anchor="middle" class="small-text">Client类</text>
+  
+  <rect x="220" y="350" width="80" height="30" rx="3" class="comm-component"/>
+  <text x="260" y="368" text-anchor="middle" class="small-text">ClientCache</text>
+  
+  <rect x="320" y="350" width="80" height="30" rx="3" class="comm-component"/>
+  <text x="360" y="368" text-anchor="middle" class="small-text">Connection</text>
+  
+  <rect x="120" y="390" width="80" height="30" rx="3" class="comm-component"/>
+  <text x="160" y="408" text-anchor="middle" class="small-text">ConnectionId</text>
+  
+  <rect x="220" y="390" width="80" height="30" rx="3" class="comm-component"/>
+  <text x="260" y="408" text-anchor="middle" class="small-text">Call对象</text>
+  
+  <rect x="320" y="390" width="120" height="30" rx="3" class="comm-component"/>
+  <text x="380" y="408" text-anchor="middle" class="small-text">CompletableFuture</text>
+  
+  <!-- 客户端安全层 -->
+  <rect x="100" y="460" width="360" height="80" rx="5" class="security-layer"/>
+  <text x="280" y="480" text-anchor="middle" class="subtitle" fill="#b85450">安全层</text>
+  
+  <rect x="120" y="490" width="100" height="30" rx="3" class="security-component"/>
+  <text x="170" y="508" text-anchor="middle" class="small-text">SaslRpcClient</text>
+  
+  <rect x="240" y="490" width="80" height="30" rx="3" class="security-component"/>
+  <text x="280" y="508" text-anchor="middle" class="small-text">认证协商</text>
+  
+  <rect x="340" y="490" width="80" height="30" rx="3" class="security-component"/>
+  <text x="380" y="508" text-anchor="middle" class="small-text">Token管理</text>
+  
+  <!-- 客户端网络层 -->
+  <rect x="100" y="560" width="360" height="80" rx="5" class="network-layer"/>
+  <text x="280" y="580" text-anchor="middle" class="subtitle" fill="#d79b00">网络层</text>
+  
+  <rect x="120" y="590" width="60" height="30" rx="3" class="network-component"/>
+  <text x="150" y="608" text-anchor="middle" class="small-text">Socket</text>
+  
+  <rect x="200" y="590" width="60" height="30" rx="3" class="network-component"/>
+  <text x="230" y="608" text-anchor="middle" class="small-text">NIO</text>
+  
+  <rect x="280" y="590" width="60" height="30" rx="3" class="network-component"/>
+  <text x="310" y="608" text-anchor="middle" class="small-text">TCP/IP</text>
+  
+  <rect x="360" y="590" width="60" height="30" rx="3" class="network-component"/>
+  <text x="390" y="608" text-anchor="middle" class="small-text">SSL/TLS</text>
+  
+  <!-- 服务端协议栈 -->
+  <rect x="600" y="80" width="400" height="600" rx="10" class="server-stack"/>
+  <text x="800" y="100" text-anchor="middle" class="subtitle" fill="#9673a6">服务端协议栈</text>
+  
+  <!-- 服务端服务实现层 -->
+  <rect x="620" y="120" width="360" height="80" rx="5" class="app-layer"/>
+  <text x="800" y="140" text-anchor="middle" class="subtitle" fill="#6c8ebf">服务实现层</text>
+  
+  <rect x="640" y="150" width="80" height="30" rx="3" class="app-component"/>
+  <text x="680" y="168" text-anchor="middle" class="small-text">NameNode</text>
+  
+  <rect x="740" y="150" width="80" height="30" rx="3" class="app-component"/>
+  <text x="780" y="168" text-anchor="middle" class="small-text">DataNode</text>
+  
+  <rect x="840" y="150" width="120" height="30" rx="3" class="app-component"/>
+  <text x="900" y="168" text-anchor="middle" class="small-text">ResourceManager</text>
+  
+  <!-- 服务端协议处理层 -->
+  <rect x="620" y="220" width="360" height="80" rx="5" class="engine-layer"/>
+  <text x="800" y="240" text-anchor="middle" class="subtitle" fill="#82b366">协议处理层</text>
+  
+  <rect x="640" y="250" width="80" height="30" rx="3" class="engine-component"/>
+  <text x="680" y="268" text-anchor="middle" class="small-text">RpcInvoker</text>
+  
+  <rect x="740" y="250" width="80" height="30" rx="3" class="engine-component"/>
+  <text x="780" y="268" text-anchor="middle" class="small-text">Translator</text>
+  
+  <rect x="840" y="250" width="100" height="30" rx="3" class="engine-component"/>
+  <text x="890" y="268" text-anchor="middle" class="small-text">序列化处理</text>
+  
+  <!-- 服务端请求处理层 -->
+  <rect x="620" y="320" width="360" height="120" rx="5" class="comm-layer"/>
+  <text x="800" y="340" text-anchor="middle" class="subtitle" fill="#d6b656">请求处理层</text>
+  
+  <rect x="640" y="350" width="80" height="30" rx="3" class="comm-component"/>
+  <text x="680" y="368" text-anchor="middle" class="small-text">Server类</text>
+  
+  <rect x="740" y="350" width="100" height="30" rx="3" class="comm-component"/>
+  <text x="790" y="368" text-anchor="middle" class="small-text">Handler线程池</text>
+  
+  <rect x="860" y="350" width="80" height="30" rx="3" class="comm-component"/>
+  <text x="900" y="368" text-anchor="middle" class="small-text">Responder</text>
+  
+  <rect x="640" y="390" width="120" height="30" rx="3" class="comm-component"/>
+  <text x="700" y="408" text-anchor="middle" class="small-text">CallQueueManager</text>
+  
+  <rect x="780" y="390" width="100" height="30" rx="3" class="comm-component"/>
+  <text x="830" y="408" text-anchor="middle" class="small-text">RpcScheduler</text>
+  
+  <!-- 服务端连接管理层 -->
+  <rect x="620" y="460" width="360" height="80" rx="5" class="security-layer"/>
+  <text x="800" y="480" text-anchor="middle" class="subtitle" fill="#b85450">连接管理层</text>
+  
+  <rect x="640" y="490" width="80" height="30" rx="3" class="security-component"/>
+  <text x="680" y="508" text-anchor="middle" class="small-text">Listener</text>
+  
+  <rect x="740" y="490" width="100" height="30" rx="3" class="security-component"/>
+  <text x="790" y="508" text-anchor="middle" class="small-text">Reader线程池</text>
+  
+  <rect x="860" y="490" width="120" height="30" rx="3" class="security-component"/>
+  <text x="920" y="508" text-anchor="middle" class="small-text">ConnectionManager</text>
+  
+  <!-- 服务端网络层 -->
+  <rect x="620" y="560" width="360" height="80" rx="5" class="network-layer"/>
+  <text x="800" y="580" text-anchor="middle" class="subtitle" fill="#d79b00">网络层</text>
+  
+  <rect x="640" y="590" width="80" height="30" rx="3" class="network-component"/>
+  <text x="680" y="608" text-anchor="middle" class="small-text">ServerSocket</text>
+  
+  <rect x="740" y="590" width="80" height="30" rx="3" class="network-component"/>
+  <text x="780" y="608" text-anchor="middle" class="small-text">Selector</text>
+  
+  <rect x="840" y="590" width="100" height="30" rx="3" class="network-component"/>
+  <text x="890" y="608" text-anchor="middle" class="small-text">SocketChannel</text>
+  
+  <!-- 网络连接 -->
+  <rect x="520" y="350" width="60" height="200" rx="10" class="network-connection"/>
+  <text x="550" y="440" text-anchor="middle" class="subtitle" fill="#9673a6">网络</text>
+  <text x="550" y="460" text-anchor="middle" class="subtitle" fill="#9673a6">连接</text>
+  
+  <!-- 连接线 -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2c3e50"/>
+    </marker>
+    <marker id="arrowhead-data" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#e74c3c"/>
+    </marker>
+  </defs>
+  
+  <!-- 客户端数据流 -->
+  <line x1="280" y1="200" x2="280" y2="220" stroke="#e74c3c" stroke-width="2" marker-end="url(#arrowhead-data)"/>
+  <line x1="280" y1="300" x2="280" y2="320" stroke="#e74c3c" stroke-width="2" marker-end="url(#arrowhead-data)"/>
+  <line x1="280" y1="440" x2="280" y2="460" stroke="#e74c3c" stroke-width="2" marker-end="url(#arrowhead-data)"/>
+  <line x1="280" y1="540" x2="280" y2="560" stroke="#e74c3c" stroke-width="2" marker-end="url(#arrowhead-data)"/>
+  
+  <!-- 服务端数据流 -->
+  <line x1="800" y1="200" x2="800" y2="220" stroke="#e74c3c" stroke-width="2" marker-end="url(#arrowhead-data)"/>
+  <line x1="800" y1="300" x2="800" y2="320" stroke="#e74c3c" stroke-width="2" marker-end="url(#arrowhead-data)"/>
+  <line x1="800" y1="440" x2="800" y2="460" stroke="#e74c3c" stroke-width="2" marker-end="url(#arrowhead-data)"/>
+  <line x1="800" y1="540" x2="800" y2="560" stroke="#e74c3c" stroke-width="2" marker-end="url(#arrowhead-data)"/>
+  
+  <!-- 网络连接线 -->
+  <line x1="480" y1="450" x2="520" y2="450" stroke="#9673a6" stroke-width="3" marker-end="url(#arrowhead)"/>
+  <line x1="580" y1="450" x2="620" y2="450" stroke="#9673a6" stroke-width="3" marker-end="url(#arrowhead)"/>
+  
+  <!-- 层次说明 -->
+  <text x="50" y="720" class="subtitle" fill="#2c3e50">分层特点：</text>
+  <text x="50" y="740" class="small-text" fill="#2c3e50">🔵 应用层：业务逻辑和代理  🟢 协议层：序列化引擎  🟡 通信层：连接管理  🔴 安全层：认证授权  🟠 网络层：底层传输</text>
+  
+  <!-- 优势说明 -->
+  <text x="50" y="770" class="subtitle" fill="#2c3e50">设计优势：</text>
+  <text x="50" y="790" class="small-text" fill="#2c3e50">• 职责分离，模块化设计  • 可插拔协议引擎  • 完整的安全保障  • 高效的网络通信  • 易于扩展和维护</text>
+  
+</svg>

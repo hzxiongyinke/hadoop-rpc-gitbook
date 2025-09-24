@@ -14,6 +14,10 @@ Hadoop RPC通信协议采用了精心设计的分层架构，这种设计不仅�
 
 这种分层设计的优势在于每个层次都有明确的职责边界，层次间通过定义良好的接口进行交互，这不仅提高了代码的可维护性，还为系统的测试和调试提供了便利。
 
+![协议栈分层架构图](images/protocol-stack-architecture.svg)
+
+*图4-1：Hadoop RPC协议栈分层架构*
+
 ## 消息格式与协议规范
 
 Hadoop RPC的消息格式设计体现了对网络通信效率和协议扩展性的深度考虑。通过分析具体的消息结构，我们可以理解协议设计者如何在性能、兼容性和功能性之间找到最佳平衡点。
@@ -27,6 +31,10 @@ Hadoop RPC的消息格式设计体现了对网络通信效率和协议扩展性�
 **协议版本化机制**通过VersionedProtocol接口实现，所有使用Hadoop RPC的协议都必须扩展这个接口。接口定义了getProtocolVersion()和getProtocolSignature()等方法，允许客户端和服务器协商和验证协议版本。这种设计确保了协议的向前和向后兼容性，为系统的平滑升级提供了保障。
 
 **消息序列化策略**支持多种序列化格式，包括Protocol Buffers和Hadoop Writable。不同的序列化格式在性能、跨语言支持、向后兼容性等方面各有优势，系统可以根据具体需求选择最适合的方案。
+
+![消息格式详解图](images/message-format-details.svg)
+
+*图4-2：Hadoop RPC消息格式详解*
 
 ## 连接管理与生命周期
 
@@ -43,6 +51,10 @@ Hadoop RPC的消息格式设计体现了对网络通信效率和协议扩展性�
 **连接状态监控**通过多种机制实现，包括ping消息、超时检测、心跳机制等。PingInputStream在Connection内处理SocketTimeoutException，通过发送ping消息保持连接活跃，除非连接标记为关闭或RPC已超时。这种主动的连接监控确保了系统能够及时发现和处理连接问题。
 
 **Router连接管理优化**在HDFS Federation with Router的上下文中，RouterRpcClient管理到NameNode的连接。它使用ConnectionManager维护连接池，每个池特定于用户和NameNode。ConnectionManager维护ConnectionPool对象的映射，由ConnectionPoolId索引。ConnectionCreator线程在需要时异步向池中添加新连接，这种设计提高了连接管理的效率和可扩展性。
+
+![连接生命周期管理图](images/connection-lifecycle-management.svg)
+
+*图4-3：Hadoop RPC连接生命周期管理*
 
 ## 错误处理与容错机制
 
@@ -75,6 +87,130 @@ Hadoop RPC的消息格式设计体现了对网络通信效率和协议扩展性�
 **协议签名验证**通过getProtocolSignature()方法实现，确保客户端和服务端使用的协议定义完全一致。这种验证机制能够检测出协议定义的细微差异，防止因协议不一致导致的通信错误。
 
 **渐进式升级支持**通过版本检测和协商机制，系统支持集群的渐进式升级。新旧版本的组件可以在升级过程中共存，系统会自动选择双方都支持的协议版本进行通信。
+
+```mermaid
+sequenceDiagram
+    participant C as Client
+    participant CM as ConnectionManager
+    participant S as Server
+    participant SASL as SASL Auth
+    participant KDC as Kerberos KDC
+
+    Note over C, KDC: Hadoop RPC Protocol Handshake & Authentication Flow
+
+    %% Phase 1: TCP Connection Setup
+    Note over C, S: Phase 1: TCP Connection Establishment
+    C->>S: Create TCP Socket Connection
+    S->>S: Accept Connection
+    S-->>C: TCP Connection Established
+
+    %% Phase 2: Connection Header Exchange
+    Note over C, S: Phase 2: Connection Header Exchange
+    C->>C: Build Connection Header
+    Note right of C: Magic "hrpc" (4 bytes)<br/>Version (1 byte)<br/>Service Class (1 byte)<br/>Auth Protocol (1 byte)
+    C->>S: Send Connection Header (7 bytes)
+    S->>S: Parse & Validate Header
+
+    alt Version Incompatible
+        S-->>C: FATAL_VERSION_MISMATCH
+        C->>C: Throw VersionMismatch Exception
+    else Version Compatible
+        S->>S: Accept Connection Header
+        S-->>C: Header Validation Success
+    end
+
+    %% Phase 3: Authentication Protocol Negotiation
+    Note over C, S: Phase 3: Authentication Protocol Negotiation
+    C->>C: Check Security Configuration
+    C->>S: Send Authentication Protocol Choice
+    S->>S: Validate Protocol Support
+
+    alt Security Enabled (SASL)
+        Note over C, KDC: SASL Authentication Flow
+
+        alt Kerberos Authentication
+            C->>C: Check Kerberos Credentials
+            C->>KDC: Request Service Ticket (TGS-REQ)
+            KDC->>KDC: Validate User Principal
+            KDC-->>C: Return Service Ticket (TGS-REP)
+
+            C->>SASL: Initialize SASL Client
+            SASL->>SASL: Create GSSAPI Mechanism
+
+            loop SASL Challenge-Response
+                C->>SASL: Generate Authentication Token
+                SASL-->>C: SASL Authentication Data
+                C->>S: Send SASL Token
+                S->>S: Process SASL Token
+                S-->>C: SASL Challenge/Response
+
+                alt Authentication Success
+                    S->>S: Establish Security Context
+                    S-->>C: Authentication Complete
+                else Continue Authentication
+                    Note over C, S: Continue SASL Handshake
+                end
+            end
+
+        else Token Authentication
+            C->>C: Retrieve Delegation Token
+            C->>SASL: Initialize DIGEST-MD5
+            C->>S: Send Token Credentials
+            S->>S: Validate Token
+            S-->>C: Token Authentication Result
+        end
+
+    else Simple Authentication
+        C->>S: Send Username Only
+        S->>S: Accept Simple Auth
+        S-->>C: Authentication Success
+    end
+
+    %% Phase 4: Connection Context Setup
+    Note over C, S: Phase 4: Connection Context Establishment
+    C->>C: Build Connection Context
+    Note right of C: User Information<br/>Protocol Name<br/>Authentication Method
+    C->>S: Send Connection Context
+    S->>S: Parse Connection Context
+    S->>CM: Register Connection
+    CM->>CM: Assign Reader Thread
+    S-->>C: Context Setup Complete
+
+    %% Phase 5: Connection Ready State
+    Note over C, S: Phase 5: Connection Activation
+    C->>C: Set Connection State to ACTIVE
+    C->>C: Start Response Reader Thread
+    S->>S: Add Connection to Active Pool
+    S->>S: Begin RPC Request Listening
+
+    Note over C, S: Connection Ready - RPC Calls Can Begin
+
+    %% Phase 6: Connection Maintenance
+    Note over C, S: Phase 6: Connection Maintenance & Keep-Alive
+
+    loop Periodic Keep-Alive
+        C->>S: Send Ping Message
+        S->>S: Process Ping
+        S-->>C: Send Pong Response
+        Note over C, S: Prevent Connection Timeout
+    end
+
+    %% Error Handling & Cleanup
+    alt Connection Issues
+        alt Idle Timeout
+            S->>S: Detect Idle Connection
+            S->>CM: Remove from Active Pool
+            S->>C: Send Connection Close Notification
+        else Client Initiated Close
+            C->>C: Call close() Method
+            C->>S: Send Close Request
+            S->>CM: Cleanup Connection Resources
+            S-->>C: Close Confirmation
+        end
+    end
+```
+
+*图4-4：协议握手与认证流程时序图*
 
 ## 性能优化与监控机制
 

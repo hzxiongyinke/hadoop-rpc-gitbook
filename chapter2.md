@@ -30,6 +30,10 @@ WritableRpcEngine是传统的序列化引擎，使用Hadoop的Writable格式，�
 
 **监控和度量系统**通过RpcMetrics和RpcDetailedMetrics提供了全面的性能监控能力。RpcMetrics收集聚合的RPC性能指标，而RpcDetailedMetrics提供按方法的详细指标。这些监控数据对于系统调优和故障诊断具有重要价值。
 
+![Hadoop RPC整体架构](images/hadoop-rpc-architecture.svg)
+
+*图2-1：Hadoop RPC整体架构设计*
+
 ## 与传统RPC框架的差异
 
 Hadoop RPC与传统RPC框架（如Java RMI、gRPC等）在设计理念和实现方式上存在显著差异，这些差异主要源于大数据处理场景的特殊需求。
@@ -47,6 +51,10 @@ Hadoop RPC与传统RPC框架（如Java RMI、gRPC等）在设计理念和实现�
 **连接管理和容错机制**也更加完善。Hadoop RPC实现了智能的连接池管理和ping机制来检测无响应的服务器，这些机制对于长时间运行的大数据作业至关重要。同时，通过配置最大数据长度和响应长度来防止内存溢出，体现了对大数据传输场景的特殊考虑。
 
 **监控和可观测性**方面，Hadoop RPC提供了比传统框架更加详细的监控指标。这些指标不仅包括基本的性能数据，还包括队列时间、处理时间、响应时间等细粒度信息，为大规模分布式系统的运维提供了强有力的支持。
+
+![RPC框架对比分析](images/rpc-framework-comparison.svg)
+
+*图2-2：主流RPC框架对比分析*
 
 ## 在Hadoop生态系统中的地位
 
@@ -66,9 +74,72 @@ DatanodeProtocol则用于DataNode与NameNode之间的通信，主要用于发送
 
 **安全和认证基础**使得整个生态系统能够在企业级环境中安全运行。RPC框架集成的SASL认证机制为所有Hadoop组件提供了统一的安全基础，简化了安全配置和管理。
 
+![Hadoop生态系统RPC协议详解](images/hadoop-rpc-protocols.svg)
+
+*图2-4：Hadoop生态系统RPC协议详解*
+
 ## 技术演进与未来发展
 
 Hadoop RPC框架的技术演进反映了大数据技术发展的历程和趋势。从早期的WritableRpcEngine到现在的ProtobufRpcEngine2，每一次演进都体现了对性能、兼容性和可维护性的不断追求。
+
+```mermaid
+timeline
+    title Hadoop RPC引擎技术演进历程
+
+    section 早期阶段 (2006-2010)
+        2006 : Hadoop项目启动
+             : 基础RPC框架设计
+             : 简单的序列化机制
+
+        2008 : WritableRpcEngine诞生
+             : Hadoop Writable序列化
+             : 单一协议架构
+             : 基本的RPC功能
+
+    section 发展阶段 (2010-2015)
+        2010 : RpcEngine接口抽象
+             : 可插拔架构设计
+             : 协议扩展能力
+
+        2012 : ProtobufRpcEngine引入
+             : Protocol Buffers支持
+             : 性能优化开始
+             : 跨语言兼容性
+
+        2014 : 安全机制集成
+             : SASL认证支持
+             : 企业级安全特性
+
+    section 成熟阶段 (2015-2020)
+        2015 : 异步处理能力
+             : 高并发优化
+             : 连接池管理
+
+        2017 : ProtobufRpcEngine2
+             : Protocol Buffers 3.x
+             : 性能大幅提升
+             : 更好的向后兼容
+
+        2019 : 监控系统完善
+             : 详细性能指标
+             : 企业级运维支持
+
+    section 现代阶段 (2020-至今)
+        2020 : 云原生适配
+             : 容器化支持
+             : 微服务架构兼容
+
+        2022 : 智能调度优化
+             : 优先级队列
+             : 资源隔离机制
+
+        2024 : 持续演进
+             : 性能持续优化
+             : 新特性开发
+             : 生态系统扩展
+```
+
+*图2-3：RPC引擎演进时序图*
 
 **序列化技术的演进**是最明显的发展轨迹。WritableRpcEngine代表了早期的设计思路，虽然简单直接，但在性能和跨语言支持方面存在局限。ProtobufRpcEngine的引入标志着向标准化序列化协议的转变，而ProtobufRpcEngine2则进一步优化了Protocol Buffers 3.x的支持，提供了更好的性能和更丰富的功能。
 

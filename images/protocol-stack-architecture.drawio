@@ -1,0 +1,255 @@
+<mxfile host="app.diagrams.net" modified="2024-09-18T03:00:00.000Z" agent="5.0" etag="xxx" version="21.6.5" type="device">
+  <diagram name="协议栈分层架构" id="protocol-stack-architecture">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- 标题 -->
+        <mxCell id="title" value="Hadoop RPC协议栈分层架构" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontStyle=1;fontColor=#2c3e50;" vertex="1" parent="1">
+          <mxGeometry x="450" y="20" width="300" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- 客户端协议栈 -->
+        <mxCell id="client-stack" value="客户端协议栈" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=16;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="80" y="80" width="400" height="600" as="geometry" />
+        </mxCell>
+        
+        <!-- 应用层 -->
+        <mxCell id="client-app-layer" value="应用层" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="100" y="120" width="360" height="80" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="client-app-code" value="业务代码" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f4fd;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="120" y="150" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="client-proxy" value="RPC代理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f4fd;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="220" y="150" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="client-invoker" value="Invoker" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f4fd;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="320" y="150" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- 协议引擎层 -->
+        <mxCell id="client-engine-layer" value="协议引擎层" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="100" y="220" width="360" height="80" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="client-rpcengine" value="RpcEngine接口" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e8;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="120" y="250" width="100" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="client-protobuf" value="ProtobufRpcEngine2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e8;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="240" y="250" width="120" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="client-writable" value="WritableRpcEngine" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e8;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="380" y="250" width="100" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- 通信层 -->
+        <mxCell id="client-comm-layer" value="通信层" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="100" y="320" width="360" height="120" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="client-class" value="Client类" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff8e1;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="120" y="350" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="client-cache" value="ClientCache" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff8e1;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="220" y="350" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="client-connection" value="Connection" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff8e1;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="320" y="350" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="client-connid" value="ConnectionId" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff8e1;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="120" y="390" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="client-call" value="Call对象" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff8e1;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="220" y="390" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="client-future" value="CompletableFuture" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff8e1;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="320" y="390" width="120" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- 安全层 -->
+        <mxCell id="client-security-layer" value="安全层" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=14;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="100" y="460" width="360" height="80" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="client-sasl" value="SaslRpcClient" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4ec;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="120" y="490" width="100" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="client-auth" value="认证协商" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4ec;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="240" y="490" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="client-token" value="Token管理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4ec;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="340" y="490" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- 网络层 -->
+        <mxCell id="client-network-layer" value="网络层" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=14;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="100" y="560" width="360" height="80" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="client-socket" value="Socket" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d79b00;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="120" y="590" width="60" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="client-nio" value="NIO" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d79b00;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="200" y="590" width="60" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="client-tcp" value="TCP/IP" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d79b00;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="280" y="590" width="60" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="client-ssl" value="SSL/TLS" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d79b00;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="360" y="590" width="60" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- 服务端协议栈 -->
+        <mxCell id="server-stack" value="服务端协议栈" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=16;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="600" y="80" width="400" height="600" as="geometry" />
+        </mxCell>
+        
+        <!-- 服务实现层 -->
+        <mxCell id="server-service-layer" value="服务实现层" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="620" y="120" width="360" height="80" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="server-namenode" value="NameNode" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f4fd;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="640" y="150" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="server-datanode" value="DataNode" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f4fd;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="740" y="150" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="server-rm" value="ResourceManager" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f4fd;strokeColor=#6c8ebf;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="840" y="150" width="120" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- 协议处理层 -->
+        <mxCell id="server-protocol-layer" value="协议处理层" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="620" y="220" width="360" height="80" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="server-invoker" value="RpcInvoker" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e8;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="640" y="250" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="server-translator" value="Translator" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e8;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="740" y="250" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="server-serializer" value="序列化处理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e8;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="840" y="250" width="100" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- 请求处理层 -->
+        <mxCell id="server-request-layer" value="请求处理层" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="620" y="320" width="360" height="120" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="server-class" value="Server类" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff8e1;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="640" y="350" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="server-handler" value="Handler线程池" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff8e1;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="740" y="350" width="100" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="server-responder" value="Responder" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff8e1;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="860" y="350" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="server-queue" value="CallQueueManager" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff8e1;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="640" y="390" width="120" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="server-scheduler" value="RpcScheduler" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff8e1;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="780" y="390" width="100" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- 连接管理层 -->
+        <mxCell id="server-conn-layer" value="连接管理层" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=14;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="620" y="460" width="360" height="80" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="server-listener" value="Listener" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4ec;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="640" y="490" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="server-reader" value="Reader线程池" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4ec;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="740" y="490" width="100" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="server-connmgr" value="ConnectionManager" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4ec;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="860" y="490" width="120" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- 网络层 -->
+        <mxCell id="server-network-layer" value="网络层" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=14;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="620" y="560" width="360" height="80" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="server-socket" value="ServerSocket" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d79b00;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="640" y="590" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="server-selector" value="Selector" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d79b00;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="740" y="590" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="server-channel" value="SocketChannel" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d79b00;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="840" y="590" width="100" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- 网络连接 -->
+        <mxCell id="network-connection" value="网络连接" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="520" y="350" width="60" height="200" as="geometry" />
+        </mxCell>
+        
+        <!-- 连接线 -->
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#2c3e50"/>
+          </marker>
+          <marker id="arrowhead-data" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#e74c3c"/>
+          </marker>
+        </defs>
+        
+        <!-- 客户端数据流 -->
+        <line x1="280" y1="200" x2="280" y2="220" stroke="#e74c3c" stroke-width="2" marker-end="url(#arrowhead-data)"/>
+        <line x1="280" y1="300" x2="280" y2="320" stroke="#e74c3c" stroke-width="2" marker-end="url(#arrowhead-data)"/>
+        <line x1="280" y1="440" x2="280" y2="460" stroke="#e74c3c" stroke-width="2" marker-end="url(#arrowhead-data)"/>
+        <line x1="280" y1="540" x2="280" y2="560" stroke="#e74c3c" stroke-width="2" marker-end="url(#arrowhead-data)"/>
+        
+        <!-- 服务端数据流 -->
+        <line x1="800" y1="200" x2="800" y2="220" stroke="#e74c3c" stroke-width="2" marker-end="url(#arrowhead-data)"/>
+        <line x1="800" y1="300" x2="800" y2="320" stroke="#e74c3c" stroke-width="2" marker-end="url(#arrowhead-data)"/>
+        <line x1="800" y1="440" x2="800" y2="460" stroke="#e74c3c" stroke-width="2" marker-end="url(#arrowhead-data)"/>
+        <line x1="800" y1="540" x2="800" y2="560" stroke="#e74c3c" stroke-width="2" marker-end="url(#arrowhead-data)"/>
+        
+        <!-- 网络连接线 -->
+        <line x1="480" y1="450" x2="520" y2="450" stroke="#9673a6" stroke-width="3" marker-end="url(#arrowhead)"/>
+        <line x1="580" y1="450" x2="620" y2="450" stroke="#9673a6" stroke-width="3" marker-end="url(#arrowhead)"/>
+        
+        <!-- 层次说明 -->
+        <text x="50" y="720" font-size="14" font-weight="bold" fill="#2c3e50">分层特点：</text>
+        <text x="50" y="740" font-size="11" fill="#2c3e50">🔵 应用层：业务逻辑和代理  🟢 协议层：序列化引擎  🟡 通信层：连接管理  🔴 安全层：认证授权  🟠 网络层：底层传输</text>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

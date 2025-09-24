@@ -1,0 +1,225 @@
+<mxfile host="app.diagrams.net" modified="2024-09-18T03:00:00.000Z" agent="5.0" etag="xxx" version="21.6.5" type="device">
+  <diagram name="Client类内部架构" id="client-internal-architecture">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- 标题 -->
+        <mxCell id="title" value="Client类内部架构设计" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontStyle=1;fontColor=#2c3e50;" vertex="1" parent="1">
+          <mxGeometry x="450" y="20" width="300" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- Client主类 -->
+        <mxCell id="client-main" value="Client类" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=16;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="400" y="80" width="400" height="500" as="geometry" />
+        </mxCell>
+        
+        <!-- 核心方法区域 -->
+        <mxCell id="core-methods" value="核心方法" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f4fd;strokeColor=#6c8ebf;fontSize=14;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="420" y="120" width="160" height="120" as="geometry" />
+        </mxCell>
+        
+        <!-- 核心方法列表 -->
+        <mxCell id="method-call" value="call()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f8ff;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="430" y="150" width="60" height="25" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="method-send" value="sendRpcRequest()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f8ff;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="500" y="150" width="70" height="25" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="method-receive" value="receiveRpcResponse()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f8ff;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="430" y="185" width="80" height="25" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="method-getconn" value="getConnection()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f8ff;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="520" y="185" width="70" height="25" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="method-stop" value="stop()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f8ff;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="480" y="220" width="50" height="25" as="geometry" />
+        </mxCell>
+        
+        <!-- Call内部类 -->
+        <mxCell id="call-inner" value="Call内部类" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="620" y="120" width="160" height="120" as="geometry" />
+        </mxCell>
+        
+        <!-- Call属性 -->
+        <mxCell id="call-id" value="callId: int" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e8;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="630" y="150" width="70" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="call-retry" value="retry: int" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e8;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="710" y="150" width="60" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="call-rpc" value="rpcRequest" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e8;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="630" y="180" width="70" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="call-future" value="CompletableFuture" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e8;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="710" y="180" width="60" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="call-timestamp" value="timestamp" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e8;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="670" y="210" width="60" height="20" as="geometry" />
+        </mxCell>
+        
+        <!-- Connection内部类 -->
+        <mxCell id="connection-inner" value="Connection内部类" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="420" y="270" width="360" height="180" as="geometry" />
+        </mxCell>
+        
+        <!-- Connection属性区域 -->
+        <mxCell id="conn-attrs" value="连接属性" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff8e1;strokeColor=#d6b656;fontSize=12;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="430" y="300" width="160" height="80" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="conn-id" value="ConnectionId" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fffacd;strokeColor=#d6b656;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="440" y="320" width="60" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="conn-socket" value="Socket" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fffacd;strokeColor=#d6b656;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="510" y="320" width="50" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="conn-in" value="InputStream" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fffacd;strokeColor=#d6b656;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="440" y="350" width="60" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="conn-out" value="OutputStream" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fffacd;strokeColor=#d6b656;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="510" y="350" width="70" height="20" as="geometry" />
+        </mxCell>
+        
+        <!-- Connection方法区域 -->
+        <mxCell id="conn-methods" value="连接方法" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff8e1;strokeColor=#d6b656;fontSize=12;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="610" y="300" width="160" height="80" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="conn-setup" value="setupConnection()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fffacd;strokeColor=#d6b656;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="620" y="320" width="80" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="conn-send" value="sendRpcRequest()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fffacd;strokeColor=#d6b656;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="710" y="320" width="50" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="conn-receive" value="receiveRpcResponse()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fffacd;strokeColor=#d6b656;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="620" y="350" width="80" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="conn-close" value="close()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fffacd;strokeColor=#d6b656;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="710" y="350" width="40" height="20" as="geometry" />
+        </mxCell>
+        
+        <!-- Connection状态管理 -->
+        <mxCell id="conn-state" value="状态管理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff8e1;strokeColor=#d6b656;fontSize=12;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="430" y="390" width="340" height="50" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="state-calls" value="calls: Map&lt;Integer, Call&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fffacd;strokeColor=#d6b656;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="440" y="415" width="120" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="state-running" value="shouldCloseConnection" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fffacd;strokeColor=#d6b656;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="570" y="415" width="100" height="20" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="state-lastactivity" value="lastActivity" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fffacd;strokeColor=#d6b656;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="680" y="415" width="80" height="20" as="geometry" />
+        </mxCell>
+        
+        <!-- 连接池管理 -->
+        <mxCell id="connection-pool" value="连接池管理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=14;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="420" y="480" width="360" height="80" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="pool-connections" value="connections: Map&lt;ConnectionId, Connection&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4ec;strokeColor=#b85450;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="430" y="510" width="200" height="25" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="pool-factory" value="ConnectionFactory" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4ec;strokeColor=#b85450;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="650" y="510" width="100" height="25" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="pool-cleanup" value="连接清理机制" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4ec;strokeColor=#b85450;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="540" y="540" width="80" height="25" as="geometry" />
+        </mxCell>
+        
+        <!-- 外部组件 -->
+        <mxCell id="external-rpcengine" value="RpcEngine" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="100" y="200" width="80" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="external-config" value="Configuration" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="100" y="280" width="80" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="external-sasl" value="SaslRpcClient" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="100" y="360" width="80" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- 异步处理 -->
+        <mxCell id="async-processing" value="异步处理机制" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="850" y="200" width="200" height="150" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="async-future" value="CompletableFuture&lt;T&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e8;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="870" y="230" width="120" height="25" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="async-callback" value="AsyncCallback" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e8;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="870" y="265" width="100" height="25" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="async-executor" value="ExecutorService" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e8;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="870" y="300" width="100" height="25" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="async-timeout" value="超时处理机制" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e8;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="870" y="335" width="100" height="25" as="geometry" />
+        </mxCell>
+        
+        <!-- 连接线 -->
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#2c3e50"/>
+          </marker>
+          <marker id="arrowhead-use" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#27ae60"/>
+          </marker>
+          <marker id="arrowhead-create" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#e74c3c"/>
+          </marker>
+        </defs>
+        
+        <!-- 外部依赖连接 -->
+        <line x1="180" y1="220" x2="400" y2="180" stroke="#27ae60" stroke-width="2" marker-end="url(#arrowhead-use)"/>
+        <line x1="180" y1="300" x2="400" y2="250" stroke="#27ae60" stroke-width="2" marker-end="url(#arrowhead-use)"/>
+        <line x1="180" y1="380" x2="400" y2="350" stroke="#27ae60" stroke-width="2" marker-end="url(#arrowhead-use)"/>
+        
+        <!-- Client到Call的创建关系 -->
+        <line x1="580" y1="180" x2="620" y2="180" stroke="#e74c3c" stroke-width="2" marker-end="url(#arrowhead-create)"/>
+        <text x="590" y="175" fill="#e74c3c" font-size="10">创建</text>
+        
+        <!-- Client到异步处理的使用关系 -->
+        <line x1="800" y1="200" x2="850" y2="250" stroke="#27ae60" stroke-width="2" marker-end="url(#arrowhead-use)"/>
+        <text x="810" y="220" fill="#27ae60" font-size="10">异步调用</text>
+        
+        <!-- 调用流程箭头 -->
+        <text x="50" y="650" font-size="14" font-weight="bold" fill="#2c3e50">调用流程：</text>
+        <text x="50" y="670" font-size="11" fill="#2c3e50">1. call() → 2. getConnection() → 3. sendRpcRequest() → 4. receiveRpcResponse()</text>
+        
+        <!-- 组件说明 -->
+        <text x="850" y="400" font-size="12" fill="#2c3e50">🔵 主要方法</text>
+        <text x="850" y="420" font-size="12" fill="#2c3e50">🟢 内部类</text>
+        <text x="850" y="440" font-size="12" fill="#2c3e50">🟡 连接管理</text>
+        <text x="850" y="460" font-size="12" fill="#2c3e50">🔴 连接池</text>
+        <text x="850" y="480" font-size="12" fill="#2c3e50">🟣 外部依赖</text>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

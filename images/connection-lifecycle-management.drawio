@@ -1,0 +1,248 @@
+<mxfile host="app.diagrams.net" modified="2024-09-18T03:00:00.000Z" agent="5.0" etag="xxx" version="21.6.5" type="device">
+  <diagram name="连接生命周期管理" id="connection-lifecycle-management">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- 标题 -->
+        <mxCell id="title" value="Hadoop RPC连接生命周期管理" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontStyle=1;fontColor=#2c3e50;" vertex="1" parent="1">
+          <mxGeometry x="400" y="20" width="400" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- 客户端连接池 -->
+        <mxCell id="client-pool" value="客户端连接池管理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=16;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="80" y="80" width="400" height="300" as="geometry" />
+        </mxCell>
+        
+        <!-- Client类 -->
+        <mxCell id="client-class" value="Client类" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f4fd;strokeColor=#6c8ebf;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="100" y="120" width="100" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- ClientCache -->
+        <mxCell id="client-cache" value="ClientCache" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f4fd;strokeColor=#6c8ebf;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="220" y="120" width="100" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- ConnectionId -->
+        <mxCell id="connection-id" value="ConnectionId" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f4fd;strokeColor=#6c8ebf;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="340" y="120" width="120" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- 连接池详情 -->
+        <mxCell id="pool-details" value="连接池详情" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f8ff;strokeColor=#6c8ebf;fontSize=12;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="100" y="180" width="360" height="180" as="geometry" />
+        </mxCell>
+        
+        <!-- 连接映射 -->
+        <mxCell id="connection-map" value="connections: Map&lt;ConnectionId, Connection&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="120" y="210" width="320" height="25" as="geometry" />
+        </mxCell>
+        
+        <!-- 连接标识组成 -->
+        <mxCell id="connid-components" value="ConnectionId组成" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#6c8ebf;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="120" y="250" width="100" height="25" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="remote-address" value="远程地址" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#6c8ebf;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="240" y="250" width="60" height="25" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="protocol-name" value="协议名" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#6c8ebf;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="320" y="250" width="50" height="25" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="user-ticket" value="用户票据" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#6c8ebf;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="390" y="250" width="60" height="25" as="geometry" />
+        </mxCell>
+        
+        <!-- 连接操作 -->
+        <mxCell id="get-connection" value="getConnection()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="120" y="290" width="100" height="25" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="create-connection" value="创建新连接" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="240" y="290" width="80" height="25" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="reuse-connection" value="复用现有连接" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="340" y="290" width="100" height="25" as="geometry" />
+        </mxCell>
+        
+        <!-- 连接清理 -->
+        <mxCell id="cleanup-policy" value="清理策略" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#6c8ebf;fontSize=11;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="120" y="330" width="80" height="25" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="max-idle-time" value="maxIdleTime" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#6c8ebf;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="220" y="330" width="80" height="25" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="periodic-cleanup" value="定期清理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#6c8ebf;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="320" y="330" width="70" height="25" as="geometry" />
+        </mxCell>
+        
+        <!-- 连接生命周期状态 -->
+        <mxCell id="lifecycle-states" value="连接生命周期状态" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=16;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="520" y="80" width="300" height="300" as="geometry" />
+        </mxCell>
+        
+        <!-- 状态节点 -->
+        <mxCell id="state-init" value="初始化" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e8f5e8;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="540" y="120" width="80" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="state-connecting" value="连接中" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e8f5e8;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="720" y="120" width="80" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="state-authenticating" value="认证中" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e8f5e8;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="540" y="200" width="80" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="state-active" value="活跃" style="ellipse;whiteSpace=wrap;html=1;fillColor=#c8e6c9;strokeColor=#4caf50;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="720" y="200" width="80" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="state-idle" value="空闲" style="ellipse;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#ff9800;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="540" y="280" width="80" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="state-closed" value="已关闭" style="ellipse;whiteSpace=wrap;html=1;fillColor=#ffebee;strokeColor=#f44336;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="720" y="280" width="80" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- 状态转换箭头 -->
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#2c3e50"/>
+          </marker>
+          <marker id="arrowhead-success" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#4caf50"/>
+          </marker>
+          <marker id="arrowhead-error" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#f44336"/>
+          </marker>
+        </defs>
+        
+        <!-- 状态转换线 -->
+        <line x1="620" y1="140" x2="720" y2="140" stroke="#4caf50" stroke-width="2" marker-end="url(#arrowhead-success)"/>
+        <text x="650" y="135" fill="#4caf50" font-size="10">setupConnection</text>
+        
+        <line x1="760" y1="160" x2="580" y2="200" stroke="#4caf50" stroke-width="2" marker-end="url(#arrowhead-success)"/>
+        <text x="650" y="175" fill="#4caf50" font-size="10">SASL认证</text>
+        
+        <line x1="620" y1="220" x2="720" y2="220" stroke="#4caf50" stroke-width="2" marker-end="url(#arrowhead-success)"/>
+        <text x="650" y="215" fill="#4caf50" font-size="10">认证成功</text>
+        
+        <line x1="760" y1="240" x2="580" y2="280" stroke="#ff9800" stroke-width="2" marker-end="url(#arrowhead)"/>
+        <text x="650" y="255" fill="#ff9800" font-size="10">无活动</text>
+        
+        <line x1="620" y1="300" x2="720" y2="300" stroke="#f44336" stroke-width="2" marker-end="url(#arrowhead-error)"/>
+        <text x="650" y="295" fill="#f44336" font-size="10">超时/错误</text>
+        
+        <line x1="580" y1="280" x2="720" y2="240" stroke="#4caf50" stroke-width="2" marker-end="url(#arrowhead-success)"/>
+        <text x="630" y="265" fill="#4caf50" font-size="10">新请求</text>
+        
+        <!-- 服务端连接管理 -->
+        <mxCell id="server-connection-mgmt" value="服务端连接管理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=16;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="80" y="420" width="740" height="200" as="geometry" />
+        </mxCell>
+        
+        <!-- ConnectionManager -->
+        <mxCell id="connection-manager" value="ConnectionManager" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff8e1;strokeColor=#d6b656;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="100" y="460" width="150" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- 管理功能 -->
+        <mxCell id="track-connections" value="连接跟踪" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fffacd;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="100" y="520" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="drop-connections" value="丢弃连接统计" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fffacd;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="200" y="520" width="100" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="per-user-count" value="每用户连接数" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fffacd;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="320" y="520" width="100" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="idle-scan" value="空闲连接扫描" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fffacd;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="440" y="520" width="100" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- Server Connection -->
+        <mxCell id="server-connection" value="Server.Connection" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff8e1;strokeColor=#d6b656;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="460" width="150" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- 连接属性 -->
+        <mxCell id="connection-attrs" value="连接属性" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff8e1;strokeColor=#d6b656;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="460" y="460" width="120" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="socket-channel" value="SocketChannel" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fffacd;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="600" y="460" width="100" height="25" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="user-info" value="用户信息" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fffacd;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="720" y="460" width="80" height="25" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="last-contact" value="最后联系时间" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fffacd;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="600" y="495" width="100" height="25" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="call-queue" value="调用队列" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fffacd;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="720" y="495" width="80" height="25" as="geometry" />
+        </mxCell>
+        
+        <!-- 监控与优化 -->
+        <mxCell id="monitoring-optimization" value="监控与优化机制" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=16;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="80" y="660" width="740" height="120" as="geometry" />
+        </mxCell>
+        
+        <!-- 监控指标 -->
+        <mxCell id="ping-mechanism" value="Ping机制" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4ec;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="100" y="700" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="timeout-detection" value="超时检测" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4ec;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="200" y="700" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="heartbeat" value="心跳监控" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4ec;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="300" y="700" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="resource-limit" value="资源限制" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4ec;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="400" y="700" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="connection-pool-size" value="连接池大小" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4ec;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="500" y="700" width="90" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="load-balancing" value="负载均衡" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4ec;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="610" y="700" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="failover" value="故障转移" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4ec;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="710" y="700" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- 连接线 -->
+        <line x1="480" y1="280" x2="520" y2="280" stroke="#2c3e50" stroke-width="2" marker-end="url(#arrowhead)"/>
+        <text x="485" y="275" fill="#2c3e50" font-size="10">状态管理</text>
+        
+        <line x1="400" y1="380" x2="400" y2="420" stroke="#2c3e50" stroke-width="2" marker-end="url(#arrowhead)"/>
+        <text x="410" y="400" fill="#2c3e50" font-size="10">服务端管理</text>
+        
+        <line x1="400" y1="620" x2="400" y2="660" stroke="#2c3e50" stroke-width="2" marker-end="url(#arrowhead)"/>
+        <text x="410" y="640" fill="#2c3e50" font-size="10">监控优化</text>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,40 +1,106 @@
 # 图表资源说明
 
-本目录包含了Hadoop RPC分析文档中使用的所有Draw.io图表源文件。
+本目录包含了Hadoop RPC分析文档中使用的所有图表源文件，包括Draw.io图表和Mermaid时序图。
 
 ## 📁 文件列表
 
-| 文件名 | 描述 | 对应文档位置 |
-|--------|------|-------------|
-| `hadoop-rpc-ecosystem.drawio` | Hadoop生态系统RPC通信架构图 | `part1/chapter1/importance.md` |
-| `rpc-call-architecture.drawio` | RPC调用完整架构图 | `part1/chapter1/rpc-concepts.md` |
-| `analysis-framework.drawio` | 六维度分析框架图 | `part1/chapter1/framework.md` |
+### 第1章 引言
+
+| 文件名 | 描述 | 类型 | 对应文档位置 |
+|--------|------|------|-------------|
+| `tech-evolution.drawio` | 大数据时代技术演进图 | Draw.io | `chapter1.md` |
+| `communication-challenges.drawio` | 分布式系统通信挑战对比图 | Draw.io | `chapter1.md` |
+| `rpc-sequence-flow.md` | RPC调用完整流程时序图 | Mermaid | `chapter1.md` |
+| `hadoop-ecosystem-rpc.drawio` | Hadoop生态系统RPC通信架构图 | Draw.io | `chapter1.md` |
+
+### 第2章 Hadoop RPC概述
+
+| 文件名 | 描述 | 类型 | 对应文档位置 |
+|--------|------|------|-------------|
+| `hadoop-rpc-architecture.drawio` | Hadoop RPC整体架构图 | Draw.io | `chapter2.md` |
+| `rpc-framework-comparison.drawio` | RPC框架对比分析图 | Draw.io | `chapter2.md` |
+| `rpc-engine-evolution.md` | RPC引擎演进时序图 | Mermaid | `chapter2.md` |
+| `hadoop-rpc-protocols.drawio` | Hadoop生态系统RPC协议详解图 | Draw.io | `chapter2.md` |
+
+### 第3章 RPC框架核心组件
+
+| 文件名 | 描述 | 类型 | 对应文档位置 |
+|--------|------|------|-------------|
+| `rpc-core-components.drawio` | RPC核心组件关系图 | Draw.io | `chapter3.md` |
+| `client-internal-architecture.drawio` | Client类内部架构图 | Draw.io | `chapter3.md` |
+| `server-multithreaded-architecture.drawio` | Server多线程架构图 | Draw.io | `chapter3.md` |
+| `rpc-complete-flow.md` | RPC调用完整流程时序图 | Mermaid | `chapter3.md` |
+
+### 第4章 通信协议设计
+
+| 文件名 | 描述 | 类型 | 对应文档位置 |
+|--------|------|------|-------------|
+| `protocol-stack-architecture.drawio` | 协议栈分层架构图 | Draw.io | `chapter4.md` |
+| `message-format-details.drawio` | 消息格式详解图 | Draw.io | `chapter4.md` |
+| `connection-lifecycle-management.drawio` | 连接生命周期管理图 | Draw.io | `chapter4.md` |
+| `protocol-handshake-auth.md` | 协议握手与认证流程时序图 | Mermaid | `chapter4.md` |
+
+### 第5章 序列化引擎演进
+
+| 文件名 | 描述 | 类型 | 对应文档位置 |
+|--------|------|------|-------------|
+| `serialization-engine-evolution.drawio` | 序列化引擎演进历程图 | Draw.io | `chapter5.md` |
+| `rpc-engines-architecture-comparison.drawio` | 三代引擎架构对比图 | Draw.io | `chapter5.md` |
+| `serialization-performance-comparison.drawio` | 序列化性能对比图 | Draw.io | `chapter5.md` |
+
+### 第6章 网络通信实现
+
+| 文件名 | 描述 | 类型 | 对应文档位置 |
+|--------|------|------|-------------|
+| `socket-communication-architecture.drawio` | Socket通信基础架构图 | Draw.io | `chapter6.md` |
+| `nio-implementation-mechanism.drawio` | NIO实现机制详解图 | Draw.io | `chapter6.md` |
+| `connection-pool-management.drawio` | 连接池管理架构图 | Draw.io | `chapter6.md` |
+| `data-transmission-optimization.drawio` | 数据传输优化策略图 | Draw.io | `chapter6.md` |
+| `network-communication-flow.md` | 网络通信完整流程时序图 | Mermaid | `chapter6.md` |
+
+### 原有图表
+
+| 文件名 | 描述 | 类型 | 对应文档位置 |
+|--------|------|------|-------------|
+| `hadoop-rpc-ecosystem.drawio` | Hadoop生态系统RPC通信架构图 | Draw.io | `part1/chapter1/importance.md` |
+| `rpc-call-architecture.drawio` | RPC调用完整架构图 | Draw.io | `part1/chapter1/rpc-concepts.md` |
+| `analysis-framework.drawio` | 六维度分析框架图 | Draw.io | `part1/chapter1/framework.md` |
 
 ## 🎨 如何编辑图表
 
-### 1. 打开Draw.io
+### Draw.io图表编辑
+
+#### 1. 打开Draw.io
 访问 [https://app.diagrams.net/](https://app.diagrams.net/) 或使用桌面版Draw.io应用。
 
-### 2. 导入图表
+#### 2. 导入图表
 - 点击 **File** → **Open from** → **Device**
 - 选择对应的 `.drawio` 文件
 - 或者直接将文件拖拽到Draw.io界面中
 
-### 3. 编辑图表
+#### 3. 编辑图表
 - 修改文本、颜色、布局等
 - 添加或删除组件
 - 调整连接线和样式
 
-### 4. 导出为SVG
+#### 4. 导出为SVG
 - 点击 **File** → **Export as** → **SVG**
 - 保持默认设置，点击 **Export**
 - 将导出的SVG文件保存到 `images/` 目录
 
-### 5. 更新文档引用
-确保文档中的图片路径正确指向导出的SVG文件：
-```html
-<img src="../../../images/your-diagram.svg" alt="图表描述" />
-```
+### Mermaid图表编辑
+
+#### 1. 编辑Mermaid代码
+- 直接编辑 `.md` 文件中的Mermaid代码块
+- 使用任何文本编辑器或Markdown编辑器
+
+#### 2. 预览图表
+- 使用支持Mermaid的编辑器（如Typora、VS Code + Mermaid插件）
+- 或访问 [Mermaid Live Editor](https://mermaid.live/)
+
+#### 3. 在文档中使用
+- 直接在Markdown文档中引用
+- Docsify会自动渲染Mermaid图表
 
 ## 🔧 图表设计规范
 
@@ -83,9 +149,11 @@
 3. **清晰标注**: 为每个组件添加清晰的标签和说明
 4. **适配移动端**: 确保图表在小屏幕上也能清晰显示
 5. **定期更新**: 随着文档内容更新，及时更新相关图表
+6. **Mermaid优势**: 时序图使用Mermaid，便于版本控制和快速修改
 
 ## 🔗 相关资源
 
 - [Draw.io官方文档](https://www.diagrams.net/doc/)
+- [Mermaid官方文档](https://mermaid.js.org/)
 - [SVG格式说明](https://developer.mozilla.org/en-US/docs/Web/SVG)
 - [Web图表最佳实践](https://www.smashingmagazine.com/2017/09/designing-better-data-tables/)

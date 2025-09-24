@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1000" height="700" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title { font-family: Arial, sans-serif; font-size: 18px; font-weight: bold; fill: #2c3e50; }
+      .subtitle { font-family: Arial, sans-serif; font-size: 16px; font-weight: bold; }
+      .text { font-family: Arial, sans-serif; font-size: 12px; }
+      .small-text { font-family: Arial, sans-serif; font-size: 11px; }
+      .divider { stroke: #bdc3c7; stroke-width: 2; }
+      .local-comp { fill: #d5e8d4; stroke: #82b366; }
+      .local-feature { fill: #e8f5e8; stroke: #82b366; }
+      .dist-comp { fill: #f8cecc; stroke: #b85450; }
+      .dist-feature { fill: #fce4ec; stroke: #b85450; }
+      .network { fill: #fff2cc; stroke: #d6b656; }
+      .challenge { fill: #fff2cc; stroke: #d6b656; }
+      .rpc-solution { fill: #e1d5e7; stroke: #9673a6; }
+      .local-conn { stroke: #27ae60; stroke-width: 2; }
+      .dist-conn { stroke: #e74c3c; stroke-width: 2; }
+    </style>
+  </defs>
+  
+  <!-- 标题 -->
+  <text x="500" y="30" text-anchor="middle" class="title">单机通信 vs 分布式通信挑战对比</text>
+  
+  <!-- 分割线 -->
+  <line x1="500" y1="60" x2="500" y2="650" class="divider"/>
+  
+  <!-- 左侧：单机通信 -->
+  <text x="250" y="80" text-anchor="middle" class="subtitle" fill="#27ae60">单机通信</text>
+  
+  <!-- 单机组件 -->
+  <rect x="120" y="110" width="80" height="40" rx="5" class="local-comp"/>
+  <text x="160" y="135" text-anchor="middle" class="text">CPU</text>
+  
+  <rect x="220" y="110" width="80" height="40" rx="5" class="local-comp"/>
+  <text x="260" y="135" text-anchor="middle" class="text">内存</text>
+  
+  <rect x="320" y="110" width="80" height="40" rx="5" class="local-comp"/>
+  <text x="360" y="135" text-anchor="middle" class="text">存储</text>
+  
+  <!-- 单机连接线 -->
+  <line x1="200" y1="130" x2="220" y2="130" class="local-conn"/>
+  <line x1="300" y1="130" x2="320" y2="130" class="local-conn"/>
+  
+  <!-- 单机特点 -->
+  <text x="250" y="190" text-anchor="middle" class="subtitle">通信特点</text>
+  
+  <rect x="100" y="210" width="100" height="30" rx="5" class="local-feature"/>
+  <text x="150" y="230" text-anchor="middle" class="small-text">延迟：纳秒级</text>
+  
+  <rect x="220" y="210" width="100" height="30" rx="5" class="local-feature"/>
+  <text x="270" y="230" text-anchor="middle" class="small-text">可靠性：极高</text>
+  
+  <rect x="340" y="210" width="100" height="30" rx="5" class="local-feature"/>
+  <text x="390" y="230" text-anchor="middle" class="small-text">复杂度：简单</text>
+  
+  <rect x="160" y="260" width="120" height="30" rx="5" class="local-feature"/>
+  <text x="220" y="280" text-anchor="middle" class="small-text">带宽：内存总线</text>
+  
+  <rect x="300" y="260" width="120" height="30" rx="5" class="local-feature"/>
+  <text x="360" y="280" text-anchor="middle" class="small-text">故障模式：进程崩溃</text>
+  
+  <!-- 右侧：分布式通信 -->
+  <text x="750" y="80" text-anchor="middle" class="subtitle" fill="#e74c3c">分布式通信</text>
+  
+  <!-- 分布式节点 -->
+  <rect x="620" y="110" width="80" height="60" rx="5" class="dist-comp"/>
+  <text x="660" y="145" text-anchor="middle" class="text">节点A</text>
+  
+  <rect x="820" y="110" width="80" height="60" rx="5" class="dist-comp"/>
+  <text x="860" y="145" text-anchor="middle" class="text">节点B</text>
+  
+  <rect x="720" y="200" width="80" height="60" rx="5" class="dist-comp"/>
+  <text x="760" y="235" text-anchor="middle" class="text">节点C</text>
+  
+  <!-- 网络 -->
+  <ellipse cx="750" cy="150" rx="50" ry="30" class="network"/>
+  <text x="750" y="155" text-anchor="middle" class="text">网络</text>
+  
+  <!-- 分布式连接线 -->
+  <path d="M 700 140 Q 720 135 740 145" stroke="#e74c3c" stroke-width="2" fill="none"/>
+  <path d="M 760 145 Q 780 135 800 140" stroke="#e74c3c" stroke-width="2" fill="none"/>
+  <path d="M 750 180 Q 755 190 760 200" stroke="#e74c3c" stroke-width="2" fill="none"/>
+  
+  <!-- 分布式特点 -->
+  <text x="750" y="300" text-anchor="middle" class="subtitle">通信挑战</text>
+  
+  <rect x="580" y="320" width="100" height="30" rx="5" class="dist-feature"/>
+  <text x="630" y="340" text-anchor="middle" class="small-text">延迟：毫秒级</text>
+  
+  <rect x="700" y="320" width="100" height="30" rx="5" class="dist-feature"/>
+  <text x="750" y="340" text-anchor="middle" class="small-text">可靠性：不确定</text>
+  
+  <rect x="820" y="320" width="100" height="30" rx="5" class="dist-feature"/>
+  <text x="870" y="340" text-anchor="middle" class="small-text">复杂度：高</text>
+  
+  <rect x="640" y="370" width="120" height="30" rx="5" class="dist-feature"/>
+  <text x="700" y="390" text-anchor="middle" class="small-text">带宽：网络限制</text>
+  
+  <rect x="780" y="370" width="120" height="30" rx="5" class="dist-feature"/>
+  <text x="840" y="390" text-anchor="middle" class="small-text">故障模式：多样化</text>
+  
+  <!-- 主要挑战 -->
+  <text x="500" y="450" text-anchor="middle" class="subtitle">主要挑战</text>
+  
+  <rect x="150" y="480" width="100" height="40" rx="5" class="challenge"/>
+  <text x="200" y="505" text-anchor="middle" class="text">网络延迟</text>
+  
+  <rect x="270" y="480" width="100" height="40" rx="5" class="challenge"/>
+  <text x="320" y="505" text-anchor="middle" class="text">网络分区</text>
+  
+  <rect x="390" y="480" width="100" height="40" rx="5" class="challenge"/>
+  <text x="440" y="505" text-anchor="middle" class="text">数据包丢失</text>
+  
+  <rect x="510" y="480" width="100" height="40" rx="5" class="challenge"/>
+  <text x="560" y="505" text-anchor="middle" class="text">连接中断</text>
+  
+  <rect x="630" y="480" width="100" height="40" rx="5" class="challenge"/>
+  <text x="680" y="505" text-anchor="middle" class="text">节点故障</text>
+  
+  <rect x="750" y="480" width="100" height="40" rx="5" class="challenge"/>
+  <text x="800" y="505" text-anchor="middle" class="text">时钟同步</text>
+  
+  <!-- RPC解决方案 -->
+  <rect x="350" y="580" width="300" height="50" rx="10" class="rpc-solution"/>
+  <text x="500" y="610" text-anchor="middle" class="subtitle">RPC机制：屏蔽分布式通信复杂性</text>
+  
+  <!-- 箭头指向RPC -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#9673a6"/>
+    </marker>
+  </defs>
+  
+  <line x1="500" y1="530" x2="500" y2="570" stroke="#9673a6" stroke-width="3" marker-end="url(#arrowhead)"/>
+  
+</svg>

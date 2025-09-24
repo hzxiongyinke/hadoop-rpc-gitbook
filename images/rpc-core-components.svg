@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1100" height="750" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title { font-family: Arial, sans-serif; font-size: 18px; font-weight: bold; fill: #2c3e50; }
+      .subtitle { font-family: Arial, sans-serif; font-size: 16px; font-weight: bold; }
+      .text { font-family: Arial, sans-serif; font-size: 12px; }
+      .small-text { font-family: Arial, sans-serif; font-size: 11px; }
+      .rpc-class { fill: #dae8fc; stroke: #6c8ebf; }
+      .rpc-functions { fill: #e8f4fd; stroke: #6c8ebf; }
+      .rpcengine-interface { fill: #fff2cc; stroke: #d6b656; }
+      .rpcengine-functions { fill: #fff8e1; stroke: #d6b656; }
+      .engine-impl { fill: #f8cecc; stroke: #b85450; }
+      .engine-current { fill: #d5e8d4; stroke: #82b366; }
+      .client-class { fill: #d5e8d4; stroke: #82b366; }
+      .client-functions { fill: #e8f5e8; stroke: #82b366; }
+      .server-class { fill: #ffe6cc; stroke: #d79b00; }
+      .server-functions { fill: #fff2cc; stroke: #d79b00; }
+      .inner-component { fill: #e1d5e7; stroke: #9673a6; }
+      .legend-box { fill: #f8f9fa; stroke: #dee2e6; }
+    </style>
+  </defs>
+  
+  <!-- 标题 -->
+  <text x="550" y="30" text-anchor="middle" class="title">Hadoop RPC框架核心组件关系图</text>
+  
+  <!-- RPC类 -->
+  <rect x="480" y="80" width="200" height="120" rx="10" class="rpc-class"/>
+  <text x="580" y="100" text-anchor="middle" class="subtitle" fill="#6c8ebf">RPC类</text>
+  
+  <rect x="490" y="110" width="180" height="80" rx="5" class="rpc-functions"/>
+  <text x="500" y="125" class="small-text">• 协议管理</text>
+  <text x="500" y="140" class="small-text">• 版本控制</text>
+  <text x="500" y="155" class="small-text">• 引擎配置</text>
+  <text x="500" y="170" class="small-text">• getProtocolEngine()</text>
+  <text x="500" y="185" class="small-text">• setProtocolEngine()</text>
+  
+  <!-- RpcEngine接口 -->
+  <rect x="200" y="250" width="200" height="120" rx="10" class="rpcengine-interface"/>
+  <text x="300" y="270" text-anchor="middle" class="subtitle" fill="#d6b656">RpcEngine接口</text>
+  
+  <rect x="210" y="280" width="180" height="80" rx="5" class="rpcengine-functions"/>
+  <text x="220" y="295" class="small-text">• getProxy()</text>
+  <text x="220" y="310" class="small-text">• getServer()</text>
+  <text x="220" y="325" class="small-text">• 可插拔序列化</text>
+  <text x="220" y="340" class="small-text">• 协议引擎抽象</text>
+  
+  <!-- RpcEngine实现 -->
+  <rect x="80" y="420" width="120" height="40" rx="5" class="engine-impl"/>
+  <text x="140" y="445" text-anchor="middle" class="text">WritableRpcEngine</text>
+  
+  <rect x="220" y="420" width="120" height="40" rx="5" class="engine-impl"/>
+  <text x="280" y="445" text-anchor="middle" class="text">ProtobufRpcEngine</text>
+  
+  <rect x="360" y="420" width="120" height="40" rx="5" class="engine-current"/>
+  <text x="420" y="445" text-anchor="middle" class="text">ProtobufRpcEngine2</text>
+  
+  <!-- Client类 -->
+  <rect x="750" y="250" width="200" height="120" rx="10" class="client-class"/>
+  <text x="850" y="270" text-anchor="middle" class="subtitle" fill="#82b366">Client类</text>
+  
+  <rect x="760" y="280" width="180" height="80" rx="5" class="client-functions"/>
+  <text x="770" y="295" class="small-text">• 连接池管理</text>
+  <text x="770" y="310" class="small-text">• 异步调用</text>
+  <text x="770" y="325" class="small-text">• 容错重试</text>
+  <text x="770" y="340" class="small-text">• call()方法</text>
+  <text x="770" y="355" class="small-text">• Connection管理</text>
+  
+  <!-- Client内部组件 -->
+  <rect x="680" y="420" width="100" height="40" rx="5" class="inner-component"/>
+  <text x="730" y="445" text-anchor="middle" class="text">Call内部类</text>
+  
+  <rect x="800" y="420" width="120" height="40" rx="5" class="inner-component"/>
+  <text x="860" y="445" text-anchor="middle" class="text">Connection内部类</text>
+  
+  <!-- Server类 -->
+  <rect x="480" y="500" width="200" height="120" rx="10" class="server-class"/>
+  <text x="580" y="520" text-anchor="middle" class="subtitle" fill="#d79b00">Server类</text>
+  
+  <rect x="490" y="530" width="180" height="80" rx="5" class="server-functions"/>
+  <text x="500" y="545" class="small-text">• 多线程架构</text>
+  <text x="500" y="560" class="small-text">• 高并发处理</text>
+  <text x="500" y="575" class="small-text">• 资源管理</text>
+  <text x="500" y="590" class="small-text">• 请求队列管理</text>
+  <text x="500" y="605" class="small-text">• 响应处理</text>
+  
+  <!-- Server内部组件 -->
+  <rect x="320" y="660" width="80" height="30" rx="3" class="inner-component"/>
+  <text x="360" y="680" text-anchor="middle" class="small-text">Listener线程</text>
+  
+  <rect x="420" y="660" width="80" height="30" rx="3" class="inner-component"/>
+  <text x="460" y="680" text-anchor="middle" class="small-text">Reader线程池</text>
+  
+  <rect x="520" y="660" width="80" height="30" rx="3" class="inner-component"/>
+  <text x="560" y="680" text-anchor="middle" class="small-text">Handler线程池</text>
+  
+  <rect x="620" y="660" width="80" height="30" rx="3" class="inner-component"/>
+  <text x="660" y="680" text-anchor="middle" class="small-text">Responder线程</text>
+  
+  <rect x="720" y="660" width="100" height="30" rx="3" class="inner-component"/>
+  <text x="770" y="680" text-anchor="middle" class="small-text">CallQueueManager</text>
+  
+  <!-- 连接线 -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2c3e50"/>
+    </marker>
+    <marker id="arrowhead-manage" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#e74c3c"/>
+    </marker>
+    <marker id="arrowhead-use" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#27ae60"/>
+    </marker>
+    <marker id="arrowhead-impl" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#9b59b6"/>
+    </marker>
+  </defs>
+  
+  <!-- RPC到RpcEngine的管理关系 -->
+  <line x1="520" y1="200" x2="350" y2="250" stroke="#e74c3c" stroke-width="2" marker-end="url(#arrowhead-manage)"/>
+  <text x="400" y="220" fill="#e74c3c" class="small-text">管理配置</text>
+  
+  <!-- RpcEngine到实现类的继承关系 -->
+  <line x1="250" y1="370" x2="140" y2="420" stroke="#9b59b6" stroke-width="2" marker-end="url(#arrowhead-impl)"/>
+  <line x1="280" y1="370" x2="280" y2="420" stroke="#9b59b6" stroke-width="2" marker-end="url(#arrowhead-impl)"/>
+  <line x1="320" y1="370" x2="420" y2="420" stroke="#9b59b6" stroke-width="2" marker-end="url(#arrowhead-impl)"/>
+  <text x="280" y="395" fill="#9b59b6" class="small-text">实现</text>
+  
+  <!-- RPC到Client的使用关系 -->
+  <line x1="650" y1="140" x2="750" y2="280" stroke="#27ae60" stroke-width="2" marker-end="url(#arrowhead-use)"/>
+  <text x="680" y="200" fill="#27ae60" class="small-text">创建使用</text>
+  
+  <!-- RpcEngine到Server的使用关系 -->
+  <line x1="400" y1="310" x2="480" y2="500" stroke="#27ae60" stroke-width="2" marker-end="url(#arrowhead-use)"/>
+  <text x="420" y="400" fill="#27ae60" class="small-text">创建服务器</text>
+  
+  <!-- Client内部组件连接 -->
+  <line x1="800" y1="370" x2="730" y2="420" stroke="#2c3e50" stroke-width="1" marker-end="url(#arrowhead)"/>
+  <line x1="820" y1="370" x2="860" y2="420" stroke="#2c3e50" stroke-width="1" marker-end="url(#arrowhead)"/>
+  
+  <!-- Server内部组件连接 -->
+  <line x1="520" y1="620" x2="360" y2="660" stroke="#2c3e50" stroke-width="1" marker-end="url(#arrowhead)"/>
+  <line x1="540" y1="620" x2="460" y2="660" stroke="#2c3e50" stroke-width="1" marker-end="url(#arrowhead)"/>
+  <line x1="560" y1="620" x2="560" y2="660" stroke="#2c3e50" stroke-width="1" marker-end="url(#arrowhead)"/>
+  <line x1="580" y1="620" x2="660" y2="660" stroke="#2c3e50" stroke-width="1" marker-end="url(#arrowhead)"/>
+  <line x1="600" y1="620" x2="770" y2="660" stroke="#2c3e50" stroke-width="1" marker-end="url(#arrowhead)"/>
+  
+  <!-- 图例 -->
+  <rect x="50" y="50" width="200" height="120" rx="5" class="legend-box"/>
+  <text x="60" y="70" class="subtitle" fill="#2c3e50">图例说明</text>
+  
+  <line x1="70" y1="90" x2="100" y2="90" stroke="#e74c3c" stroke-width="2" marker-end="url(#arrowhead-manage)"/>
+  <text x="110" y="95" class="small-text" fill="#2c3e50">管理配置</text>
+  
+  <line x1="70" y1="110" x2="100" y2="110" stroke="#27ae60" stroke-width="2" marker-end="url(#arrowhead-use)"/>
+  <text x="110" y="115" class="small-text" fill="#2c3e50">创建使用</text>
+  
+  <line x1="70" y1="130" x2="100" y2="130" stroke="#9b59b6" stroke-width="2" marker-end="url(#arrowhead-impl)"/>
+  <text x="110" y="135" class="small-text" fill="#2c3e50">接口实现</text>
+  
+  <line x1="70" y1="150" x2="100" y2="150" stroke="#2c3e50" stroke-width="1" marker-end="url(#arrowhead)"/>
+  <text x="110" y="155" class="small-text" fill="#2c3e50">包含关系</text>
+  
+  <!-- 组件说明 -->
+  <text x="850" y="50" class="text" fill="#2c3e50">🔵 统一入口</text>
+  <text x="850" y="70" class="text" fill="#2c3e50">🟡 可插拔接口</text>
+  <text x="850" y="90" class="text" fill="#2c3e50">🟢 客户端核心</text>
+  <text x="850" y="110" class="text" fill="#2c3e50">🟠 服务端核心</text>
+  <text x="850" y="130" class="text" fill="#2c3e50">🟣 内部组件</text>
+  
+</svg>

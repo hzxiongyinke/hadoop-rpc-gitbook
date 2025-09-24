@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="850" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title { font-family: Arial, sans-serif; font-size: 18px; font-weight: bold; fill: #2c3e50; }
+      .subtitle { font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; }
+      .text { font-family: Arial, sans-serif; font-size: 12px; }
+      .small-text { font-family: Arial, sans-serif; font-size: 11px; }
+      .tiny-text { font-family: Arial, sans-serif; font-size: 9px; }
+      .connection-header { fill: #dae8fc; stroke: #6c8ebf; fill-opacity: 0.3; }
+      .header-field { fill: #e8f4fd; stroke: #6c8ebf; }
+      .rpc-packet { fill: #d5e8d4; stroke: #82b366; fill-opacity: 0.3; }
+      .packet-component { fill: #e8f5e8; stroke: #82b366; }
+      .request-header { fill: #fff2cc; stroke: #d6b656; fill-opacity: 0.3; }
+      .header-component { fill: #fff8e1; stroke: #d6b656; }
+      .response-format { fill: #f8cecc; stroke: #b85450; fill-opacity: 0.3; }
+      .response-component { fill: #fce4ec; stroke: #b85450; }
+      .version-mechanism { fill: #e1d5e7; stroke: #9673a6; fill-opacity: 0.3; }
+      .version-component { fill: #f3e5f5; stroke: #9673a6; }
+      .required-field { fill: #d5f4e6; stroke: #27ae60; }
+      .optional-field { fill: #fff3cd; stroke: #ffc107; }
+    </style>
+  </defs>
+  
+  <!-- 标题 -->
+  <text x="600" y="30" text-anchor="middle" class="title">Hadoop RPC消息格式详解</text>
+  
+  <!-- 连接头部格式 -->
+  <rect x="80" y="80" width="500" height="120" rx="10" class="connection-header"/>
+  <text x="330" y="100" text-anchor="middle" class="subtitle" fill="#6c8ebf">连接头部格式 (Connection Header)</text>
+  
+  <!-- 连接头部字段 -->
+  <rect x="100" y="120" width="100" height="40" rx="3" class="header-field"/>
+  <text x="150" y="143" text-anchor="middle" class="small-text">魔数 "hrpc"</text>
+  
+  <rect x="220" y="120" width="80" height="40" rx="3" class="header-field"/>
+  <text x="260" y="143" text-anchor="middle" class="small-text">版本号</text>
+  
+  <rect x="320" y="120" width="80" height="40" rx="3" class="header-field"/>
+  <text x="360" y="143" text-anchor="middle" class="small-text">服务类别</text>
+  
+  <rect x="420" y="120" width="80" height="40" rx="3" class="header-field"/>
+  <text x="460" y="143" text-anchor="middle" class="small-text">认证协议</text>
+  
+  <!-- 字节长度标注 -->
+  <text x="150" y="180" text-anchor="middle" class="tiny-text" fill="#6c8ebf">4 bytes</text>
+  <text x="260" y="180" text-anchor="middle" class="tiny-text" fill="#6c8ebf">1 byte</text>
+  <text x="360" y="180" text-anchor="middle" class="tiny-text" fill="#6c8ebf">1 byte</text>
+  <text x="460" y="180" text-anchor="middle" class="tiny-text" fill="#6c8ebf">1 byte</text>
+  
+  <!-- RPC数据包格式 -->
+  <rect x="650" y="80" width="400" height="200" rx="10" class="rpc-packet"/>
+  <text x="850" y="100" text-anchor="middle" class="subtitle" fill="#82b366">RPC数据包格式 (RPC Packet Format)</text>
+  
+  <!-- 数据包组成 -->
+  <rect x="670" y="120" width="100" height="30" rx="3" class="packet-component"/>
+  <text x="720" y="138" text-anchor="middle" class="small-text">数据包长度</text>
+  
+  <rect x="790" y="120" width="100" height="30" rx="3" class="packet-component"/>
+  <text x="840" y="138" text-anchor="middle" class="small-text">请求头部</text>
+  
+  <rect x="910" y="120" width="100" height="30" rx="3" class="packet-component"/>
+  <text x="960" y="138" text-anchor="middle" class="small-text">请求体</text>
+  
+  <!-- 详细说明 -->
+  <text x="720" y="170" class="tiny-text" fill="#82b366">4 bytes</text>
+  <text x="840" y="170" class="tiny-text" fill="#82b366">变长</text>
+  <text x="960" y="170" class="tiny-text" fill="#82b366">变长</text>
+  
+  <text x="670" y="190" class="tiny-text" fill="#2c3e50">指示后续数据长度</text>
+  <text x="790" y="190" class="tiny-text" fill="#2c3e50">RpcRequestHeaderProto</text>
+  <text x="910" y="190" class="tiny-text" fill="#2c3e50">序列化的RPC请求</text>
+  
+  <text x="670" y="210" class="tiny-text" fill="#2c3e50">包含头部+请求体</text>
+  <text x="790" y="210" class="tiny-text" fill="#2c3e50">Protocol Buffers格式</text>
+  <text x="910" y="210" class="tiny-text" fill="#2c3e50">根据RpcKind序列化</text>
+  
+  <!-- 请求头部结构 -->
+  <rect x="80" y="320" width="970" height="200" rx="10" class="request-header"/>
+  <text x="565" y="340" text-anchor="middle" class="subtitle" fill="#d6b656">请求头部结构 (RpcRequestHeaderProto)</text>
+  
+  <!-- 头部字段第一行 -->
+  <rect x="100" y="360" width="80" height="30" rx="3" class="header-component"/>
+  <text x="140" y="378" text-anchor="middle" class="small-text">rpcKind</text>
+  
+  <rect x="200" y="360" width="80" height="30" rx="3" class="header-component"/>
+  <text x="240" y="378" text-anchor="middle" class="small-text">rpcOp</text>
+  
+  <rect x="300" y="360" width="80" height="30" rx="3" class="header-component"/>
+  <text x="340" y="378" text-anchor="middle" class="small-text">callId</text>
+  
+  <rect x="400" y="360" width="80" height="30" rx="3" class="header-component"/>
+  <text x="440" y="378" text-anchor="middle" class="small-text">clientId</text>
+  
+  <rect x="500" y="360" width="80" height="30" rx="3" class="header-component"/>
+  <text x="540" y="378" text-anchor="middle" class="small-text">retryCount</text>
+  
+  <!-- 头部字段第二行 -->
+  <rect x="600" y="360" width="80" height="30" rx="3" class="header-component"/>
+  <text x="640" y="378" text-anchor="middle" class="small-text">traceInfo</text>
+  
+  <rect x="700" y="360" width="100" height="30" rx="3" class="header-component"/>
+  <text x="750" y="378" text-anchor="middle" class="small-text">callerContext</text>
+  
+  <rect x="820" y="360" width="80" height="30" rx="3" class="header-component"/>
+  <text x="860" y="378" text-anchor="middle" class="small-text">stateId</text>
+  
+  <rect x="920" y="360" width="120" height="30" rx="3" class="header-component"/>
+  <text x="980" y="378" text-anchor="middle" class="small-text">routerFederatedState</text>
+  
+  <!-- 字段说明 -->
+  <text x="140" y="410" text-anchor="middle" class="tiny-text" fill="#2c3e50">RPC引擎类型</text>
+  <text x="240" y="410" text-anchor="middle" class="tiny-text" fill="#2c3e50">操作类型</text>
+  <text x="340" y="410" text-anchor="middle" class="tiny-text" fill="#2c3e50">调用序列号</text>
+  <text x="440" y="410" text-anchor="middle" class="tiny-text" fill="#2c3e50">客户端标识</text>
+  <text x="540" y="410" text-anchor="middle" class="tiny-text" fill="#2c3e50">重试次数</text>
+  
+  <text x="640" y="410" text-anchor="middle" class="tiny-text" fill="#2c3e50">追踪信息</text>
+  <text x="750" y="410" text-anchor="middle" class="tiny-text" fill="#2c3e50">调用者上下文</text>
+  <text x="860" y="410" text-anchor="middle" class="tiny-text" fill="#2c3e50">状态ID</text>
+  <text x="980" y="410" text-anchor="middle" class="tiny-text" fill="#2c3e50">路由器状态</text>
+  
+  <text x="140" y="425" text-anchor="middle" class="tiny-text" fill="#2c3e50">PROTOBUF_RPC</text>
+  <text x="240" y="425" text-anchor="middle" class="tiny-text" fill="#2c3e50">RPC_CALL</text>
+  <text x="340" y="425" text-anchor="middle" class="tiny-text" fill="#2c3e50">请求响应匹配</text>
+  <text x="440" y="425" text-anchor="middle" class="tiny-text" fill="#2c3e50">UUID</text>
+  <text x="540" y="425" text-anchor="middle" class="tiny-text" fill="#2c3e50">0表示首次</text>
+  
+  <text x="640" y="425" text-anchor="middle" class="tiny-text" fill="#2c3e50">分布式追踪</text>
+  <text x="750" y="425" text-anchor="middle" class="tiny-text" fill="#2c3e50">调用环境</text>
+  <text x="860" y="425" text-anchor="middle" class="tiny-text" fill="#2c3e50">全局状态</text>
+  <text x="980" y="425" text-anchor="middle" class="tiny-text" fill="#2c3e50">Federation对齐</text>
+  
+  <!-- 字段重要性标识 -->
+  <rect x="95" y="440" width="90" height="15" rx="3" class="required-field"/>
+  <text x="140" y="452" text-anchor="middle" class="tiny-text" fill="#27ae60">必需</text>
+  
+  <rect x="195" y="440" width="90" height="15" rx="3" class="required-field"/>
+  <text x="240" y="452" text-anchor="middle" class="tiny-text" fill="#27ae60">必需</text>
+  
+  <rect x="295" y="440" width="90" height="15" rx="3" class="required-field"/>
+  <text x="340" y="452" text-anchor="middle" class="tiny-text" fill="#27ae60">必需</text>
+  
+  <rect x="395" y="440" width="90" height="15" rx="3" class="optional-field"/>
+  <text x="440" y="452" text-anchor="middle" class="tiny-text" fill="#856404">可选</text>
+  
+  <rect x="495" y="440" width="90" height="15" rx="3" class="optional-field"/>
+  <text x="540" y="452" text-anchor="middle" class="tiny-text" fill="#856404">可选</text>
+  
+  <rect x="595" y="440" width="90" height="15" rx="3" class="optional-field"/>
+  <text x="640" y="452" text-anchor="middle" class="tiny-text" fill="#856404">可选</text>
+  
+  <rect x="695" y="440" width="110" height="15" rx="3" class="optional-field"/>
+  <text x="750" y="452" text-anchor="middle" class="tiny-text" fill="#856404">可选</text>
+  
+  <rect x="815" y="440" width="90" height="15" rx="3" class="optional-field"/>
+  <text x="860" y="452" text-anchor="middle" class="tiny-text" fill="#856404">可选</text>
+  
+  <rect x="915" y="440" width="130" height="15" rx="3" class="optional-field"/>
+  <text x="980" y="452" text-anchor="middle" class="tiny-text" fill="#856404">可选</text>
+  
+  <!-- 响应格式 -->
+  <rect x="80" y="560" width="500" height="120" rx="10" class="response-format"/>
+  <text x="330" y="580" text-anchor="middle" class="subtitle" fill="#b85450">响应格式 (Response Format)</text>
+  
+  <!-- 响应组成 -->
+  <rect x="100" y="600" width="100" height="30" rx="3" class="response-component"/>
+  <text x="150" y="618" text-anchor="middle" class="small-text">响应长度</text>
+  
+  <rect x="220" y="600" width="100" height="30" rx="3" class="response-component"/>
+  <text x="270" y="618" text-anchor="middle" class="small-text">响应头部</text>
+  
+  <rect x="340" y="600" width="100" height="30" rx="3" class="response-component"/>
+  <text x="390" y="618" text-anchor="middle" class="small-text">响应体</text>
+  
+  <rect x="460" y="600" width="100" height="30" rx="3" class="response-component"/>
+  <text x="510" y="618" text-anchor="middle" class="small-text">状态码</text>
+  
+  <!-- 协议版本化 -->
+  <rect x="650" y="560" width="400" height="120" rx="10" class="version-mechanism"/>
+  <text x="850" y="580" text-anchor="middle" class="subtitle" fill="#9673a6">协议版本化机制 (Protocol Versioning)</text>
+  
+  <!-- 版本化组件 -->
+  <rect x="670" y="600" width="120" height="30" rx="3" class="version-component"/>
+  <text x="730" y="618" text-anchor="middle" class="small-text">VersionedProtocol</text>
+  
+  <rect x="810" y="600" width="100" height="30" rx="3" class="version-component"/>
+  <text x="860" y="618" text-anchor="middle" class="small-text">协议签名</text>
+  
+  <rect x="930" y="600" width="100" height="30" rx="3" class="version-component"/>
+  <text x="980" y="618" text-anchor="middle" class="small-text">版本协商</text>
+  
+  <!-- 数据流箭头 -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2c3e50"/>
+    </marker>
+    <marker id="arrowhead-flow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#e74c3c"/>
+    </marker>
+  </defs>
+  
+  <!-- 连接头部到RPC数据包 -->
+  <line x1="580" y1="140" x2="650" y2="140" stroke="#e74c3c" stroke-width="2" marker-end="url(#arrowhead-flow)"/>
+  <text x="600" y="135" fill="#e74c3c" class="tiny-text">连接建立后</text>
+  
+  <!-- RPC数据包到请求头部 -->
+  <line x1="840" y1="280" x2="840" y2="320" stroke="#e74c3c" stroke-width="2" marker-end="url(#arrowhead-flow)"/>
+  <text x="850" y="300" fill="#e74c3c" class="tiny-text">解析</text>
+  
+  <!-- 请求到响应 -->
+  <line x1="330" y1="520" x2="330" y2="560" stroke="#e74c3c" stroke-width="2" marker-end="url(#arrowhead-flow)"/>
+  <text x="340" y="540" fill="#e74c3c" class="tiny-text">处理后响应</text>
+  
+  <!-- 版本化机制连接 -->
+  <line x1="580" y1="620" x2="650" y2="620" stroke="#9673a6" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="600" y="615" fill="#9673a6" class="tiny-text">版本检查</text>
+  
+  <!-- 格式特点说明 -->
+  <text x="80" y="720" class="subtitle" fill="#2c3e50">格式特点：</text>
+  <text x="80" y="740" class="small-text" fill="#2c3e50">• 长度前缀设计确保消息边界  • Protocol Buffers提供高效序列化  • 丰富的元数据支持分布式追踪  • 版本化机制保证兼容性</text>
+  
+  <!-- 性能优化说明 -->
+  <text x="80" y="770" class="subtitle" fill="#2c3e50">性能优化：</text>
+  <text x="80" y="790" class="small-text" fill="#2c3e50">• 变长编码减少网络传输  • 可选字段支持协议演进  • 批量处理提高吞吐量  • 压缩算法减少带宽消耗</text>
+  
+  <!-- 兼容性保障 -->
+  <text x="80" y="820" class="subtitle" fill="#2c3e50">兼容性保障：</text>
+  <text x="80" y="840" class="small-text" fill="#2c3e50">• 向前兼容的字段设计  • 协议版本协商机制  • 多引擎并存支持  • 渐进式升级策略</text>
+  
+</svg>

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1000" height="650" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title { font-family: Arial, sans-serif; font-size: 18px; font-weight: bold; fill: #2c3e50; }
+      .subtitle { font-family: Arial, sans-serif; font-size: 16px; font-weight: bold; }
+      .text { font-family: Arial, sans-serif; font-size: 12px; }
+      .small-text { font-family: Arial, sans-serif; font-size: 10px; }
+      .protocol-area { fill: #e1d5e7; stroke: #9673a6; fill-opacity: 0.3; }
+      .client-protocol { fill: #dae8fc; stroke: #6c8ebf; }
+      .client-methods { fill: #e8f4fd; stroke: #6c8ebf; }
+      .datanode-protocol { fill: #d5e8d4; stroke: #82b366; }
+      .datanode-methods { fill: #e8f5e8; stroke: #82b366; }
+      .lifeline-protocol { fill: #fff2cc; stroke: #d6b656; }
+      .lifeline-methods { fill: #fff8e1; stroke: #d6b656; }
+      .table-header { fill: #34495e; stroke: #2c3e50; }
+      .table-cell { fill: #f8f9fa; stroke: #dee2e6; }
+      .table-client { fill: #e8f4fd; stroke: #6c8ebf; }
+      .table-datanode { fill: #e8f5e8; stroke: #82b366; }
+      .table-lifeline { fill: #fff8e1; stroke: #d6b656; }
+      .critical { fill: #d5f4e6; stroke: #27ae60; }
+      .important { fill: #fff3cd; stroke: #ffc107; }
+    </style>
+  </defs>
+  
+  <!-- 标题 -->
+  <text x="500" y="30" text-anchor="middle" class="title">Hadoop生态系统RPC协议详解</text>
+  
+  <!-- HDFS协议区域 -->
+  <rect x="80" y="60" width="400" height="220" rx="10" class="protocol-area"/>
+  <text x="120" y="80" class="subtitle">HDFS RPC协议</text>
+  
+  <!-- ClientNamenodeProtocol -->
+  <rect x="120" y="100" width="140" height="30" rx="5" class="client-protocol"/>
+  <text x="190" y="120" text-anchor="middle" class="text">ClientNamenodeProtocol</text>
+  
+  <!-- ClientNamenodeProtocol方法 -->
+  <rect x="120" y="140" width="140" height="80" rx="3" class="client-methods"/>
+  <text x="130" y="155" class="small-text">• create()</text>
+  <text x="130" y="170" class="small-text">• append()</text>
+  <text x="130" y="185" class="small-text">• setReplication()</text>
+  <text x="130" y="200" class="small-text">• delete()</text>
+  <text x="130" y="215" class="small-text">• mkdirs(), getListing()</text>
+  
+  <!-- DatanodeProtocol -->
+  <rect x="300" y="100" width="140" height="30" rx="5" class="datanode-protocol"/>
+  <text x="370" y="120" text-anchor="middle" class="text">DatanodeProtocol</text>
+  
+  <!-- DatanodeProtocol方法 -->
+  <rect x="300" y="140" width="140" height="80" rx="3" class="datanode-methods"/>
+  <text x="310" y="155" class="small-text">• sendHeartbeat()</text>
+  <text x="310" y="170" class="small-text">• blockReport()</text>
+  <text x="310" y="185" class="small-text">• blockReceivedAndDeleted()</text>
+  <text x="310" y="200" class="small-text">• errorReport()</text>
+  <text x="310" y="215" class="small-text">• registerDatanode()</text>
+  
+  <!-- DatanodeLifelineProtocol -->
+  <rect x="210" y="240" width="140" height="30" rx="5" class="lifeline-protocol"/>
+  <text x="280" y="260" text-anchor="middle" class="text">DatanodeLifelineProtocol</text>
+  
+  <!-- YARN协议区域 -->
+  <rect x="520" y="60" width="400" height="220" rx="10" class="protocol-area"/>
+  <text x="560" y="80" class="subtitle">YARN RPC协议</text>
+  
+  <!-- ApplicationClientProtocol -->
+  <rect x="560" y="100" width="140" height="30" rx="5" class="client-protocol"/>
+  <text x="630" y="120" text-anchor="middle" class="text">ApplicationClientProtocol</text>
+  
+  <!-- ApplicationClientProtocol方法 -->
+  <rect x="560" y="140" width="140" height="70" rx="3" class="client-methods"/>
+  <text x="570" y="155" class="small-text">• submitApplication()</text>
+  <text x="570" y="170" class="small-text">• getApplicationReport()</text>
+  <text x="570" y="185" class="small-text">• killApplication()</text>
+  <text x="570" y="200" class="small-text">• getClusterMetrics()</text>
+  
+  <!-- ApplicationMasterProtocol -->
+  <rect x="740" y="100" width="140" height="30" rx="5" class="datanode-protocol"/>
+  <text x="810" y="120" text-anchor="middle" class="text">ApplicationMasterProtocol</text>
+  
+  <!-- ApplicationMasterProtocol方法 -->
+  <rect x="740" y="140" width="140" height="70" rx="3" class="datanode-methods"/>
+  <text x="750" y="155" class="small-text">• registerApplicationMaster()</text>
+  <text x="750" y="170" class="small-text">• allocate()</text>
+  <text x="750" y="185" class="small-text">• finishApplicationMaster()</text>
+  <text x="750" y="200" class="small-text">• getContainerStatuses()</text>
+  
+  <!-- ContainerManagementProtocol -->
+  <rect x="650" y="240" width="160" height="30" rx="5" class="lifeline-protocol"/>
+  <text x="730" y="260" text-anchor="middle" class="text">ContainerManagementProtocol</text>
+  
+  <!-- 协议特性对比表 -->
+  <text x="500" y="320" text-anchor="middle" class="subtitle">协议特性对比</text>
+  
+  <!-- 表头 -->
+  <rect x="150" y="350" width="100" height="25" rx="3" class="table-header"/>
+  <text x="200" y="367" text-anchor="middle" class="text" fill="white">协议名称</text>
+  
+  <rect x="250" y="350" width="100" height="25" rx="3" class="table-header"/>
+  <text x="300" y="367" text-anchor="middle" class="text" fill="white">主要用途</text>
+  
+  <rect x="350" y="350" width="100" height="25" rx="3" class="table-header"/>
+  <text x="400" y="367" text-anchor="middle" class="text" fill="white">参与组件</text>
+  
+  <rect x="450" y="350" width="100" height="25" rx="3" class="table-header"/>
+  <text x="500" y="367" text-anchor="middle" class="text" fill="white">调用频率</text>
+  
+  <rect x="550" y="350" width="100" height="25" rx="3" class="table-header"/>
+  <text x="600" y="367" text-anchor="middle" class="text" fill="white">重要程度</text>
+  
+  <!-- ClientNamenodeProtocol行 -->
+  <rect x="150" y="375" width="100" height="25" rx="3" class="table-client"/>
+  <text x="200" y="392" text-anchor="middle" class="small-text">ClientNamenode</text>
+  
+  <rect x="250" y="375" width="100" height="25" rx="3" class="table-cell"/>
+  <text x="300" y="392" text-anchor="middle" class="small-text">文件系统操作</text>
+  
+  <rect x="350" y="375" width="100" height="25" rx="3" class="table-cell"/>
+  <text x="400" y="392" text-anchor="middle" class="small-text">Client-NameNode</text>
+  
+  <rect x="450" y="375" width="100" height="25" rx="3" class="table-cell"/>
+  <text x="500" y="392" text-anchor="middle" class="small-text">高频</text>
+  
+  <rect x="550" y="375" width="100" height="25" rx="3" class="critical"/>
+  <text x="600" y="392" text-anchor="middle" class="small-text">核心</text>
+  
+  <!-- DatanodeProtocol行 -->
+  <rect x="150" y="400" width="100" height="25" rx="3" class="table-datanode"/>
+  <text x="200" y="417" text-anchor="middle" class="small-text">Datanode</text>
+  
+  <rect x="250" y="400" width="100" height="25" rx="3" class="table-cell"/>
+  <text x="300" y="417" text-anchor="middle" class="small-text">心跳和块报告</text>
+  
+  <rect x="350" y="400" width="100" height="25" rx="3" class="table-cell"/>
+  <text x="400" y="417" text-anchor="middle" class="small-text">DataNode-NameNode</text>
+  
+  <rect x="450" y="400" width="100" height="25" rx="3" class="table-cell"/>
+  <text x="500" y="417" text-anchor="middle" class="small-text">定期</text>
+  
+  <rect x="550" y="400" width="100" height="25" rx="3" class="critical"/>
+  <text x="600" y="417" text-anchor="middle" class="small-text">核心</text>
+  
+  <!-- ApplicationClientProtocol行 -->
+  <rect x="150" y="425" width="100" height="25" rx="3" class="table-client"/>
+  <text x="200" y="442" text-anchor="middle" class="small-text">ApplicationClient</text>
+  
+  <rect x="250" y="425" width="100" height="25" rx="3" class="table-cell"/>
+  <text x="300" y="442" text-anchor="middle" class="small-text">应用管理</text>
+  
+  <rect x="350" y="425" width="100" height="25" rx="3" class="table-cell"/>
+  <text x="400" y="442" text-anchor="middle" class="small-text">Client-ResourceManager</text>
+  
+  <rect x="450" y="425" width="100" height="25" rx="3" class="table-cell"/>
+  <text x="500" y="442" text-anchor="middle" class="small-text">中频</text>
+  
+  <rect x="550" y="425" width="100" height="25" rx="3" class="important"/>
+  <text x="600" y="442" text-anchor="middle" class="small-text">重要</text>
+  
+  <!-- ApplicationMasterProtocol行 -->
+  <rect x="150" y="450" width="100" height="25" rx="3" class="table-datanode"/>
+  <text x="200" y="467" text-anchor="middle" class="small-text">ApplicationMaster</text>
+  
+  <rect x="250" y="450" width="100" height="25" rx="3" class="table-cell"/>
+  <text x="300" y="467" text-anchor="middle" class="small-text">资源申请</text>
+  
+  <rect x="350" y="450" width="100" height="25" rx="3" class="table-cell"/>
+  <text x="400" y="467" text-anchor="middle" class="small-text">AM-ResourceManager</text>
+  
+  <rect x="450" y="450" width="100" height="25" rx="3" class="table-cell"/>
+  <text x="500" y="467" text-anchor="middle" class="small-text">高频</text>
+  
+  <rect x="550" y="450" width="100" height="25" rx="3" class="critical"/>
+  <text x="600" y="467" text-anchor="middle" class="small-text">核心</text>
+  
+  <!-- ContainerManagementProtocol行 -->
+  <rect x="150" y="475" width="100" height="25" rx="3" class="table-lifeline"/>
+  <text x="200" y="492" text-anchor="middle" class="small-text">ContainerMgmt</text>
+  
+  <rect x="250" y="475" width="100" height="25" rx="3" class="table-cell"/>
+  <text x="300" y="492" text-anchor="middle" class="small-text">容器管理</text>
+  
+  <rect x="350" y="475" width="100" height="25" rx="3" class="table-cell"/>
+  <text x="400" y="492" text-anchor="middle" class="small-text">AM-NodeManager</text>
+  
+  <rect x="450" y="475" width="100" height="25" rx="3" class="table-cell"/>
+  <text x="500" y="492" text-anchor="middle" class="small-text">中频</text>
+  
+  <rect x="550" y="475" width="100" height="25" rx="3" class="important"/>
+  <text x="600" y="492" text-anchor="middle" class="small-text">重要</text>
+  
+  <!-- 协议说明 -->
+  <text x="200" y="530" class="small-text">🔵 客户端协议</text>
+  <text x="350" y="530" class="small-text">🟢 节点间协议</text>
+  <text x="500" y="530" class="small-text">🟡 管理协议</text>
+  
+  <text x="200" y="550" class="small-text">核心：系统关键功能</text>
+  <text x="400" y="550" class="small-text">重要：业务支撑功能</text>
+  
+</svg>

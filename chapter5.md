@@ -4,6 +4,19 @@
 
 Hadoop RPC框架的序列化引擎演进历程反映了大数据技术发展的重要轨迹，从早期的WritableRpcEngine到现代的ProtobufRpcEngine2，每一次技术迭代都体现了对性能、兼容性和可维护性的不断追求。通过深入分析这一演进过程，我们可以理解分布式系统序列化技术的发展规律和设计考量。
 
+## Hadoop版本与RPC引擎对应关系
+
+| Hadoop版本 | 发布时间 | 引入的引擎 | 废弃的引擎 | 推荐引擎 |
+|------------|----------|------------|------------|----------|
+| **2.0.0-alpha** | 2012年3月 | ProtobufRpcEngine | WritableRpcEngine (标记废弃) | ProtobufRpcEngine |
+| **3.0.0-alpha1** | 2016年3月 | ProtobufRpcEngine2 | - | ProtobufRpcEngine2 |
+| **3.x 后续版本** | 2020年后 | - | ProtobufRpcEngine (标记废弃) | ProtobufRpcEngine2 |
+
+**版本选择建议：**
+- **Hadoop 2.x 用户**：可使用ProtobufRpcEngine，但建议升级到3.x使用ProtobufRpcEngine2
+- **Hadoop 3.x 用户**：强烈推荐使用ProtobufRpcEngine2
+- **新项目**：直接选择Hadoop 3.x + ProtobufRpcEngine2
+
 **技术演进的驱动力**主要来自于大数据处理场景对序列化性能的苛刻要求。在大规模分布式环境中，序列化和反序列化操作的效率直接影响整个系统的吞吐量和响应时间。随着数据规模的不断增长和处理复杂度的提升，传统的序列化方案逐渐暴露出性能瓶颈，推动了新技术的采用和发展。
 
 **跨语言支持需求**是推动序列化技术演进的另一个重要因素。随着Hadoop生态系统的不断扩展，越来越多的非Java应用需要与Hadoop集群进行交互。传统的Java特定序列化方案无法满足这种跨语言的需求，促使系统向更加通用的序列化协议迁移。
@@ -12,13 +25,46 @@ Hadoop RPC框架的序列化引擎演进历程反映了大数据技术发展的�
 
 **性能优化和资源效率**的考量推动了从通用序列化方案向专门优化方案的转变。不同的序列化协议在消息大小、序列化速度、CPU消耗等方面各有优势，系统需要根据具体的应用场景选择最适合的方案。
 
+![序列化引擎演进历程](images/serialization-engine-evolution.svg)
+
+*图5-1：Hadoop RPC序列化引擎演进历程*
+
 ## WritableRpcEngine：传统序列化的基石
 
 WritableRpcEngine作为Hadoop RPC框架的第一代序列化引擎，虽然现在已被标记为废弃，但它为整个框架的发展奠定了重要基础。通过分析其设计理念和实现机制，我们可以理解早期分布式系统序列化技术的特点和局限性。
 
 **Writable接口的设计哲学**体现了Java生态系统中序列化技术的传统思路。Writable接口定义了write()和readFields()两个核心方法，分别负责序列化和反序列化操作。这种设计将序列化逻辑封装在数据对象内部，使得每个对象都能够控制自己的序列化行为，体现了面向对象设计的封装原则。
 
-**Invocation类的核心作用**是WritableRpcEngine的关键组件，它实现了Writable接口，封装了方法名、参数类型、参数值、客户端版本和协议名称等信息。这种设计将RPC调用的所有必要信息打包成一个可序列化的对象，简化了网络传输的复杂性。Invocation类的序列化过程包括方法元数据和参数数据的完整编码，确保了调用信息的完整性。
+**Invocation类的核心作用**是WritableRpcEngine的关键组件，它实现了Writable接口，封装了方法名、参数类型、参数值、客户端版本和协议名称等信息。这种设计将RPC调用的所有必要信息打包成一个可序列化的对象，简化了网络传输的复杂性。
+
+```java
+// WritableRpcEngine核心类：Invocation
+public static class Invocation implements Writable {
+  private String methodName;
+  private Class<?>[] parameterClasses;
+  private Object[] parameters;
+  private long rpcVersion;
+  private String declaringClassProtocolName;
+
+  // 序列化实现
+  public void write(DataOutput out) throws IOException {
+    UTF8.writeString(out, methodName);
+    out.writeInt(parameterClasses.length);
+    for (int i = 0; i < parameterClasses.length; i++) {
+      ObjectWritable.writeObject(out, parameters[i], parameterClasses[i], conf);
+    }
+  }
+
+  // 反序列化实现
+  public void readFields(DataInput in) throws IOException {
+    methodName = UTF8.readString(in);
+    parameters = new Object[in.readInt()];
+    for (int i = 0; i < parameters.length; i++) {
+      parameters[i] = ObjectWritable.readObject(in, conf);
+    }
+  }
+}
+```
 
 **服务端处理机制**通过WritableRpcInvoker实现，它处理RPC_WRITABLE类型的请求。处理过程包括将传入的Writable请求转换为Invocation对象，验证writableRpcVersion和客户端协议版本，然后使用反射机制调用服务端协议实现的相应方法。这种基于反射的调用机制虽然灵活，但在性能上存在一定的开销。
 
@@ -31,6 +77,45 @@ WritableRpcEngine作为Hadoop RPC框架的第一代序列化引擎，虽然现�
 ## ProtobufRpcEngine：向标准化的过渡
 
 ProtobufRpcEngine的引入标志着Hadoop RPC框架向标准化序列化协议的重要转变。虽然这个引擎现在也已被废弃，但它在技术演进中起到了重要的桥梁作用，为最终的ProtobufRpcEngine2奠定了基础。
+
+### 架构设计与Protocol Buffers集成
+
+```java
+// ProtobufRpcEngine核心实现
+@Deprecated
+public class ProtobufRpcEngine implements RpcEngine {
+
+  // 客户端代理处理器
+  protected static class Invoker implements RpcInvocationHandler {
+    private final Client.ConnectionId remoteId;
+    private final Client client;
+
+    @Override
+    public Message invoke(Object proxy, final Method method, Object[] args)
+        throws ServiceException {
+      // 构建RPC请求头
+      RequestHeaderProto rpcRequestHeader = constructRpcRequestHeader(method);
+      Message theRequest = (Message) args[1];
+
+      // 创建Protobuf请求包装
+      RpcProtobufRequest request = new RpcProtobufRequest(rpcRequestHeader, theRequest);
+
+      // 发送RPC调用
+      RpcWritable.Buffer val = (RpcWritable.Buffer) client.call(
+          RPC.RpcKind.RPC_PROTOCOL_BUFFER, request, remoteId);
+
+      return getReturnMessage(method, val);
+    }
+  }
+}
+```
+
+**技术改进要点：**
+
+1. **Protocol Buffers 2.5集成**：使用Google Protocol Buffers作为序列化格式，提供更高效的二进制编码
+2. **请求头标准化**：通过`RequestHeaderProto`统一RPC请求头格式，包含方法名和协议版本信息
+3. **消息类型安全**：利用Protocol Buffers的强类型系统，在编译时检查消息格式
+4. **向后兼容设计**：服务端实现继承自`ProtobufRpcEngine2.Server`，确保兼容性
 
 **Protocol Buffers技术的引入**代表了序列化技术的重大进步。Protocol Buffers是Google开发的语言中性、平台中性的序列化协议，具有高效、紧凑、可扩展的特点。相比传统的XML或JSON格式，Protocol Buffers在序列化速度和消息大小方面都有显著优势，特别适合大规模分布式系统的需求。
 
@@ -46,9 +131,89 @@ ProtobufRpcEngine的引入标志着Hadoop RPC框架向标准化序列化协议�
 
 **技术过渡的挑战**主要体现在兼容性管理和迁移策略方面。系统需要同时支持新旧两种序列化协议，确保升级过程的平滑性；开发团队需要掌握Protocol Buffers的使用方法和最佳实践；性能调优需要针对新的序列化机制进行重新优化。
 
+![RPC引擎架构对比](images/rpc-engines-architecture-comparison.svg)
+
+*图5-2：Hadoop RPC三代序列化引擎架构对比*
+
+### 三代引擎代码架构对比
+
+| 技术特征 | WritableRpcEngine | ProtobufRpcEngine | ProtobufRpcEngine2 |
+|----------|-------------------|-------------------|-------------------|
+| **序列化接口** | `Writable.write()/readFields()` | `Message.writeTo()/parseFrom()` | `Message.writeTo()/parseFrom()` |
+| **核心类** | `Invocation` (Writable) | `RpcProtobufRequest` | `RpcProtobufRequest` |
+| **协议版本** | Java原生 | Protocol Buffers 2.5 | Protocol Buffers 3.x |
+| **客户端处理** | 反射 + ObjectWritable | Invoker + Message | Invoker + 缓存优化 |
+| **服务端处理** | WritableRpcInvoker | 继承ProtobufRpcEngine2 | ProtoBufRpcInvoker |
+| **异步支持** | ❌ | ❌ | ✅ `isAsynchronousMode()` |
+| **缓存机制** | ❌ | ❌ | ✅ `ConcurrentHashMap` |
+| **阴影类库** | ❌ | ❌ | ✅ `isShadedPBImpl()` |
+| **延迟响应** | ❌ | ❌ | ✅ `ProtobufRpcEngineCallback2` |
+| **RPC类型标识** | `RPC_WRITABLE` | `RPC_PROTOCOL_BUFFER` | `RPC_PROTOCOL_BUFFER` |
+
 ## ProtobufRpcEngine2：现代化的序列化方案
 
 ProtobufRpcEngine2作为当前活跃和推荐的RPC引擎，代表了Hadoop序列化技术的最新发展水平。它不仅继承了Protocol Buffers的优势，还针对现代分布式系统的需求进行了专门的优化和扩展。
+
+### 现代化架构与性能优化
+
+```java
+// ProtobufRpcEngine2现代化实现
+public class ProtobufRpcEngine2 implements RpcEngine {
+
+  protected static class Invoker implements RpcInvocationHandler {
+    // 性能优化：返回类型缓存
+    private final Map<String, Message> returnTypes =
+        new ConcurrentHashMap<String, Message>();
+    private final Client.ConnectionId remoteId;
+    private final Client client;
+
+    @Override
+    public Message invoke(Object proxy, final Method method, Object[] args)
+        throws ServiceException {
+      final Message theRequest = (Message) args[1];
+
+      // 异步RPC支持
+      final RpcWritable.Buffer val = (RpcWritable.Buffer) client.call(
+          RPC.RpcKind.RPC_PROTOCOL_BUFFER,
+          constructRpcRequest(method, theRequest), remoteId);
+
+      if (Client.isAsynchronousMode()) {
+        return ASYNC_RETURN_MESSAGE;
+      } else {
+        return getReturnMessage(method, val);
+      }
+    }
+  }
+
+  // 服务端处理器 - 支持阴影类库
+  static class ProtoBufRpcInvoker implements RpcInvoker {
+    private RpcWritable call(RPC.Server server, String connectionProtocolName,
+        RpcWritable.Buffer request, String methodName,
+        ProtoClassProtoImpl protocolImpl) throws Exception {
+
+      BlockingService service = (BlockingService) protocolImpl.protocolImpl;
+      MethodDescriptor methodDescriptor = service.getDescriptorForType()
+          .findMethodByName(methodName);
+
+      // 使用Protocol Buffers 3.x进行消息处理
+      Message prototype = service.getRequestPrototype(methodDescriptor);
+      Message param = prototype.newBuilderForType()
+          .mergeFrom(request.getValue()).build();
+
+      Message result = service.callBlockingMethod(methodDescriptor, null, param);
+      return RpcWritable.wrap(result);
+    }
+  }
+}
+```
+
+**关键技术创新：**
+
+1. **Protocol Buffers 3.x升级**：使用最新的Protobuf版本，获得更好的性能和功能特性
+2. **客户端缓存优化**：`ConcurrentHashMap`缓存返回类型，减少反射开销
+3. **异步RPC支持**：通过`Client.isAsynchronousMode()`支持非阻塞调用
+4. **阴影类库支持**：通过`isShadedPBImpl()`检查支持阴影Protobuf实现
+5. **延迟响应机制**：服务端支持`ProtobufRpcEngineCallback2`实现延迟响应
 
 **Protocol Buffers 3.x的全面采用**是ProtobufRpcEngine2的核心特征。相比早期版本，Protocol Buffers 3.x在性能、功能和易用性方面都有显著改进。新版本提供了更好的代码生成器、更高效的序列化算法、更丰富的数据类型支持，以及更好的向后兼容性保证。
 
@@ -64,6 +229,10 @@ ProtobufRpcEngine2作为当前活跃和推荐的RPC引擎，代表了Hadoop序�
 
 **生态系统集成的深度**使得ProtobufRpcEngine2成为Hadoop生态系统的标准选择。DFSUtil.addInternalPBProtocol方法明确设置ProtobufRpcEngine2作为内部Protobuf协议的协议引擎；广泛的测试用例验证了其在各种场景下的可靠性；与其他Hadoop组件的深度集成确保了整体系统的一致性。
 
+![序列化性能对比](images/serialization-performance-comparison.svg)
+
+*图5-3：Hadoop RPC序列化引擎性能对比分析*
+
 ## 引擎选择与配置策略
 
 在实际的生产环境中，正确选择和配置序列化引擎对系统性能和稳定性具有重要影响。通过分析不同引擎的特点和适用场景，我们可以制定合理的选择和配置策略。
@@ -77,6 +246,23 @@ ProtobufRpcEngine2作为当前活跃和推荐的RPC引擎，代表了Hadoop序�
 **迁移策略的制定**需要考虑系统的复杂性和业务连续性要求。分阶段迁移可以降低风险，先在非关键路径上验证新引擎的稳定性；并行运行允许新旧引擎同时工作，确保业务不中断；回滚机制为出现问题时提供快速恢复能力；监控和验证确保迁移过程的可控性。
 
 **性能调优的关键点**涉及多个层面的优化。消息设计需要考虑Protocol Buffers的特点，避免过度嵌套和冗余字段；连接池配置需要根据负载特征进行调整；缓存策略可以减少重复的序列化开销；监控指标帮助识别性能瓶颈和优化机会。
+
+**基于Hadoop版本的引擎选择策略：**
+
+| 当前Hadoop版本 | 当前引擎 | 推荐操作 | 优先级 |
+|----------------|----------|----------|--------|
+| **2.x** | WritableRpcEngine | 升级到ProtobufRpcEngine或Hadoop 3.x | 高 |
+| **2.x** | ProtobufRpcEngine | 升级到Hadoop 3.x + ProtobufRpcEngine2 | 中 |
+| **3.x** | WritableRpcEngine | 立即切换到ProtobufRpcEngine2 | 紧急 |
+| **3.x** | ProtobufRpcEngine | 升级到ProtobufRpcEngine2 | 高 |
+| **3.x** | ProtobufRpcEngine2 | 配置优化 | 低 |
+| **新项目** | - | 直接使用Hadoop 3.x + ProtobufRpcEngine2 | - |
+
+**迁移策略建议：**
+
+- **小型系统**：可考虑一次性切换
+- **中型系统**：建议分阶段迁移
+- **大型系统**：必须采用渐进式迁移，确保业务连续性
 
 ## 技术演进的启示与展望
 

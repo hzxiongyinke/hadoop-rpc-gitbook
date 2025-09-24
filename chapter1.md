@@ -14,6 +14,10 @@ Doug Cutting和Mike Cafarella在开发开源搜索引擎Nutch时，深刻认识�
 
 Hadoop的核心价值在于它将复杂的分布式计算技术民主化，使得普通的开发者和企业也能够构建和运维大规模的分布式系统。在Hadoop出现之前，只有像Google、Yahoo这样的技术巨头才有能力开发和维护分布式计算系统。Hadoop的开源特性和相对简单的使用方式，极大地降低了分布式计算的技术门槛，推动了大数据技术的普及和发展。
 
+![大数据时代技术演进](images/tech-evolution.svg)
+
+*图1-1：大数据时代技术演进历程*
+
 ## 分布式系统的通信挑战
 
 然而，分布式计算系统的构建并非易事，其中最核心的挑战之一就是如何实现各个分布式组件之间的高效、可靠通信。在单机系统中，不同模块之间的通信可以通过简单的函数调用或内存共享来实现，这些操作的延迟通常在纳秒级别，可靠性也很高。但在分布式环境中，组件之间的通信需要通过网络进行，这就引入了一系列新的复杂性。
@@ -21,6 +25,10 @@ Hadoop的核心价值在于它将复杂的分布式计算技术民主化，使�
 网络通信的延迟比本地调用高出几个数量级，通常在毫秒级别，这就要求系统设计必须考虑异步处理和并发控制。网络的不可靠性也是一个重要挑战，网络分区、数据包丢失、连接中断等问题都可能导致通信失败，系统必须具备相应的容错和恢复机制。此外，分布式系统中的组件可能运行在不同的操作系统、硬件平台和网络环境中，这就要求通信协议具备良好的跨平台兼容性。
 
 在这种背景下，远程过程调用（RPC）技术成为了分布式系统通信的主流解决方案。RPC的核心思想是让远程服务调用看起来像本地函数调用一样简单，从而屏蔽网络通信的复杂性，让开发者能够专注于业务逻辑的实现。
+
+![分布式系统通信挑战对比](images/communication-challenges.svg)
+
+*图1-2：单机通信 vs 分布式通信挑战对比*
 
 ## RPC机制的核心价值
 
@@ -40,6 +48,68 @@ RPC的概念最早由Bruce Jay Nelson在1981年的博士论文中提出，他的
 
 在现代分布式系统中，RPC已经成为了组件间通信的标准方式。无论是微服务架构中的服务间调用，还是大数据处理系统中的组件协调，RPC都扮演着核心的角色。它不仅简化了分布式应用的开发，还为系统的模块化和服务化提供了技术基础。
 
+```mermaid
+sequenceDiagram
+    participant Client as 客户端应用
+    participant Stub as 客户端存根
+    participant Serializer as 序列化器
+    participant Network as 网络传输层
+    participant Dispatcher as 服务端分发器
+    participant Deserializer as 反序列化器
+    participant Service as 服务端实现
+
+    Note over Client, Service: RPC调用完整流程
+
+    Client->>Stub: 1. 调用本地方法
+    Note right of Client: 像调用本地函数一样
+
+    Stub->>Serializer: 2. 序列化请求参数
+    Note right of Stub: 方法名、参数类型、参数值
+
+    Serializer->>Network: 3. 发送网络请求
+    Note right of Serializer: 转换为字节流
+
+    Network-->>Network: 4. 网络传输
+    Note over Network: TCP/UDP协议传输<br/>可能出现延迟、丢包等问题
+
+    Network->>Dispatcher: 5. 接收请求
+    Note left of Dispatcher: 服务端接收字节流
+
+    Dispatcher->>Deserializer: 6. 反序列化请求
+    Note left of Dispatcher: 解析方法名和参数
+
+    Deserializer->>Service: 7. 调用实际服务
+    Note left of Deserializer: 根据方法名路由到具体实现
+
+    Service->>Service: 8. 执行业务逻辑
+    Note over Service: 处理实际业务请求
+
+    Service->>Deserializer: 9. 返回执行结果
+    Note right of Service: 业务处理完成
+
+    Deserializer->>Dispatcher: 10. 序列化响应
+    Note right of Deserializer: 将结果转换为字节流
+
+    Dispatcher->>Network: 11. 发送响应
+    Note right of Dispatcher: 通过网络返回结果
+
+    Network-->>Network: 12. 网络传输
+    Note over Network: 响应数据传输
+
+    Network->>Serializer: 13. 接收响应
+    Note left of Serializer: 客户端接收响应
+
+    Serializer->>Stub: 14. 反序列化响应
+    Note left of Serializer: 恢复为对象形式
+
+    Stub->>Client: 15. 返回结果
+    Note left of Stub: 就像本地函数返回一样
+
+    Note over Client, Service: 整个过程对客户端透明
+```
+
+*图1-3：RPC调用完整流程时序图*
+
 ## Hadoop RPC的关键地位
 
 在Hadoop这个复杂的分布式生态系统中，RPC机制扮演着神经网络的角色，连接着各个核心组件，协调着整个集群的运行。从HDFS的分布式文件管理到YARN的资源调度，从MapReduce的任务协调到各种上层应用的数据访问，几乎所有的组件间通信都依赖于Hadoop RPC框架。这种深度的依赖关系使得RPC机制的设计质量直接决定了整个Hadoop生态系统的性能表现、可靠性水平和扩展能力。
@@ -47,6 +117,10 @@ RPC的概念最早由Bruce Jay Nelson在1981年的博士论文中提出，他的
 当我们执行一个简单的`hdfs dfs -ls /`命令时，背后实际上触发了一系列复杂的RPC调用过程。客户端首先通过ClientProtocol向NameNode发起`getListing()`调用，获取目录的元数据信息；如果需要读取文件内容，客户端还会调用`getBlockLocations()`获取数据块的位置信息，然后直接与相应的DataNode进行数据传输。这个看似简单的操作，实际上展现了Hadoop RPC在文件系统操作中的核心作用。
 
 在YARN资源管理场景中，RPC的重要性更加突出。当用户提交一个Spark应用时，整个执行过程涉及多层次的RPC通信：客户端通过ApplicationClientProtocol向ResourceManager提交应用；ResourceManager启动ApplicationMaster后，ApplicationMaster通过ApplicationMasterProtocol向ResourceManager申请资源；获得资源分配后，ApplicationMaster通过ContainerManagementProtocol与NodeManager交互启动容器；任务执行过程中，各个组件还需要持续进行状态汇报和协调。这个复杂的通信网络完全建立在Hadoop RPC的基础之上。
+
+![Hadoop生态系统RPC通信架构](images/hadoop-ecosystem-rpc.svg)
+
+*图1-4：Hadoop生态系统RPC通信架构图*
 
 Hadoop RPC的性能表现对整个系统的吞吐量和响应时间具有决定性影响。在大规模集群环境中，单个NameNode可能需要同时处理数万个并发RPC请求，包括客户端的文件操作请求、DataNode的心跳汇报、以及各种管理操作。RPC框架的处理效率直接影响着这些操作的响应时间，进而影响整个集群的工作效率。
 

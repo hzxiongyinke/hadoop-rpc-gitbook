@@ -1,0 +1,235 @@
+<mxfile host="app.diagrams.net" modified="2024-09-18T03:00:00.000Z" agent="5.0" etag="xxx" version="21.6.5" type="device">
+  <diagram name="Hadoop生态系统RPC通信架构" id="hadoop-ecosystem-rpc">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- 标题 -->
+        <mxCell id="title" value="Hadoop生态系统RPC通信架构" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontStyle=1;fontColor=#2c3e50;" vertex="1" parent="1">
+          <mxGeometry x="400" y="20" width="350" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- HDFS层 -->
+        <mxCell id="hdfs-layer" value="HDFS 分布式文件系统" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=14;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="80" y="100" width="400" height="180" as="geometry" />
+        </mxCell>
+        
+        <!-- NameNode -->
+        <mxCell id="namenode" value="NameNode" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="120" y="140" width="100" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- DataNode -->
+        <mxCell id="datanode1" value="DataNode1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="120" y="210" width="80" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="datanode2" value="DataNode2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="220" y="210" width="80" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="datanode3" value="DataNode3" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="320" y="210" width="80" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- HDFS Client -->
+        <mxCell id="hdfs-client" value="HDFS Client" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="140" width="100" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- YARN层 -->
+        <mxCell id="yarn-layer" value="YARN 资源管理系统" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="520" y="100" width="400" height="180" as="geometry" />
+        </mxCell>
+        
+        <!-- ResourceManager -->
+        <mxCell id="resourcemanager" value="ResourceManager" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="140" width="120" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- NodeManager -->
+        <mxCell id="nodemanager1" value="NodeManager1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="560" y="210" width="100" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="nodemanager2" value="NodeManager2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="680" y="210" width="100" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- ApplicationMaster -->
+        <mxCell id="appmaster" value="ApplicationMaster" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="800" y="140" width="100" height="50" as="geometry" />
+        </mxCell>
+        
+        <!-- 客户端应用层 -->
+        <mxCell id="client-layer" value="客户端应用" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=14;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="300" y="320" width="400" height="100" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="mapreduce-client" value="MapReduce Client" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="320" y="360" width="100" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="spark-client" value="Spark Client" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="440" y="360" width="100" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="hive-client" value="Hive Client" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="560" y="360" width="100" height="40" as="geometry" />
+        </mxCell>
+        
+        <!-- RPC协议标注 -->
+        <mxCell id="rpc-protocols" value="主要RPC协议" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1;fontColor=#2c3e50;" vertex="1" parent="1">
+          <mxGeometry x="80" y="460" width="150" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="client-protocol" value="ClientProtocol" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e8;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="80" y="500" width="100" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="datanode-protocol" value="DatanodeProtocol" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e8;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="200" y="500" width="120" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="app-client-protocol" value="ApplicationClientProtocol" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff8e1;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="340" y="500" width="150" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="app-master-protocol" value="ApplicationMasterProtocol" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff8e1;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="510" y="500" width="160" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="container-mgmt-protocol" value="ContainerManagementProtocol" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff8e1;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="690" y="500" width="180" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- RPC连接线 -->
+        <!-- HDFS内部连接 -->
+        <mxCell id="hdfs-rpc1" value="ClientProtocol" style="endArrow=classic;startArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#27ae60;labelBackgroundColor=#ffffff;fontSize=10;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="320" y="165" as="sourcePoint" />
+            <mxPoint x="230" y="165" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="hdfs-rpc2" value="DatanodeProtocol" style="endArrow=classic;startArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#27ae60;labelBackgroundColor=#ffffff;fontSize=10;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="170" y="200" as="sourcePoint" />
+            <mxPoint x="170" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="hdfs-rpc3" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#27ae60;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="170" y="200" as="sourcePoint" />
+            <mxPoint x="260" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="hdfs-rpc4" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#27ae60;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="260" y="200" as="sourcePoint" />
+            <mxPoint x="360" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- YARN内部连接 -->
+        <mxCell id="yarn-rpc1" value="ApplicationMasterProtocol" style="endArrow=classic;startArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#f39c12;labelBackgroundColor=#ffffff;fontSize=10;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="800" y="165" as="sourcePoint" />
+            <mxPoint x="690" y="165" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="yarn-rpc2" value="ContainerManagementProtocol" style="endArrow=classic;startArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#f39c12;labelBackgroundColor=#ffffff;fontSize=10;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="850" y="200" as="sourcePoint" />
+            <mxPoint x="610" y="210" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="yarn-rpc3" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#f39c12;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="850" y="200" as="sourcePoint" />
+            <mxPoint x="730" y="210" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- 客户端到服务的连接 -->
+        <mxCell id="client-hdfs" value="ClientProtocol" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#e74c3c;labelBackgroundColor=#ffffff;fontSize=10;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="370" y="320" as="sourcePoint" />
+            <mxPoint x="170" y="280" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="client-yarn" value="ApplicationClientProtocol" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#e74c3c;labelBackgroundColor=#ffffff;fontSize=10;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="490" y="320" as="sourcePoint" />
+            <mxPoint x="620" y="280" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- 跨系统连接 -->
+        <mxCell id="cross-system" value="跨系统RPC调用" style="endArrow=classic;startArrow=classic;html=1;rounded=0;strokeWidth=3;strokeColor=#9b59b6;labelBackgroundColor=#ffffff;fontSize=12;fontStyle=1;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="480" y="190" as="sourcePoint" />
+            <mxPoint x="520" y="190" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- 图例 -->
+        <mxCell id="legend" value="图例" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=14;fontStyle=1;fontColor=#2c3e50;" vertex="1" parent="1">
+          <mxGeometry x="80" y="580" width="60" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend-master" value="主节点" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="80" y="620" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend-worker" value="工作节点" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="180" y="620" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend-client" value="客户端" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="280" y="620" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend-hdfs-rpc" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#27ae60;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="635" as="sourcePoint" />
+            <mxPoint x="450" y="635" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="legend-hdfs-label" value="HDFS RPC" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="460" y="620" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend-yarn-rpc" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#f39c12;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="550" y="635" as="sourcePoint" />
+            <mxPoint x="600" y="635" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="legend-yarn-label" value="YARN RPC" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="610" y="620" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend-client-rpc" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;strokeColor=#e74c3c;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="700" y="635" as="sourcePoint" />
+            <mxPoint x="750" y="635" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="legend-client-label" value="客户端RPC" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="760" y="620" width="80" height="30" as="geometry" />
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
